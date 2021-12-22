@@ -7,13 +7,19 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.2.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
-        classpath "com.getkeepsafe.dexcount:dexcount-gradle-plugin:$dexcount_version"
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokka_version"
     }
 }
+
+plugins {
+    id 'org.jetbrains.kotlin.js' version "$kotlin_version"
+    id "org.jetbrains.compose" version "$jetbrains_compose_version"
+}
+
+project.version = "$version"
+project.group = "$group"
 
 allprojects {
     repositories {
@@ -23,5 +29,23 @@ allprojects {
     }
 }
 
-apply from: "./extensions.gradle"
-// apply from: "./github_release.gradle"
+kotlin {
+    js(IR) {
+        browser()
+        binaries.executable()
+    }
+}
+
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    api "org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlin_serialisation_core_version"
+    implementation(compose.web.core)
+    implementation(compose.runtime)
+    implementation "org.jetbrains.kotlin:kotlin-test-js:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
+}
+
+apply from: "./github_release.gradle"
+apply from: "./publish.gradle"
+

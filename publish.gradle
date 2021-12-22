@@ -1,0 +1,75 @@
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+}
+task sourcesJar(type: Jar) {
+    kotlin.sourceSets.all {
+        from(kotlin)
+    }
+    classifier = 'sources'
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            kotlin.js().components.forEach {
+                from(it)
+            }
+
+            artifact javadocJar
+            artifact sourcesJar
+
+            pom {
+                resolveStrategy = Closure.DELEGATE_FIRST
+
+                description = "${project.name}"
+                name = "${project.name}"
+                url = "https://github.com/InsanusMokrassar/JSUIKitKBindings"
+
+                scm {
+                    developerConnection = "scm:git:[fetch=]https://github.com/InsanusMokrassar/JSUIKitKBindings.git[push=]https://github.com/InsanusMokrassar/JSUIKitKBindings.git"
+                    url = "https://github.com/InsanusMokrassar/JSUIKitKBindings.git"
+                }
+
+                developers {
+
+                        developer {
+                            id = "InsanusMokrassar"
+                            name = "Ovsiannikov Aleksei"
+                            email = "ovsyannikov.alexey95@gmail.com"
+                        }
+
+                }
+
+                licenses {
+
+                        license {
+                            name = "Apache Software License 2.0"
+                            url = "https://opensource.org/licenses/Apache-2.0"
+                        }
+
+                }
+            }
+            repositories {
+                if ((project.hasProperty('SONATYPE_USER') || System.getenv('SONATYPE_USER') != null) && (project.hasProperty('SONATYPE_PASSWORD') || System.getenv('SONATYPE_PASSWORD') != null)) {
+                    maven {
+                        name = "sonatype"
+                        url = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
+                        credentials {
+                            username = project.hasProperty('SONATYPE_USER') ? project.property('SONATYPE_USER') : System.getenv('SONATYPE_USER')
+                            password = project.hasProperty('SONATYPE_PASSWORD') ? project.property('SONATYPE_PASSWORD') : System.getenv('SONATYPE_PASSWORD')
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+signing {
+    useGpgCmd()
+    sign publishing.publications
+}

@@ -1,224 +1,41 @@
-# How to use
+# JSUIKit Kotlin
 
-That is a template for Kotlin Multiplatform Projects. How to use it:
+Hello :) This library is a wrapper for JavaScript/CSS [UIKit](https://getuikit.com) framework. It uses the same
+structure as in [UIKit Docs](https://getuikit.com/docs/introduction) and in most cases you may use it.
 
-* Create your repository from this template
-* Add `local.properties` file in case you plan to use `Android` target (you must set up location of SDK, it will not be tracked by `git` and it is correct behaviour). In the snippet below you may see approximate content of `local.properties` file:
-```properties
-## This file must *NOT* be checked into Version Control Systems,
-# as it contains information specific to your local configuration.
-#
-# Location of the SDK. This is only used by Gradle.
-# For customization when using a Version Control System, please read the
-# header note.
-sdk.dir=/your/path/to/android/sdk
-```
-* Replace in a whole project `project_group` by your group
-* Replace in a whole project `project_name` by your **ROOT** project name
-* Update your subproject packages. It is not critical, but recommended especially in case you plan to publish your
-  library
+The main target of this wrapper is a [JetBrains Compose JS](https://github.com/JetBrains/compose-jb) and will be useful
+for you in case you are using it too.
 
-## Subprojects
+## How to include
 
-In this template there is only one subproject with name `lib`. You are always able to rename it, but remember that in
-this case you must rename it in `settings.gradle` file.
-
-## JVM sources in Android target
-
-By default JVM code is not included in Android target. In case you wish to include JVM sources in Android build, use
-next method in the end of your `build.gradle`:
+Last version: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/dev.inmo/jsuikitkotlin/badge.svg)](https://maven-badges.herokuapp.com/maven-central/dev.inmo/jsuikitkotlin)
 
 ```groovy
-enableIncludingJvmCodeInAndroidPart()
+implementation "dev.inmo:jsuikitkotlin:$jsuikitkotlin_version"
 ```
 
-In case when you need to be sure that JVM sources are not included in Android part, use this snippet:
+**THIS LIBRARY DO NOT ADD ANY JS OR CSS**. So, you must download and include UIKit js/css by yourself. See
+[UIKit installation instructions](https://getuikit.com/docs/installation)
 
-```groovy
-disableIncludingJvmCodeInAndroidPart()
-```
+## How to use
 
-## Types of projects
+In this library there are two main entities:
 
-### `mppProjectWithSerialization`
+* Builder functions - buttons, spinners, icons, grids, etc.
+* Modifiers - `UIKitAlign`, `UIKitAnimation`, etc.
 
-This type of preset have `JVM`, `JS` and `Android` targets and available using
-`apply from: "$mppProjectWithSerializationPresetPath"`. Template for project with this preset looks like next snippet:
+For example, if you want to add table in your html, you will use next code:
 
-```groovy
-plugins {
-    id "org.jetbrains.kotlin.multiplatform"
-    id "org.jetbrains.kotlin.plugin.serialization"
-    id "com.android.library"
-}
-
-apply from: "$mppProjectWithSerializationPresetPath"
-
-// The code below is optional
-
-kotlin {
-    sourceSets {
-        commonMain {
-            dependencies {
-                // common dependencies
-            }
-        }
-        commonTest {
-            dependencies {
-                // common test dependencies
-            }
-        }
-        jvmMain {
-            dependencies {
-                // jvm dependencies
-            }
-        }
-        jvmTest {
-            dependencies {
-                // jvm test dependencies
-            }
-        }
-        jsMain {
-            dependencies {
-                // js dependencies
-            }
-        }
-        jsTest {
-            dependencies {
-                // js test dependencies
-            }
-        }
-        androidMain {
-            dependencies {
-                // android dependencies
-            }
-        }
-        androidTest {
-            dependencies {
-                // android test dependencies
-            }
-        }
-    }
-}
-```
-
-### `mppJavaProject`
-
-This type of preset have only `JVM` target and available using `apply from: "$mppJavaProjectPresetPath"`. Template for
-project with this preset looks like next snippet:
-
-```groovy
-plugins {
-    id "org.jetbrains.kotlin.multiplatform"
-}
-
-apply from: "$mppJavaProjectPresetPath"
-
-// The code below is optional
-
-kotlin {
-    sourceSets {
-        commonMain {
-            dependencies {
-                // common dependencies
-            }
-        }
-        commonTest {
-            dependencies {
-                // common test dependencies
-            }
-        }
-        jvmMain {
-            dependencies {
-                // jvm dependencies
-            }
-        }
-        jvmTest {
-            dependencies {
-                // jvm test dependencies
-            }
-        }
-    }
-}
-```
-
-### `mppJsProject`
-
-This type of preset have only `JS` target and available using `apply from: "mppJsProjectPresetPath"`. Template for
-project with this preset looks like next snippet:
-
-```groovy
-plugins {
-    id "org.jetbrains.kotlin.multiplatform"
-}
-
-apply from: "$mppJsProjectPresetPath"
-
-// The code below is optional
-
-kotlin {
-    sourceSets {
-        commonMain {
-            dependencies {
-                // common dependencies
-            }
-        }
-        commonTest {
-            dependencies {
-                // common test dependencies
-            }
-        }
-        jsMain {
-            dependencies {
-                // jvm dependencies
-            }
-        }
-        jsTest {
-            dependencies {
-                // jvm test dependencies
-            }
-        }
-    }
-}
-```
-
-### `mppAndroidProject`
-
-This type of preset have only `Android` target and available using `apply from: "$mppAndroidProjectPresetPath"`. Template for
-project with this preset looks like next snippet:
-
-```groovy
-plugins {
-    id "org.jetbrains.kotlin.multiplatform"
-    id "com.android.library"
-}
-
-apply from: "$mppAndroidProjectPresetPath"
-
-// The code below is optional
-
-kotlin {
-    sourceSets {
-        commonMain {
-            dependencies {
-                // common dependencies
-            }
-        }
-        commonTest {
-            dependencies {
-                // common test dependencies
-            }
-        }
-        androidMain {
-            dependencies {
-                // android dependencies
-            }
-        }
-        androidTest {
-            dependencies {
-                // android test dependencies
-            }
-        }
+```kotlin
+DefaultTable(
+    listOf("Heading 1", "Heading 2", "Heading 3"),
+    data, // SnapshotStateList<T>
+    UIKitTable.Divider // modifier, add dividers
+) { i, item -> // i - number of heading, item - item from data; composable callback
+    when (i) {
+        0 -> Text(item.toString())
+        1 -> Text("data 2")
+        2 -> Text("data 3")
     }
 }
 ```

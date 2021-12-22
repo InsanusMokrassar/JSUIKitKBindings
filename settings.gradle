@@ -1,16 +1,2 @@
-rootProject.name = 'project_name'
+rootProject.name = 'jsuikitkotlin'
 
-String[] includes = [
-    ":lib"
-]
-
-
-includes.each { originalName ->
-    String projectDirectory = "${rootProject.projectDir.getAbsolutePath()}${originalName.replaceAll(":", File.separator)}"
-    String projectName = "${rootProject.name}${originalName.replaceAll(":", ".")}"
-    String projectIdentifier = ":${projectName}"
-    include projectIdentifier
-    ProjectDescriptor project = project(projectIdentifier)
-    project.name = projectName
-    project.projectDir = new File(projectDirectory)
-}
