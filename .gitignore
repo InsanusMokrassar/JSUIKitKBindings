@@ -12,4 +12,6 @@ out/
 secret.gradle
 local.properties
 
+kotlin-js-store/
+
 publishing.sh

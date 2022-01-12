@@ -7,13 +7,19 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.2.2'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
-        classpath "com.getkeepsafe.dexcount:dexcount-gradle-plugin:$dexcount_version"
-        classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokka_version"
+        classpath libs.buildscript.kt.gradle
+        classpath libs.buildscript.kt.serialization
+        classpath libs.buildscript.jb.dokka
     }
 }
+
+plugins {
+    alias(libs.plugins.kt.js)
+    alias(libs.plugins.jb.compose)
+}
+
+project.version = "$version"
+project.group = "$group"
 
 allprojects {
     repositories {
@@ -23,5 +29,22 @@ allprojects {
     }
 }
 
-apply from: "./extensions.gradle"
-// apply from: "./github_release.gradle"
+kotlin {
+    js(IR) {
+        browser()
+        binaries.executable()
+    }
+}
+
+
+dependencies {
+    implementation libs.kt.stdlib
+    implementation compose.web.core
+    implementation compose.runtime
+    testImplementation libs.kt.test.js
+    testImplementation libs.kt.test.junit
+}
+
+apply from: "./github_release.gradle"
+apply from: "./publish.gradle"
+
