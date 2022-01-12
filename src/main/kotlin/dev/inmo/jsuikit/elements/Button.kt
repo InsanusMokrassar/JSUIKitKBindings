@@ -2,7 +2,7 @@ package dev.inmo.jsuikit.elements
 
 import androidx.compose.runtime.Composable
 import androidx.compose.web.events.SyntheticMouseEvent
-import dev.inmo.jsuikit.defaults.modifers.*
+import dev.inmo.jsuikit.modifers.*
 import org.jetbrains.compose.web.attributes.InputType
 import org.jetbrains.compose.web.attributes.disabled
 import org.jetbrains.compose.web.dom.*

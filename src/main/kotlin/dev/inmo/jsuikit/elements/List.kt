@@ -2,8 +2,8 @@ package dev.inmo.jsuikit.elements
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.snapshots.SnapshotStateList
-import dev.inmo.jsuikit.defaults.modifers.UIKitModifier
-import dev.inmo.jsuikit.defaults.modifers.include
+import dev.inmo.jsuikit.modifers.UIKitModifier
+import dev.inmo.jsuikit.modifers.include
 import org.jetbrains.compose.web.dom.*
 import org.w3c.dom.HTMLUListElement
 

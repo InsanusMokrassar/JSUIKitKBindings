@@ -2,7 +2,7 @@ package dev.inmo.jsuikit.elements
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.snapshots.SnapshotStateList
-import dev.inmo.jsuikit.defaults.modifers.*
+import dev.inmo.jsuikit.modifers.*
 import org.jetbrains.compose.web.dom.*
 
 @Composable
