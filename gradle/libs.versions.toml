@@ -14,6 +14,7 @@ kt-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref
 buildscript-kt-gradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kt" }
 buildscript-kt-serialization = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kt" }
 buildscript-jb-dokka = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "jb-dokka" }
+buildscript-gh-release = { module = "com.github.breadmoirai:github-release", version.ref = "gh-release" }
 
 [plugins]
 
