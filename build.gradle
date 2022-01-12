@@ -7,15 +7,15 @@ buildscript {
     }
 
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
-        classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokka_version"
+        classpath libs.buildscript.kt.gradle
+        classpath libs.buildscript.kt.serialization
+        classpath libs.buildscript.jb.dokka
     }
 }
 
 plugins {
-    id 'org.jetbrains.kotlin.js' version "$kotlin_version"
-    id "org.jetbrains.compose" version "$jetbrains_compose_version"
+    alias(libs.plugins.kt.js)
+    alias(libs.plugins.jb.compose)
 }
 
 project.version = "$version"
@@ -38,12 +38,12 @@ kotlin {
 
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    api "org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlin_serialisation_core_version"
-    implementation(compose.web.core)
-    implementation(compose.runtime)
-    implementation "org.jetbrains.kotlin:kotlin-test-js:$kotlin_version"
-    implementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
+    implementation libs.kt.stdlib
+    api libs.kt.serialization
+    implementation compose.web.core
+    implementation compose.runtime
+    testImplementation libs.kt.test.js
+    testImplementation libs.kt.test.junit
 }
 
 apply from: "./github_release.gradle"
