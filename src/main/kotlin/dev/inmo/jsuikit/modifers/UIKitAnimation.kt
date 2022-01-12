@@ -1,6 +1,6 @@
 package dev.inmo.jsuikit.modifers
 
-sealed class UIKitAnimation (name: String) : UIKitModifier, dev.inmo.jsuikit.modifers.AttributeValue(name) {
+sealed class UIKitAnimation (name: String) : UIKitModifier, AttributeValue(name) {
     override val classes: Array<String> = arrayOf("uk-animation-$name")
 
     object Fade : UIKitAnimation("fade")

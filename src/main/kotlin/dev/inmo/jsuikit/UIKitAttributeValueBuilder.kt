@@ -1,5 +1,6 @@
 package dev.inmo.jsuikit
 
+import dev.inmo.jsuikit.modifers.AttributeValue
 import org.jetbrains.compose.web.attributes.AttrsBuilder
 
 class UIKitAttributeValueBuilder {
@@ -11,7 +12,7 @@ class UIKitAttributeValueBuilder {
         }
     }
 
-    infix fun String.to(other: dev.inmo.jsuikit.modifers.AttributeValue?) {
+    infix fun String.to(other: AttributeValue?) {
         this to other ?.name
     }
 

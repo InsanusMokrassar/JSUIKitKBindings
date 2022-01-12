@@ -7,7 +7,7 @@ sealed class UIKitDropdown(classname: String) : UIKitModifier {
 
     object Grid : UIKitDropdown("uk-dropdown-grid")
 
-    sealed class Position(name: String) : dev.inmo.jsuikit.modifers.AttributeValue(name) {
+    sealed class Position(name: String) : AttributeValue(name) {
 
         sealed class Bottom(name: String) : Position("bottom-$name") {
 
@@ -45,14 +45,14 @@ sealed class UIKitDropdown(classname: String) : UIKitModifier {
 
     }
 
-    sealed class Mode(name: String) : dev.inmo.jsuikit.modifers.AttributeValue(name) {
+    sealed class Mode(name: String) : AttributeValue(name) {
 
         object Click : Mode("click")
         object Hover : Mode("hover")
 
     }
 
-    sealed class Flip(name: String) : dev.inmo.jsuikit.modifers.AttributeValue(name) {
+    sealed class Flip(name: String) : AttributeValue(name) {
 
         object True : Flip("true")
         object False : Flip("false")
