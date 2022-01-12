@@ -1,6 +1,4 @@
 apply plugin: 'maven-publish'
-apply plugin: 'signing'
-
 
 task javadocJar(type: Jar) {
     classifier = 'javadoc'
@@ -35,22 +33,22 @@ publishing {
                 }
 
                 developers {
-
+                    
                         developer {
                             id = "InsanusMokrassar"
                             name = "Ovsiannikov Aleksei"
                             email = "ovsyannikov.alexey95@gmail.com"
                         }
-
+                    
                 }
 
                 licenses {
-
+                    
                         license {
                             name = "Apache Software License 2.0"
                             url = "https://opensource.org/licenses/Apache-2.0"
                         }
-
+                    
                 }
             }
             repositories {
@@ -69,7 +67,18 @@ publishing {
     }
 }
 
-signing {
-    useGpgCmd()
-    sign publishing.publications
+if (project.hasProperty("signing.gnupg.keyName")) {
+    apply plugin: 'signing'
+    
+    signing {
+        useGpgCmd()
+    
+        sign publishing.publications
+    }
+    
+    task signAll {
+        tasks.withType(Sign).forEach {
+            dependsOn(it)
+        }
+    }
 }
