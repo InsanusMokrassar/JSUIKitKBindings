@@ -39,7 +39,6 @@ kotlin {
 
 dependencies {
     implementation libs.kt.stdlib
-    api libs.kt.serialization
     implementation compose.web.core
     implementation compose.runtime
     testImplementation libs.kt.test.js

@@ -1,7 +1,6 @@
 [versions]
 
 kt = "1.6.10"
-kt-serialization = "1.3.2"
 jb-compose = "1.0.1"
 jb-dokka = "1.6.10"
 gh-release = "2.2.12"
@@ -9,7 +8,6 @@ gh-release = "2.2.12"
 [libraries]
 
 kt-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kt" }
-kt-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kt-serialization" }
 kt-test-js = { module = "org.jetbrains.kotlin:kotlin-test-js", version.ref = "kt" }
 kt-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kt" }
 
