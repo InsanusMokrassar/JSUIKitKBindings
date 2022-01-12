@@ -1,5 +1,7 @@
 ## 0.0.3
 
+__Global changes in packages__
+
 ## 0.0.2
 
 * Name of project has been changed: `jsuikitkotlin` -> `kjsuikit`
