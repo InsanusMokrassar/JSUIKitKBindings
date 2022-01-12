@@ -1,7 +1,7 @@
 package dev.inmo.jsuikit.elements
 
 import androidx.compose.runtime.Composable
-import dev.inmo.jsuikit.modifers.*
+import dev.inmo.jsuikit.modifiers.*
 import org.jetbrains.compose.web.dom.Button
 import org.jetbrains.compose.web.dom.Span
 import org.w3c.dom.events.Event

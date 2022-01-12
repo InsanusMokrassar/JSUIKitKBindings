@@ -1,4 +1,4 @@
-package dev.inmo.jsuikit.modifers
+package dev.inmo.jsuikit.modifiers
 
 import org.jetbrains.compose.web.attributes.AttrsBuilder
 

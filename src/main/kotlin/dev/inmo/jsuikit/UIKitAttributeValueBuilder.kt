@@ -1,6 +1,6 @@
 package dev.inmo.jsuikit
 
-import dev.inmo.jsuikit.modifers.AttributeValue
+import dev.inmo.jsuikit.modifiers.AttributeValue
 import org.jetbrains.compose.web.attributes.AttrsBuilder
 
 class UIKitAttributeValueBuilder {

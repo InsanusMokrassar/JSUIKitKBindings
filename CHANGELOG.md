@@ -1,5 +1,7 @@
 ## 0.0.4
 
+__Migrate modifers to modifiers__
+
 ## 0.0.3
 
 __Global changes in packages__

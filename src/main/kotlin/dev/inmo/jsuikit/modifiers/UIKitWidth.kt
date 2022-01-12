@@ -1,4 +1,4 @@
-package dev.inmo.jsuikit.modifers
+package dev.inmo.jsuikit.modifiers
 
 sealed class UIKitWidth(classname: String) : UIKitModifier {
     override val classes: Array<String> = arrayOf("uk-width-$classname")

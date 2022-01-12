@@ -1,8 +1,8 @@
 package dev.inmo.jsuikit.elements
 
 import androidx.compose.runtime.*
-import dev.inmo.jsuikit.modifers.UIKitModifier
-import dev.inmo.jsuikit.modifers.include
+import dev.inmo.jsuikit.modifiers.UIKitModifier
+import dev.inmo.jsuikit.modifiers.include
 import org.jetbrains.compose.web.attributes.*
 import org.jetbrains.compose.web.dom.Input
 

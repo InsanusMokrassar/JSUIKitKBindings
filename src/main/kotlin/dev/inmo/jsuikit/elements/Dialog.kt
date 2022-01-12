@@ -2,8 +2,8 @@ package dev.inmo.jsuikit.elements
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffectResult
-import dev.inmo.jsuikit.modifers.UIKitModifier
-import dev.inmo.jsuikit.modifers.include
+import dev.inmo.jsuikit.modifiers.UIKitModifier
+import dev.inmo.jsuikit.modifiers.include
 import org.jetbrains.compose.web.dom.*
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.events.Event

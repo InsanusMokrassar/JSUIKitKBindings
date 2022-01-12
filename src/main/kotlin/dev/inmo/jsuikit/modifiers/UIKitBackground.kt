@@ -1,4 +1,4 @@
-package dev.inmo.jsuikit.modifers
+package dev.inmo.jsuikit.modifiers
 
 sealed class UIKitBackground(suffix: String) : UIKitModifier {
     override val classes: Array<String> = arrayOf("uk-background-$suffix")

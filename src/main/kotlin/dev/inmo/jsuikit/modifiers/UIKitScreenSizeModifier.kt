@@ -1,4 +1,4 @@
-package dev.inmo.jsuikit.modifers
+package dev.inmo.jsuikit.modifiers
 
 sealed class UIKitScreenSizeModifier(val name: String) {
     class UIKitScreenSizeModifierModified (

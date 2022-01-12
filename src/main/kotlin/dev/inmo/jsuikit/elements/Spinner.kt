@@ -1,7 +1,7 @@
 package dev.inmo.jsuikit.elements
 
 import androidx.compose.runtime.Composable
-import dev.inmo.jsuikit.modifers.*
+import dev.inmo.jsuikit.modifiers.*
 import org.jetbrains.compose.web.dom.Div
 
 @Composable
