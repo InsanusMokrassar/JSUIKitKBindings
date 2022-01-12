@@ -1,5 +1,8 @@
 # JSUIKit Kotlin
 
+**IMPORTANT NOTICE**: ___Currently it is possible that you will have issues with `vararg` arguments passing to the functions.
+Use `arrayOf(...)` instead___
+
 Hello :) This library is a wrapper for JavaScript/CSS [UIKit](https://getuikit.com) framework. It uses the same
 structure as in [UIKit Docs](https://getuikit.com/docs/introduction) and in most cases you may use it.
 
