@@ -1,4 +1,4 @@
-package dev.inmo.jsuikit.modifers
+package dev.inmo.jsuikit.modifiers
 
 sealed class UIKitIconType(suffix: String?) : UIKitModifier {
     override val classes: Array<String> = suffix ?.let {

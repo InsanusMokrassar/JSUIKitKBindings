@@ -1,8 +1,8 @@
 package dev.inmo.jsuikit.elements
 
 import androidx.compose.runtime.Composable
-import dev.inmo.jsuikit.modifers.UIKitModifier
-import dev.inmo.jsuikit.modifers.include
+import dev.inmo.jsuikit.modifiers.UIKitModifier
+import dev.inmo.jsuikit.modifiers.include
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.ElementScope
 import org.w3c.dom.HTMLDivElement

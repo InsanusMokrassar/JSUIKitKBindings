@@ -1,3 +1,3 @@
-package dev.inmo.jsuikit.modifers
+package dev.inmo.jsuikit.modifiers
 
 sealed class AttributeValue(val name: String)

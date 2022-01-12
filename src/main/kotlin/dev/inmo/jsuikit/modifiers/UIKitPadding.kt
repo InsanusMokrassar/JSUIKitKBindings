@@ -1,4 +1,4 @@
-package dev.inmo.jsuikit.modifers
+package dev.inmo.jsuikit.modifiers
 
 sealed class UIKitPadding(suffix: String?) : UIKitModifier {
     override val classes: Array<String> = arrayOf("uk-padding${suffix ?.let { "-$it" } ?: ""}")
