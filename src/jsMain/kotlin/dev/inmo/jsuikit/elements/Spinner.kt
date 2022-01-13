@@ -8,7 +8,7 @@ import org.w3c.dom.HTMLDivElement
 
 @Composable
 fun Spinner(
-    modifiers: Array<UIKitModifier> = emptyArray(),
+    vararg modifiers: UIKitModifier,
     ratio: Float? = null,
     attributesCustomizer: AttrBuilderContext<HTMLDivElement> = {}
 ) {
@@ -23,6 +23,4 @@ fun Spinner(
 }
 
 @Composable
-fun DefaultSpinner() = Spinner(
-    arrayOf(UIKitAlign.Center, UIKitMargin.Small, UIKitText.Alignment.Center)
-)
+fun DefaultSpinner() = Spinner(UIKitAlign.Center, UIKitMargin.Small, UIKitText.Alignment.Center)

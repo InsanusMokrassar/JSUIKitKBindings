@@ -12,7 +12,7 @@ import org.w3c.dom.HTMLUListElement
 fun <T> List(
     title: String,
     data: SnapshotStateList<T>,
-    titleModifiers: Array<UIKitModifier> = emptyArray(),
+    vararg titleModifiers: UIKitModifier,
     ulModifiers: Array<UIKitModifier> = emptyArray(),
     besidesTitleAndList: (@Composable () -> Unit)? = null,
     titleCustomizer: AttrBuilderContext<HTMLHeadingElement> = {},

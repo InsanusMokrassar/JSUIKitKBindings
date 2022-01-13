@@ -1,3 +1,7 @@
+## 0.0.7
+
+Rewrite project onto multiplatform paradigm and return back varargs instead of most `Array<UIKitModifier>`
+
 ## 0.0.6
 
 Changes in signatures of text field and list

@@ -204,7 +204,7 @@ sealed class Icon(val name: String) {
 
     @Composable
     operator fun invoke(
-        modifiers: Array<UIKitModifier> = emptyArray(),
+        vararg modifiers: UIKitModifier,
         type: UIKitIconType = UIKitIconType.Default,
         ratio: Float? = null,
         attributesCustomizer: AttrBuilderContext<out HTMLElement> = {},
@@ -228,17 +228,17 @@ sealed class Icon(val name: String) {
 
     @Composable
     fun drawAsButton(
-        modifiers: Array<UIKitModifier> = emptyArray(),
+        vararg modifiers: UIKitModifier,
         ratio: Float? = null,
         attributesCustomizer: AttrBuilderContext<out HTMLElement> = {},
         onClick: ((Event) -> Unit)? = null
-    ) = invoke(modifiers, type = UIKitIconType.Button, ratio = ratio, onClick = onClick, attributesCustomizer = attributesCustomizer)
+    ) = invoke(*modifiers, type = UIKitIconType.Button, ratio = ratio, onClick = onClick, attributesCustomizer = attributesCustomizer)
 
     @Composable
     fun drawAsIcon(
-        modifiers: Array<UIKitModifier> = emptyArray(),
+        vararg modifiers: UIKitModifier,
         ratio: Float? = null,
         attributesCustomizer: AttrBuilderContext<out HTMLElement> = {},
         onClick: ((Event) -> Unit)? = null
-    ) = invoke(modifiers, type = UIKitIconType.Default, ratio = ratio, onClick = onClick, attributesCustomizer = attributesCustomizer)
+    ) = invoke(*modifiers, type = UIKitIconType.Default, ratio = ratio, onClick = onClick, attributesCustomizer = attributesCustomizer)
 }

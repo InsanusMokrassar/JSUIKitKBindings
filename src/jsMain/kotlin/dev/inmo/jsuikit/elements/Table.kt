@@ -11,7 +11,7 @@ import org.w3c.dom.HTMLTableElement
 fun <T> DefaultTable(
     heading: List<String>,
     dataList: SnapshotStateList<T>,
-    tableModifiers: Array<UIKitModifier> = emptyArray(),
+    vararg tableModifiers: UIKitModifier,
     attributesCustomizer: AttrBuilderContext<HTMLTableElement> = {},
     cellFiller: @Composable (i: Int, t: T) -> Unit
 ) {

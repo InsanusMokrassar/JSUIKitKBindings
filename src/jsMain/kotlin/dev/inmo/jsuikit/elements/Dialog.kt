@@ -26,7 +26,7 @@ private class DialogDisposableEffectResult(
 @Composable
 fun Dialog(
     title: String? = null,
-    modifiers: Array<UIKitModifier> = emptyArray(),
+    vararg modifiers: UIKitModifier,
     hide: (() -> Unit)? = null,
     hidden: (() -> Unit)? = null,
     footerBuilder: (@Composable () -> Unit)? = null,

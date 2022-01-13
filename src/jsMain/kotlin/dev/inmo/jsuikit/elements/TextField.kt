@@ -14,7 +14,7 @@ fun <T> TextField(
     state: MutableState<T>,
     disabledState: State<Boolean>? = null,
     placeholder: String? = null,
-    modifiers: Array<UIKitModifier> = emptyArray(),
+    vararg modifiers: UIKitModifier,
     attributesCustomizer: AttrBuilderContext<HTMLInputElement> = {},
 ) {
     Input(type) {

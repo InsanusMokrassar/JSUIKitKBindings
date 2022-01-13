@@ -10,7 +10,7 @@ import org.w3c.dom.HTMLProgressElement
 @Composable
 fun Progress(
     value: Int,
-    modifiers: Array<UIKitModifier> = emptyArray(),
+    vararg modifiers: UIKitModifier,
     max: Int = 100,
     attributesCustomizer: AttrBuilderContext<HTMLProgressElement> = {}
 ) {
