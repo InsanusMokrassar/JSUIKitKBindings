@@ -1,3 +1,5 @@
+## 0.0.6
+
 ## 0.0.5
 
 All elements has changed their signatures: they all will accept an additional lambda for attributes configuration
