@@ -15,35 +15,44 @@ buildscript {
 }
 
 plugins {
-    alias(libs.plugins.kt.js)
+    alias(libs.plugins.kt.multiplatform)
     alias(libs.plugins.jb.compose)
 }
 
 project.version = "$version"
 project.group = "$group"
 
-allprojects {
-    repositories {
-        mavenLocal()
-        mavenCentral()
-        google()
-    }
+repositories {
+    mavenLocal()
+    mavenCentral()
+    google()
 }
 
 kotlin {
     js(IR) {
         browser()
-        binaries.executable()
     }
-}
 
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation libs.kt.stdlib
+                implementation compose.runtime
+            }
+        }
+        jsMain {
+            dependencies {
+                implementation compose.web.core
+            }
+        }
 
-dependencies {
-    implementation libs.kt.stdlib
-    implementation compose.web.core
-    implementation compose.runtime
-    testImplementation libs.kt.test.js
-    testImplementation libs.kt.test.junit
+        jsTest {
+            dependencies {
+                implementation libs.kt.test.js
+                implementation libs.kt.test.junit
+            }
+        }
+    }
 }
 
 apply from: "./github_release.gradle"

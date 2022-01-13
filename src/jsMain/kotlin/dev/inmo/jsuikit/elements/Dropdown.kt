@@ -9,7 +9,7 @@ import org.w3c.dom.HTMLDivElement
 
 @Composable
 fun Dropdown(
-    modifiers: Array<UIKitModifier> = emptyArray(),
+    vararg modifiers: UIKitModifier,
     toggle: String? = null,
     pos: UIKitDropdown.Position? = null,
     mode: UIKitDropdown.Mode? = null,

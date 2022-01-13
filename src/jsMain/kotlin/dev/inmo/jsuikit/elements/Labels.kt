@@ -10,9 +10,9 @@ sealed interface Label {
     val suffix: String
 
     @Composable
-    operator fun invoke(
+    fun draw(
         text: String,
-        modifiers: Array<UIKitModifier> = emptyArray(),
+        vararg modifiers: UIKitModifier,
         attributesCustomizer: AttrBuilderContext<HTMLSpanElement> = {},
     ) = Span(
         {

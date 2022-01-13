@@ -18,5 +18,5 @@ buildscript-gh-release = { module = "com.github.breadmoirai:github-release", ver
 
 [plugins]
 
-kt-js = { id = "org.jetbrains.kotlin.js", version.ref = "kt" }
+kt-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kt" }
 jb-compose = { id = "org.jetbrains.compose", version.ref = "jb-compose" }

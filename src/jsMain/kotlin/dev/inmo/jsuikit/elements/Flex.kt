@@ -8,7 +8,7 @@ import org.w3c.dom.HTMLDivElement
 
 @Composable
 fun Flex(
-    modifiers: Array<UIKitModifier> = emptyArray(),
+    vararg modifiers: UIKitModifier,
     attributesCustomizer: AttrBuilderContext<HTMLDivElement> = {},
     filler: @Composable ElementScope<HTMLDivElement>.() -> Unit
 ) {

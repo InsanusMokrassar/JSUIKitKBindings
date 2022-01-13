@@ -11,7 +11,7 @@ fun Navbar(
     leftBuilder: NavbarNavBuilder? = null,
     centerBuilder: NavbarNavBuilder? = null,
     rightBuilder: NavbarNavBuilder? = null,
-    navModifiers: Array<UIKitModifier> = emptyArray(),
+    vararg navModifiers: UIKitModifier,
     attributesCustomizer: AttrBuilderContext<HTMLElement> = {},
 ) {
     Nav(

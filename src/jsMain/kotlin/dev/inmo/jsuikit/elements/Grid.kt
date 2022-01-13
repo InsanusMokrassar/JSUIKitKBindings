@@ -8,7 +8,7 @@ import org.w3c.dom.HTMLDivElement
 
 @Composable
 fun GridColumn(
-    modifiers: Array<UIKitModifier> = emptyArray(),
+    vararg modifiers: UIKitModifier,
     attributesCustomizer: AttrBuilderContext<HTMLDivElement> = {},
     builder: @Composable ElementScope<HTMLDivElement>.() -> Unit
 ) {
@@ -24,7 +24,7 @@ fun GridColumn(
 
 @Composable
 fun Grid(
-    modifiers: Array<UIKitModifier> = emptyArray(),
+    vararg modifiers: UIKitModifier,
     masonry: Boolean = false,
     parallax: Int? = null,
     marginClass: String? = null,

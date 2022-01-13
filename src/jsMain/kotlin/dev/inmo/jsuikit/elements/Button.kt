@@ -12,7 +12,7 @@ import org.w3c.dom.events.Event
 
 @Composable
 fun DefaultButton(
-    modifiers: Array<UIKitModifier> = emptyArray(),
+    vararg modifiers: UIKitModifier,
     disabled: Boolean = false,
     buttonType: UIKitButton.Type = UIKitButton.Type.Default,
     onClick: ((SyntheticMouseEvent) -> Unit)? = null,
@@ -37,14 +37,14 @@ fun DefaultButton(
 @Composable
 fun DefaultButton(
     text: String,
-    modifiers: Array<UIKitModifier> = emptyArray(),
+    vararg modifiers: UIKitModifier,
     disabled: Boolean = false,
     buttonType: UIKitButton.Type = UIKitButton.Type.Default,
     preTextContentAllocator: ContentBuilder<HTMLButtonElement>? = null,
     afterTextContentAllocator: ContentBuilder<HTMLButtonElement>? = null,
     attributesCustomizer: AttrBuilderContext<HTMLButtonElement> = {},
     onClick: ((SyntheticMouseEvent) -> Unit)? = null
-) = DefaultButton(modifiers, disabled = disabled, buttonType = buttonType, onClick = onClick, attributesCustomizer = attributesCustomizer) {
+) = DefaultButton(*modifiers, disabled = disabled, buttonType = buttonType, onClick = onClick, attributesCustomizer = attributesCustomizer) {
     preTextContentAllocator ?.apply { preTextContentAllocator() }
     Text(text)
     afterTextContentAllocator ?.apply { afterTextContentAllocator() }
@@ -53,7 +53,7 @@ fun DefaultButton(
 @Composable
 fun UploadButton(
     text: String,
-    buttonModifiers: Array<UIKitModifier> = emptyArray(),
+    vararg buttonModifiers: UIKitModifier,
     containerModifiers: Array<UIKitModifier> = emptyArray(),
     disabled: Boolean = false,
     buttonType: UIKitButton.Type = UIKitButton.Type.Default,

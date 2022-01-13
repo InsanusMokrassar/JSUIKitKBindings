@@ -10,7 +10,7 @@ import org.w3c.dom.HTMLUListElement
 
 @Composable
 fun Nav(
-    modifiers: Array<UIKitModifier> = emptyArray(),
+    vararg modifiers: UIKitModifier,
     multiple: Boolean? = null,
     collapsible: Boolean? = null,
     animation: UIKitAnimation? = null,
@@ -37,7 +37,7 @@ fun Nav(
 
 @Composable
 fun NavElement(
-    modifiers: Array<UIKitModifier> = emptyArray(),
+    vararg modifiers: UIKitModifier,
     attributesCustomizer: AttrBuilderContext<HTMLLIElement> = {},
     contentAllocator: ContentBuilder<HTMLLIElement>
 ) {
