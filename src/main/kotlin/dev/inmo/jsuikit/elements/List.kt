@@ -13,10 +13,10 @@ fun <T> List(
     title: String,
     data: SnapshotStateList<T>,
     titleModifiers: Array<UIKitModifier> = emptyArray(),
-    titleCustomizer: AttrBuilderContext<HTMLHeadingElement> = {},
     ulModifiers: Array<UIKitModifier> = emptyArray(),
-    ulCustomizer: AttrBuilderContext<HTMLUListElement> = {},
     besidesTitleAndList: (@Composable () -> Unit)? = null,
+    titleCustomizer: AttrBuilderContext<HTMLHeadingElement> = {},
+    ulCustomizer: AttrBuilderContext<HTMLUListElement> = {},
     elementAllocator: @Composable ElementScope<HTMLUListElement>.(T) -> Unit
 ) {
     H4({ include(*titleModifiers); titleCustomizer() }) {

@@ -14,8 +14,8 @@ fun <T> TextField(
     state: MutableState<T>,
     disabledState: State<Boolean>? = null,
     placeholder: String? = null,
+    modifiers: Array<UIKitModifier> = emptyArray(),
     attributesCustomizer: AttrBuilderContext<HTMLInputElement> = {},
-    modifiers: Array<UIKitModifier> = emptyArray()
 ) {
     Input(type) {
         classes("uk-input")
