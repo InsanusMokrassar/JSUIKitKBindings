@@ -1,3 +1,7 @@
+## 0.0.5
+
+All elements has changed their signatures: they all will accept an additional lambda for attributes configuration
+
 ## 0.0.4
 
 __Migrate modifers to modifiers__

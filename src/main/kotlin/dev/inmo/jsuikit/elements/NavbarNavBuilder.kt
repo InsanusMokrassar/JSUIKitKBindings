@@ -6,6 +6,7 @@ import dev.inmo.jsuikit.modifiers.include
 import org.jetbrains.compose.web.attributes.AttrsBuilder
 import org.jetbrains.compose.web.dom.*
 import org.w3c.dom.HTMLLIElement
+import org.w3c.dom.HTMLUListElement
 
 interface NavbarNavElement {
     fun AttrsBuilder<HTMLLIElement>.setup() {}
@@ -29,21 +30,25 @@ interface NavbarNavElement {
 
 class NavbarNavBuilder(
     private val modifiers: Array<UIKitModifier>,
-    private val elements: List<NavbarNavElement>
+    private val elements: List<NavbarNavElement>,
+    private val attributesCustomizer: AttrBuilderContext<HTMLUListElement> = {}
 ) {
     constructor(
         modifiers: Array<UIKitModifier>,
-        vararg elements: NavbarNavElement
-    ) : this(modifiers, elements.toList())
+        vararg elements: NavbarNavElement,
+        attributesCustomizer: AttrBuilderContext<HTMLUListElement> = {}
+    ) : this(modifiers, elements.toList(), attributesCustomizer)
     constructor(
-        vararg elements: NavbarNavElement
-    ) : this(emptyArray(), elements.toList())
+        vararg elements: NavbarNavElement,
+        attributesCustomizer: AttrBuilderContext<HTMLUListElement> = {}
+    ) : this(emptyArray(), elements.toList(), attributesCustomizer)
     @Composable
     fun draw() {
         Ul(
             {
                 classes("uk-navbar-nav")
                 include(*modifiers)
+                attributesCustomizer()
             }
         ) {
             elements.forEach { element ->

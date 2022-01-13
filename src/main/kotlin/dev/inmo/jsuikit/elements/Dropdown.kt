@@ -4,13 +4,12 @@ import androidx.compose.runtime.Composable
 import dev.inmo.jsuikit.buildAndAddAttribute
 import dev.inmo.jsuikit.modifiers.*
 import dev.inmo.jsuikit.utils.Milliseconds
-import org.jetbrains.compose.web.dom.ContentBuilder
-import org.jetbrains.compose.web.dom.Div
+import org.jetbrains.compose.web.dom.*
 import org.w3c.dom.HTMLDivElement
 
 @Composable
 fun Dropdown(
-    vararg modifiers: UIKitModifier,
+    modifiers: Array<UIKitModifier> = emptyArray(),
     toggle: String? = null,
     pos: UIKitDropdown.Position? = null,
     mode: UIKitDropdown.Mode? = null,
@@ -22,6 +21,7 @@ fun Dropdown(
     offset: Int? = null,
     animation: UIKitAnimation? = null,
     duration: Milliseconds? = null,
+    attributesCustomizer: AttrBuilderContext<HTMLDivElement> = {},
     contentBuilder: ContentBuilder<HTMLDivElement>
 ) {
     Div(
@@ -41,6 +41,7 @@ fun Dropdown(
             }
             classes("uk-dropdown")
             include(*modifiers)
+            attributesCustomizer()
         },
         contentBuilder
     )

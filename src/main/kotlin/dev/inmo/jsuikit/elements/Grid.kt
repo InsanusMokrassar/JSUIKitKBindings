@@ -3,18 +3,19 @@ package dev.inmo.jsuikit.elements
 import androidx.compose.runtime.Composable
 import dev.inmo.jsuikit.modifiers.UIKitModifier
 import dev.inmo.jsuikit.modifiers.include
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.ElementScope
+import org.jetbrains.compose.web.dom.*
 import org.w3c.dom.HTMLDivElement
 
 @Composable
 fun GridColumn(
-    vararg modifiers: UIKitModifier,
+    modifiers: Array<UIKitModifier> = emptyArray(),
+    attributesCustomizer: AttrBuilderContext<HTMLDivElement> = {},
     builder: @Composable ElementScope<HTMLDivElement>.() -> Unit
 ) {
     Div(
         {
             include(*modifiers)
+            attributesCustomizer()
         }
     ) {
         builder()
@@ -23,11 +24,12 @@ fun GridColumn(
 
 @Composable
 fun Grid(
-    vararg modifiers: UIKitModifier,
+    modifiers: Array<UIKitModifier> = emptyArray(),
     masonry: Boolean = false,
     parallax: Int? = null,
     marginClass: String? = null,
     firstColumnClass: String? = null,
+    attributesCustomizer: AttrBuilderContext<HTMLDivElement> = {},
     builder: @Composable ElementScope<HTMLDivElement>.() -> Unit
 ) {
     val attrs = listOfNotNull(
@@ -41,6 +43,7 @@ fun Grid(
             attr("uk-grid", attrs.joinToString(";") { (k, v) -> "$k: $v" })
             classes("uk-grid")
             include(*modifiers)
+            attributesCustomizer()
         }
     ) {
         builder()

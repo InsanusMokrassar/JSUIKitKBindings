@@ -3,8 +3,8 @@ package dev.inmo.jsuikit.elements
 import androidx.compose.runtime.Composable
 import dev.inmo.jsuikit.modifiers.UIKitModifier
 import dev.inmo.jsuikit.modifiers.include
-import org.jetbrains.compose.web.dom.Span
-import org.jetbrains.compose.web.dom.Text
+import org.jetbrains.compose.web.dom.*
+import org.w3c.dom.HTMLSpanElement
 
 sealed interface Label {
     val suffix: String
@@ -12,11 +12,13 @@ sealed interface Label {
     @Composable
     operator fun invoke(
         text: String,
-        vararg modifiers: UIKitModifier
+        modifiers: Array<UIKitModifier> = emptyArray(),
+        attributesCustomizer: AttrBuilderContext<HTMLSpanElement> = {},
     ) = Span(
         {
             classes("uk-label", "uk-label-$suffix")
             include(*modifiers)
+            attributesCustomizer()
         }
     ) {
         Text(text)

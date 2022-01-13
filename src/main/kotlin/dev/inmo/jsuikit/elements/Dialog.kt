@@ -5,7 +5,8 @@ import androidx.compose.runtime.DisposableEffectResult
 import dev.inmo.jsuikit.modifiers.UIKitModifier
 import dev.inmo.jsuikit.modifiers.include
 import org.jetbrains.compose.web.dom.*
-import org.w3c.dom.HTMLElement
+import org.jetbrains.compose.web.dom.Text
+import org.w3c.dom.*
 import org.w3c.dom.events.Event
 import kotlin.random.Random
 import kotlin.random.nextUInt
@@ -25,10 +26,11 @@ private class DialogDisposableEffectResult(
 @Composable
 fun Dialog(
     title: String? = null,
-    vararg modifiers: UIKitModifier,
+    modifiers: Array<UIKitModifier> = emptyArray(),
     hide: (() -> Unit)? = null,
     hidden: (() -> Unit)? = null,
     footerBuilder: (@Composable () -> Unit)? = null,
+    attributesCustomizer: AttrBuilderContext<HTMLDivElement> = {},
     bodyBuilder: @Composable () -> Unit
 ) {
     Div(
@@ -37,6 +39,7 @@ fun Dialog(
             classes("uk-flex-top", "uk-modal")
             id("dialog${Random.nextUInt()}")
             include(*modifiers)
+            attributesCustomizer()
         }
     ) {
         Div(

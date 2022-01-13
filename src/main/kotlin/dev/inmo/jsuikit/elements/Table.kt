@@ -4,12 +4,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import dev.inmo.jsuikit.modifiers.*
 import org.jetbrains.compose.web.dom.*
+import org.w3c.dom.HTMLProgressElement
+import org.w3c.dom.HTMLTableElement
 
 @Composable
 fun <T> DefaultTable(
     heading: List<String>,
     dataList: SnapshotStateList<T>,
-    vararg tableModifiers: UIKitModifier,
+    tableModifiers: Array<UIKitModifier> = emptyArray(),
+    attributesCustomizer: AttrBuilderContext<HTMLTableElement> = {},
     cellFiller: @Composable (i: Int, t: T) -> Unit
 ) {
     val headingIndexes = heading.indices
@@ -17,6 +20,7 @@ fun <T> DefaultTable(
         {
             classes("uk-table")
             include(*tableModifiers)
+            attributesCustomizer()
         }
     ) {
         Thead {

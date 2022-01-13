@@ -7,14 +7,16 @@ import org.jetbrains.compose.web.attributes.InputType
 import org.jetbrains.compose.web.attributes.disabled
 import org.jetbrains.compose.web.dom.*
 import org.w3c.dom.HTMLButtonElement
+import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.events.Event
 
 @Composable
 fun DefaultButton(
-    vararg modifiers: UIKitModifier,
+    modifiers: Array<UIKitModifier> = emptyArray(),
     disabled: Boolean = false,
     buttonType: UIKitButton.Type = UIKitButton.Type.Default,
     onClick: ((SyntheticMouseEvent) -> Unit)? = null,
+    attributesCustomizer: AttrBuilderContext<HTMLButtonElement> = {},
     contentAllocator: ContentBuilder<HTMLButtonElement>
 ) {
     Button(
@@ -25,6 +27,7 @@ fun DefaultButton(
             if (disabled) {
                 disabled()
             }
+            attributesCustomizer()
         }
     ) {
         contentAllocator()
@@ -34,13 +37,14 @@ fun DefaultButton(
 @Composable
 fun DefaultButton(
     text: String,
-    vararg modifiers: UIKitModifier,
+    modifiers: Array<UIKitModifier> = emptyArray(),
     disabled: Boolean = false,
     buttonType: UIKitButton.Type = UIKitButton.Type.Default,
     preTextContentAllocator: ContentBuilder<HTMLButtonElement>? = null,
     afterTextContentAllocator: ContentBuilder<HTMLButtonElement>? = null,
+    attributesCustomizer: AttrBuilderContext<HTMLButtonElement> = {},
     onClick: ((SyntheticMouseEvent) -> Unit)? = null
-) = DefaultButton(*modifiers, disabled = disabled, buttonType = buttonType, onClick = onClick) {
+) = DefaultButton(modifiers, disabled = disabled, buttonType = buttonType, onClick = onClick, attributesCustomizer = attributesCustomizer) {
     preTextContentAllocator ?.apply { preTextContentAllocator() }
     Text(text)
     afterTextContentAllocator ?.apply { afterTextContentAllocator() }
@@ -49,10 +53,11 @@ fun DefaultButton(
 @Composable
 fun UploadButton(
     text: String,
-    vararg buttonModifiers: UIKitModifier,
+    buttonModifiers: Array<UIKitModifier> = emptyArray(),
     containerModifiers: Array<UIKitModifier> = emptyArray(),
     disabled: Boolean = false,
     buttonType: UIKitButton.Type = UIKitButton.Type.Default,
+    attributesCustomizer: AttrBuilderContext<HTMLDivElement> = {},
     onChange: (Event) -> Unit
 ) {
     Div(
@@ -60,6 +65,7 @@ fun UploadButton(
             classes("js-upload", "uk-form-custom")
             attr("uk-form-custom", "")
             include(*containerModifiers)
+            attributesCustomizer()
         }
     ) {
         Input(InputType.File) { onChange { onChange(it.nativeEvent) } }
