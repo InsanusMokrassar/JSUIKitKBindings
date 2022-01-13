@@ -1,3 +1,5 @@
+## 0.0.7
+
 ## 0.0.6
 
 Changes in signatures of text field and list
