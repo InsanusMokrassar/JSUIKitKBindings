@@ -2,8 +2,8 @@ package dev.inmo.jsuikit.elements
 
 import androidx.compose.runtime.Composable
 import dev.inmo.jsuikit.modifiers.*
-import org.jetbrains.compose.web.dom.Button
-import org.jetbrains.compose.web.dom.Span
+import org.jetbrains.compose.web.dom.*
+import org.w3c.dom.*
 import org.w3c.dom.events.Event
 
 sealed class Icon(val name: String) {
@@ -204,47 +204,41 @@ sealed class Icon(val name: String) {
 
     @Composable
     operator fun invoke(
-        vararg modifier: UIKitModifier,
+        modifiers: Array<UIKitModifier> = emptyArray(),
         type: UIKitIconType = UIKitIconType.Default,
         ratio: Float? = null,
+        attributesCustomizer: AttrBuilderContext<out HTMLElement> = {},
         onClick: ((Event) -> Unit)? = null
     ) {
+        val configurer: AttrBuilderContext<out HTMLElement> = {
+            classes("uk-icon")
+            include(*modifiers, type)
+            attr("uk-icon", "icon: $name${if (ratio != null) { "; ratio: $ratio" } else ""}")
+            onClick ?.let { _ ->
+                onClick { onClick(it.nativeEvent) }
+            }
+            attributesCustomizer()
+        }
         if (type == UIKitIconType.Button) {
-            Button(
-                {
-                    classes("uk-icon")
-                    include(*modifier, type)
-                    attr("uk-icon", "icon: $name${if (ratio != null) { "; ratio: $ratio" } else ""}")
-                    onClick ?.let { _ ->
-                        onClick { onClick(it.nativeEvent) }
-                    }
-                }
-            )
+            Button(configurer)
         } else {
-            Span(
-                {
-                    classes("uk-icon")
-                    include(*modifier, type)
-                    attr("uk-icon", "icon: $name${if (ratio != null) { "; ratio: $ratio" } else ""}")
-                    onClick ?.let { _ ->
-                        onClick { onClick(it.nativeEvent) }
-                    }
-                }
-            )
+            Span(configurer)
         }
     }
 
     @Composable
     fun drawAsButton(
-        vararg modifier: UIKitModifier,
+        modifiers: Array<UIKitModifier> = emptyArray(),
         ratio: Float? = null,
+        attributesCustomizer: AttrBuilderContext<out HTMLElement> = {},
         onClick: ((Event) -> Unit)? = null
-    ) = invoke(*modifier, type = UIKitIconType.Button, ratio = ratio, onClick = onClick)
+    ) = invoke(modifiers, type = UIKitIconType.Button, ratio = ratio, onClick = onClick, attributesCustomizer = attributesCustomizer)
 
     @Composable
     fun drawAsIcon(
-        vararg modifier: UIKitModifier,
+        modifiers: Array<UIKitModifier> = emptyArray(),
         ratio: Float? = null,
+        attributesCustomizer: AttrBuilderContext<out HTMLElement> = {},
         onClick: ((Event) -> Unit)? = null
-    ) = invoke(*modifier, type = UIKitIconType.Default, ratio = ratio, onClick = onClick)
+    ) = invoke(modifiers, type = UIKitIconType.Default, ratio = ratio, onClick = onClick, attributesCustomizer = attributesCustomizer)
 }

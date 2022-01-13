@@ -3,13 +3,16 @@ package dev.inmo.jsuikit.elements
 import androidx.compose.runtime.Composable
 import dev.inmo.jsuikit.modifiers.UIKitModifier
 import dev.inmo.jsuikit.modifiers.include
+import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.Progress
+import org.w3c.dom.HTMLProgressElement
 
 @Composable
 fun Progress(
     value: Int,
-    vararg modifiers: UIKitModifier,
-    max: Int = 100
+    modifiers: Array<UIKitModifier> = emptyArray(),
+    max: Int = 100,
+    attributesCustomizer: AttrBuilderContext<HTMLProgressElement> = {}
 ) {
     Progress(
         {
@@ -17,6 +20,7 @@ fun Progress(
             include(*modifiers)
             attr("max", max.toString())
             attr("value", value.toString())
+            attributesCustomizer()
         }
     )
 }

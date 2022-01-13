@@ -10,11 +10,12 @@ import org.w3c.dom.HTMLUListElement
 
 @Composable
 fun Nav(
-    vararg modifiers: UIKitModifier,
+    modifiers: Array<UIKitModifier> = emptyArray(),
     multiple: Boolean? = null,
     collapsible: Boolean? = null,
     animation: UIKitAnimation? = null,
     duration: Milliseconds? = null,
+    attributesCustomizer: AttrBuilderContext<HTMLUListElement> = {},
     dataAllocator: ContentBuilder<HTMLUListElement>
 ) {
     Ul(
@@ -27,6 +28,7 @@ fun Nav(
             }
             classes("uk-nav")
             include(*modifiers)
+            attributesCustomizer()
         }
     ) {
         dataAllocator()
@@ -35,14 +37,14 @@ fun Nav(
 
 @Composable
 fun NavElement(
-    vararg modifiers: UIKitModifier,
-    attributesAllocator: (AttrBuilderContext<HTMLLIElement>)? = null,
+    modifiers: Array<UIKitModifier> = emptyArray(),
+    attributesCustomizer: AttrBuilderContext<HTMLLIElement> = {},
     contentAllocator: ContentBuilder<HTMLLIElement>
 ) {
     Li(
         {
-            attributesAllocator ?.apply { attributesAllocator() }
             include(*modifiers)
+            attributesCustomizer
         }
     ) {
         contentAllocator()
