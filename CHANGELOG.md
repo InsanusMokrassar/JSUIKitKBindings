@@ -2,6 +2,8 @@
 
 ## 0.0.8
 
+Removing of redundant non standard things
+
 ## 0.0.7
 
 Rewrite project onto multiplatform paradigm and return back varargs instead of most `Array<UIKitModifier>`

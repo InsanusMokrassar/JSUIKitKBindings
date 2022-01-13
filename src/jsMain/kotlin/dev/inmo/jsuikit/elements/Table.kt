@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import dev.inmo.jsuikit.modifiers.*
 import org.jetbrains.compose.web.dom.*
-import org.w3c.dom.HTMLProgressElement
-import org.w3c.dom.HTMLTableElement
+import org.jetbrains.compose.web.dom.Text
+import org.w3c.dom.*
 
 @Composable
 fun <T> DefaultTable(
@@ -13,6 +13,7 @@ fun <T> DefaultTable(
     dataList: SnapshotStateList<T>,
     vararg tableModifiers: UIKitModifier,
     attributesCustomizer: AttrBuilderContext<HTMLTableElement> = {},
+    headingCustomizer: AttrBuilderContext<HTMLTableCellElement> = {},
     cellFiller: @Composable (i: Int, t: T) -> Unit
 ) {
     val headingIndexes = heading.indices
@@ -28,7 +29,7 @@ fun <T> DefaultTable(
                 heading.forEach {
                     Th(
                         {
-                            include(UIKitExtension.TextTransformUnset)
+                            headingCustomizer()
                         }
                     ) {
                         Text(it)
