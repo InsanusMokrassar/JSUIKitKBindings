@@ -8,10 +8,10 @@ for you in case you are using it too.
 
 ## How to include
 
-Last version: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/dev.inmo/jsuikitkotlin/badge.svg)](https://maven-badges.herokuapp.com/maven-central/dev.inmo/jsuikitkotlin)
+Last version: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/dev.inmo/kjsuikit/badge.svg)](https://maven-badges.herokuapp.com/maven-central/dev.inmo/kjsuikit)
 
 ```groovy
-implementation "dev.inmo:jsuikitkotlin:$jsuikitkotlin_version"
+implementation "dev.inmo:kjsuikit:$kjsuikit_version"
 ```
 
 **THIS LIBRARY DO NOT ADD ANY JS OR CSS**. So, you must download and include UIKit js/css by yourself. See
