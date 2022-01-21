@@ -2,6 +2,8 @@
 
 ## 0.0.14
 
+* Add DefaultTable parameter cellCustomizer
+
 ## 0.0.13
 
 * Add `Icon#Custom`
