@@ -3,8 +3,8 @@ package dev.inmo.jsuikit.modifiers
 sealed class UIKitNav(classname: String) : UIKitModifier {
     override val classes: Array<String> = arrayOf(classname)
 
-    object Accordion : UIKitNav("uk-nav-parent-icon")
-    object Subnav : UIKitNav("uk-nav-sub")
+    object ParentIcon : UIKitNav("uk-nav-parent-icon")
+    object SubNav : UIKitNav("uk-nav-sub")
 
     object Header : UIKitNav("uk-nav-header")
     object Divider : UIKitNav("uk-nav-divider")
@@ -14,4 +14,6 @@ sealed class UIKitNav(classname: String) : UIKitModifier {
     object Primary : UIKitNav("uk-nav-primary")
 
     object Center : UIKitNav("uk-nav-center")
+
+    companion object : UIKitNav("uk-nav")
 }
