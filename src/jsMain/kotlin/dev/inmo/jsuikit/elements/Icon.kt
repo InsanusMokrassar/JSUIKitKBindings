@@ -219,10 +219,10 @@ sealed class Icon(val name: String) {
             }
             attributesCustomizer()
         }
-        if (type == UIKitIconType.Button) {
-            Button(configurer)
-        } else {
-            Span(configurer)
+        when (type) {
+            UIKitIconType.Default -> Span(configurer)
+            UIKitIconType.Link -> A(href = "#", configurer)
+            UIKitIconType.Button -> Button(configurer)
         }
     }
 
@@ -243,4 +243,12 @@ sealed class Icon(val name: String) {
         attributesCustomizer: AttrBuilderContext<out HTMLElement> = {},
         onClick: ((Event) -> Unit)? = null
     ) = invoke(*modifiers, type = UIKitIconType.Default, ratio = ratio, onClick = onClick, attributesCustomizer = attributesCustomizer)
+
+    @Composable
+    fun drawAsLink(
+        vararg modifiers: UIKitModifier,
+        ratio: Float? = null,
+        attributesCustomizer: AttrBuilderContext<out HTMLElement> = {},
+        onClick: ((Event) -> Unit)? = null
+    ) = invoke(*modifiers, type = UIKitIconType.Link, ratio = ratio, onClick = onClick, attributesCustomizer = attributesCustomizer)
 }
