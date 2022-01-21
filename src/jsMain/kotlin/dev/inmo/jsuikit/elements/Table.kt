@@ -16,7 +16,8 @@ fun <T> DefaultTable(
     attributesCustomizer: AttrBuilderContext<HTMLTableElement> = {},
     headingCustomizer: AttrBuilderContext<HTMLTableCellElement> = {},
     rowAttributes: AttrsBuilder<HTMLTableRowElement>.(t: T) -> Unit = {},
-    cellFiller: @Composable (i: Int, t: T) -> Unit
+    cellCustomizer: AttrsBuilder<HTMLTableCellElement>.(i: Int, t: T) -> Unit = { _, _ -> },
+    cellFiller: @Composable ElementScope<HTMLTableCellElement>.(i: Int, t: T) -> Unit
 ) {
     val headingIndexes = heading.indices
     Table(
@@ -47,7 +48,11 @@ fun <T> DefaultTable(
                     }
                 ) {
                     headingIndexes.forEach { i ->
-                        Td {
+                        Td(
+                            {
+                                cellCustomizer(i, it)
+                            }
+                        ) {
                             cellFiller(i, it)
                         }
                     }
