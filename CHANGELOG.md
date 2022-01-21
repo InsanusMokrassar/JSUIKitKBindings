@@ -2,6 +2,8 @@
 
 ## 0.0.13
 
+* Add `Icon#Custom`
+
 ## 0.0.12
 
 * Add `rowAttributes` to table fun

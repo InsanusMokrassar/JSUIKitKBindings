@@ -226,6 +226,8 @@ sealed class Icon(val name: String) {
         }
     }
 
+    class Custom(name: String) : Icon(name)
+
     @Composable
     fun drawAsButton(
         vararg modifiers: UIKitModifier,
