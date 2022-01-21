@@ -27,14 +27,70 @@ fun Nav(
                 "animation" to animation
                 "duration" to duration ?.toString()
             }
-            classes("uk-nav")
-            include(*modifiers)
+            include(*modifiers, UIKitNav)
             attributesCustomizer()
         }
     ) {
         dataAllocator()
     }
 }
+
+@Composable
+fun DefaultNav(
+    vararg modifiers: UIKitModifier,
+    multiple: Boolean? = null,
+    collapsible: Boolean? = null,
+    animation: UIKitAnimation? = null,
+    duration: Milliseconds? = null,
+    attributesCustomizer: AttrBuilderContext<HTMLUListElement> = {},
+    dataAllocator: ContentBuilder<HTMLUListElement>
+) = Nav(
+    modifiers = modifiers + UIKitNav.Default,
+    multiple,
+    collapsible,
+    animation,
+    duration,
+    attributesCustomizer,
+    dataAllocator
+)
+
+@Composable
+fun PrimaryNav(
+    vararg modifiers: UIKitModifier,
+    multiple: Boolean? = null,
+    collapsible: Boolean? = null,
+    animation: UIKitAnimation? = null,
+    duration: Milliseconds? = null,
+    attributesCustomizer: AttrBuilderContext<HTMLUListElement> = {},
+    dataAllocator: ContentBuilder<HTMLUListElement>
+) = Nav(
+    modifiers = modifiers + UIKitNav.Primary,
+    multiple,
+    collapsible,
+    animation,
+    duration,
+    attributesCustomizer,
+    dataAllocator
+)
+
+@Composable
+fun SubNav(
+    vararg modifiers: UIKitModifier,
+    multiple: Boolean? = null,
+    collapsible: Boolean? = null,
+    animation: UIKitAnimation? = null,
+    duration: Milliseconds? = null,
+    attributesCustomizer: AttrBuilderContext<HTMLUListElement> = {},
+    dataAllocator: ContentBuilder<HTMLUListElement>
+) = Nav(
+    modifiers = modifiers + UIKitNav.SubNav,
+    multiple,
+    collapsible,
+    animation,
+    duration,
+    attributesCustomizer,
+    dataAllocator
+)
 
 @Composable
 fun <T> Nav(
@@ -59,8 +115,7 @@ fun <T> Nav(
                 "animation" to animation
                 "duration" to duration ?.toString()
             }
-            classes("uk-nav")
-            include(*ulModifiers)
+            include(*ulModifiers, UIKitNav)
             ulCustomizer()
         }
     ) {
@@ -77,6 +132,93 @@ fun <T> Nav(
 }
 
 @Composable
+fun <T> DefaultNav(
+    title: String,
+    data: SnapshotStateList<T>,
+    vararg ulModifiers: UIKitModifier,
+    titleModifiers: Array<UIKitModifier> = emptyArray(),
+    multiple: Boolean? = null,
+    collapsible: Boolean? = null,
+    animation: UIKitAnimation? = null,
+    duration: Milliseconds? = null,
+    besidesTitleAndList: ContentBuilder<HTMLUListElement>? = null,
+    titleCustomizer: AttrBuilderContext<HTMLLIElement> = {},
+    ulCustomizer: AttrBuilderContext<HTMLUListElement> = {},
+    elementAllocator: @Composable ElementScope<HTMLUListElement>.(T) -> Unit
+) = Nav(
+    title,
+    data,
+    ulModifiers = ulModifiers + UIKitNav.Default,
+    titleModifiers,
+    multiple,
+    collapsible,
+    animation,
+    duration,
+    besidesTitleAndList,
+    titleCustomizer,
+    ulCustomizer,
+    elementAllocator
+)
+
+@Composable
+fun <T> PrimaryNav(
+    title: String,
+    data: SnapshotStateList<T>,
+    vararg ulModifiers: UIKitModifier,
+    titleModifiers: Array<UIKitModifier> = emptyArray(),
+    multiple: Boolean? = null,
+    collapsible: Boolean? = null,
+    animation: UIKitAnimation? = null,
+    duration: Milliseconds? = null,
+    besidesTitleAndList: ContentBuilder<HTMLUListElement>? = null,
+    titleCustomizer: AttrBuilderContext<HTMLLIElement> = {},
+    ulCustomizer: AttrBuilderContext<HTMLUListElement> = {},
+    elementAllocator: @Composable ElementScope<HTMLUListElement>.(T) -> Unit
+) = Nav(
+    title,
+    data,
+    ulModifiers = ulModifiers + UIKitNav.Primary,
+    titleModifiers,
+    multiple,
+    collapsible,
+    animation,
+    duration,
+    besidesTitleAndList,
+    titleCustomizer,
+    ulCustomizer,
+    elementAllocator
+)
+
+@Composable
+fun <T> SubNav(
+    title: String,
+    data: SnapshotStateList<T>,
+    vararg ulModifiers: UIKitModifier,
+    titleModifiers: Array<UIKitModifier> = emptyArray(),
+    multiple: Boolean? = null,
+    collapsible: Boolean? = null,
+    animation: UIKitAnimation? = null,
+    duration: Milliseconds? = null,
+    besidesTitleAndList: ContentBuilder<HTMLUListElement>? = null,
+    titleCustomizer: AttrBuilderContext<HTMLLIElement> = {},
+    ulCustomizer: AttrBuilderContext<HTMLUListElement> = {},
+    elementAllocator: @Composable ElementScope<HTMLUListElement>.(T) -> Unit
+) = Nav(
+    title,
+    data,
+    ulModifiers = ulModifiers + UIKitNav.SubNav,
+    titleModifiers,
+    multiple,
+    collapsible,
+    animation,
+    duration,
+    besidesTitleAndList,
+    titleCustomizer,
+    ulCustomizer,
+    elementAllocator
+)
+
+@Composable
 fun NavHeader(
     text: String,
     vararg modifiers: UIKitModifier,
@@ -89,6 +231,24 @@ fun NavHeader(
         }
     ) {
         Text(text)
+    }
+}
+
+@Composable
+fun NavItemElement(
+    vararg modifiers: UIKitModifier,
+    attributesCustomizer: AttrBuilderContext<HTMLLIElement> = {},
+    contentAllocator: ContentBuilder<HTMLAnchorElement>
+) {
+    Li(
+        {
+            include(*modifiers)
+            attributesCustomizer()
+        }
+    ) {
+        A("#") {
+            contentAllocator()
+        }
     }
 }
 
