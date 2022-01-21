@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.12
+
+* Add `rowAttributes` to table fun
+
 ## 0.0.11
 
 * Upfill `Nav` and `UIKitNav`

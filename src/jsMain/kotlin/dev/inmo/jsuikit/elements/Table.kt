@@ -3,6 +3,7 @@ package dev.inmo.jsuikit.elements
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import dev.inmo.jsuikit.modifiers.*
+import org.jetbrains.compose.web.attributes.AttrsBuilder
 import org.jetbrains.compose.web.dom.*
 import org.jetbrains.compose.web.dom.Text
 import org.w3c.dom.*
@@ -14,6 +15,7 @@ fun <T> DefaultTable(
     vararg tableModifiers: UIKitModifier,
     attributesCustomizer: AttrBuilderContext<HTMLTableElement> = {},
     headingCustomizer: AttrBuilderContext<HTMLTableCellElement> = {},
+    rowAttributes: AttrsBuilder<HTMLTableRowElement>.(t: T) -> Unit = {},
     cellFiller: @Composable (i: Int, t: T) -> Unit
 ) {
     val headingIndexes = heading.indices
@@ -39,7 +41,11 @@ fun <T> DefaultTable(
         }
         Tbody {
             dataList.forEach {
-                Tr {
+                Tr(
+                    {
+                        rowAttributes(it)
+                    }
+                ) {
                     headingIndexes.forEach { i ->
                         Td {
                             cellFiller(i, it)
