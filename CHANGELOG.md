@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.0.14
+
 ## 0.0.13
 
 * Add `Icon#Custom`
