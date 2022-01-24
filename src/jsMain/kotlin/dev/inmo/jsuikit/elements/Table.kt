@@ -14,7 +14,7 @@ fun <T> DefaultTable(
     dataList: SnapshotStateList<T>,
     vararg tableModifiers: UIKitModifier,
     attributesCustomizer: AttrBuilderContext<HTMLTableElement> = {},
-    headingCustomizer: AttrBuilderContext<HTMLTableCellElement> = {},
+    headerCellCustomizer: AttrsBuilder<HTMLTableCellElement>.(i: Int, title: String) -> Unit = { _, _ -> },
     rowAttributes: AttrsBuilder<HTMLTableRowElement>.(t: T) -> Unit = {},
     cellCustomizer: AttrsBuilder<HTMLTableCellElement>.(i: Int, t: T) -> Unit = { _, _ -> },
     cellFiller: @Composable ElementScope<HTMLTableCellElement>.(i: Int, t: T) -> Unit
@@ -29,13 +29,13 @@ fun <T> DefaultTable(
     ) {
         Thead {
             Tr {
-                heading.forEach {
+                heading.forEachIndexed { i, t ->
                     Th(
                         {
-                            headingCustomizer()
+                            headerCellCustomizer(i, t)
                         }
                     ) {
-                        Text(it)
+                        Text(t)
                     }
                 }
             }
