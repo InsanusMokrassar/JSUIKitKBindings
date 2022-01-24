@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.16
+
+* Add opportunity to customize `NavDivider`
+
 ## 0.0.15
 
 * Add support of link icons

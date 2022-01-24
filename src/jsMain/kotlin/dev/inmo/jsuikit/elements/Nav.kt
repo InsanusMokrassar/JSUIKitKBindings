@@ -269,6 +269,9 @@ fun NavElement(
 }
 
 @Composable
-fun NavDivider() {
-    Li({ include(UIKitNav.Divider) })
+fun NavDivider(
+    vararg modifiers: UIKitModifier,
+    attributesCustomizer: AttrBuilderContext<HTMLLIElement> = {},
+) {
+    Li({ include(UIKitNav.Divider, *modifiers);attributesCustomizer() })
 }
