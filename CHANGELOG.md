@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.0.16
+
 ## 0.0.15
 
 * Add support of link icons
