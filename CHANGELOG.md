@@ -2,6 +2,9 @@
 
 ## 0.0.17
 
+* In `DefaultTable` `headingCustomizer` has been renamed to `headerCellCustomizer`
+* Add index and title parameters for `headerCellCustomizer` in `DefaultTable`
+
 ## 0.0.16
 
 * Add opportunity to customize `NavDivider`
