@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.0.19
+
 ## 0.0.18
 
 * Add base companion for `UIKitFlex` with result class `uk-flex`
