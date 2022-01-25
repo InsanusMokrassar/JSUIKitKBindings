@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.0.20
+
 ## 0.0.19
 
 * Create `Card`s implementation
