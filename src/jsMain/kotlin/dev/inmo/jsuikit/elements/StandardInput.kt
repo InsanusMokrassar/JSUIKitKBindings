@@ -9,7 +9,7 @@ import org.jetbrains.compose.web.dom.Input
 import org.w3c.dom.HTMLInputElement
 
 @Composable
-fun <T> TextField(
+fun <T> StandardInput(
     type: InputType<T>,
     state: MutableState<T>,
     disabledState: State<Boolean>? = null,
@@ -23,7 +23,16 @@ fun <T> TextField(
 
         placeholder ?.let(::placeholder)
 
-        onChange { state.value = it.value }
+        state.value.let {
+            when (it) {
+                is String -> value(it)
+                is Number -> value(it)
+                else -> {}
+            }
+        }
+
+        onInput { state.value = it.value }
+
         disabledState ?.let {
             if (it.value) {
                 disabled()
@@ -32,3 +41,14 @@ fun <T> TextField(
         attributesCustomizer()
     }
 }
+
+@Composable
+@Deprecated("Renamed", ReplaceWith("StandardInput", "dev.inmo.jsuikit.elements.StandardInput"))
+fun <T> TextField(
+    type: InputType<T>,
+    state: MutableState<T>,
+    disabledState: State<Boolean>? = null,
+    placeholder: String? = null,
+    vararg modifiers: UIKitModifier,
+    attributesCustomizer: AttrBuilderContext<HTMLInputElement> = {},
+) = StandardInput(type, state, disabledState, placeholder, modifiers = modifiers, attributesCustomizer)
