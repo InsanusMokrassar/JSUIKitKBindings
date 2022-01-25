@@ -1,0 +1,1 @@
+git add -A && git stash && git checkout master && git pull && git checkout -b "$1" && nano gradle.properties CHANGELOG.md && git add -A && git commit -m "start $1" && git stash pop && git add -A && nano CHANGELOG.md && git add -A && git commit -m "$2" && git push --set-upstream origin "$1" && ./gradlew clean && ./gradlew publishToMavenLocal
