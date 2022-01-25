@@ -18,6 +18,7 @@ fun <T> DefaultTable(
     headerCellCustomizer: AttrsBuilder<HTMLTableCellElement>.(i: Int) -> Unit = {},
     rowAttributes: AttrsBuilder<HTMLTableRowElement>.(t: T) -> Unit = {},
     cellCustomizer: AttrsBuilder<HTMLTableCellElement>.(i: Int, t: T) -> Unit = { _, _ -> },
+    betweenHeaderAndBodyFiller: ContentBuilder<HTMLTableElement> = {},
     cellFiller: @Composable ElementScope<HTMLTableCellElement>.(i: Int, t: T) -> Unit
 ) {
     val headingIndexes = headerBuilders.indices
@@ -41,7 +42,7 @@ fun <T> DefaultTable(
                 }
             }
         }
-
+        betweenHeaderAndBodyFiller()
         Tbody {
             dataList.forEach {
                 Tr(
@@ -74,6 +75,7 @@ fun <T> DefaultTable(
     headerCellCustomizer: AttrsBuilder<HTMLTableCellElement>.(i: Int, title: String) -> Unit = { _, _ -> },
     rowAttributes: AttrsBuilder<HTMLTableRowElement>.(t: T) -> Unit = {},
     cellCustomizer: AttrsBuilder<HTMLTableCellElement>.(i: Int, t: T) -> Unit = { _, _ -> },
+    betweenHeaderAndBodyFiller: ContentBuilder<HTMLTableElement> = {},
     cellFiller: @Composable ElementScope<HTMLTableCellElement>.(i: Int, t: T) -> Unit
 ) {
     val headersByIndex = heading.mapIndexed { index, s -> index to s }.toMap()
@@ -96,6 +98,7 @@ fun <T> DefaultTable(
         headerCellCustomizer,
         rowAttributes,
         cellCustomizer,
+        betweenHeaderAndBodyFiller,
         cellFiller
     )
 }
