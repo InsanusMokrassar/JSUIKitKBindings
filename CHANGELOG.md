@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.26
+
+* Add UIKitColumn
+
 ## 0.0.25
 
 * Full including of divider
