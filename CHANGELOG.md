@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.0.18
+
 ## 0.0.17
 
 * In `DefaultTable` `headingCustomizer` has been renamed to `headerCellCustomizer`
