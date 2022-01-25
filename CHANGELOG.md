@@ -2,6 +2,8 @@
 
 ## 0.0.25
 
+* Full including of divider
+
 ## 0.0.24
 
 * Add opportunity to fill space between header and body of table
