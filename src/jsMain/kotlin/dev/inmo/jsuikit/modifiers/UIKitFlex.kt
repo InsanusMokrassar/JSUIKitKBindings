@@ -1,7 +1,7 @@
 package dev.inmo.jsuikit.modifiers
 
-sealed class UIKitFlex(suffix: String) : UIKitModifier {
-    override val classes: Array<String> = arrayOf("uk-flex-$suffix")
+sealed class UIKitFlex(suffix: String?) : UIKitModifier {
+    override val classes: Array<String> = arrayOf("uk-flex${suffix ?.let { "-$it" } ?: ""}")
 
     object Inline : UIKitFlex("inline")
 
@@ -75,5 +75,7 @@ sealed class UIKitFlex(suffix: String) : UIKitModifier {
     }
 
     object NoWrap : UIKitFlex("nowrap")
+
+    companion object : UIKitFlex(null)
 
 }

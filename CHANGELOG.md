@@ -2,6 +2,8 @@
 
 ## 0.0.18
 
+* Add base companion for `UIKitFlex` with result class `uk-flex`
+
 ## 0.0.17
 
 * In `DefaultTable` `headingCustomizer` has been renamed to `headerCellCustomizer`
