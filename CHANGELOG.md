@@ -2,6 +2,9 @@
 
 ## 0.0.27
 
+* `TextField` has been renamed to `StandardInput`
+* `StandardInput` now will look for changes in state
+
 ## 0.0.26
 
 * Add UIKitColumn
