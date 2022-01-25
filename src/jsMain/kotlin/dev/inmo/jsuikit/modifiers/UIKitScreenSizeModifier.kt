@@ -18,3 +18,5 @@ sealed class UIKitScreenSizeModifier(val name: String) {
         modifier
     )
 }
+
+fun UIKitModifier.applyWhenScreenSizeIs(size: UIKitScreenSizeModifier) = size.modify(this)

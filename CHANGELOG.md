@@ -2,6 +2,9 @@
 
 ## 0.0.21
 
+* Upfill `UIKitWidth`
+* New extension `UIKitModifier#applyWhenScreenSizeIs`
+
 ## 0.0.20
 
 * Remove type of button from `DefaultButton` and add companion to `UIKitButton` to be able to use `uk-button` class
