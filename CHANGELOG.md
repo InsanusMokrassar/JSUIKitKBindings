@@ -2,6 +2,8 @@
 
 ## 0.0.23
 
+* New parameter of tables `headerCustomizer`
+
 ## 0.0.22
 
 * Add opportunity to customize table header cells

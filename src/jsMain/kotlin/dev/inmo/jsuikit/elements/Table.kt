@@ -14,7 +14,8 @@ fun <T> DefaultTable(
     dataList: SnapshotStateList<T>,
     vararg tableModifiers: UIKitModifier,
     attributesCustomizer: AttrBuilderContext<HTMLTableElement> = {},
-    headerCellCustomizer: AttrsBuilder<HTMLTableCellElement>.(i: Int) -> Unit = { },
+    headerCustomizer: AttrBuilderContext<HTMLTableSectionElement> = {},
+    headerCellCustomizer: AttrsBuilder<HTMLTableCellElement>.(i: Int) -> Unit = {},
     rowAttributes: AttrsBuilder<HTMLTableRowElement>.(t: T) -> Unit = {},
     cellCustomizer: AttrsBuilder<HTMLTableCellElement>.(i: Int, t: T) -> Unit = { _, _ -> },
     cellFiller: @Composable ElementScope<HTMLTableCellElement>.(i: Int, t: T) -> Unit
@@ -27,7 +28,7 @@ fun <T> DefaultTable(
             attributesCustomizer()
         }
     ) {
-        Thead {
+        Thead(headerCustomizer) {
             Tr {
                 headerBuilders.forEachIndexed { i, t ->
                     Th(
@@ -40,6 +41,7 @@ fun <T> DefaultTable(
                 }
             }
         }
+
         Tbody {
             dataList.forEach {
                 Tr(
@@ -68,6 +70,7 @@ fun <T> DefaultTable(
     dataList: SnapshotStateList<T>,
     vararg tableModifiers: UIKitModifier,
     attributesCustomizer: AttrBuilderContext<HTMLTableElement> = {},
+    headerCustomizer: AttrBuilderContext<HTMLTableSectionElement> = {},
     headerCellCustomizer: AttrsBuilder<HTMLTableCellElement>.(i: Int, title: String) -> Unit = { _, _ -> },
     rowAttributes: AttrsBuilder<HTMLTableRowElement>.(t: T) -> Unit = {},
     cellCustomizer: AttrsBuilder<HTMLTableCellElement>.(i: Int, t: T) -> Unit = { _, _ -> },
@@ -89,6 +92,7 @@ fun <T> DefaultTable(
         dataList,
         tableModifiers = tableModifiers,
         attributesCustomizer,
+        headerCustomizer,
         headerCellCustomizer,
         rowAttributes,
         cellCustomizer,
