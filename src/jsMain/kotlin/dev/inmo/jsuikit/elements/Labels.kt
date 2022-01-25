@@ -1,41 +1,20 @@
 package dev.inmo.jsuikit.elements
 
 import androidx.compose.runtime.Composable
-import dev.inmo.jsuikit.modifiers.UIKitModifier
-import dev.inmo.jsuikit.modifiers.include
+import dev.inmo.jsuikit.modifiers.*
+import dev.inmo.jsuikit.utils.Attrs
 import org.jetbrains.compose.web.dom.*
 import org.w3c.dom.HTMLSpanElement
 
-sealed interface Label {
-    val suffix: String
-
-    @Composable
-    fun draw(
-        text: String,
-        vararg modifiers: UIKitModifier,
-        attributesCustomizer: AttrBuilderContext<HTMLSpanElement> = {},
-    ) = Span(
-        {
-            classes("uk-label", "uk-label-$suffix")
-            include(*modifiers)
-            attributesCustomizer()
-        }
-    ) {
-        Text(text)
+@Composable
+fun Label(
+    text: String,
+    attrs: Attrs<HTMLSpanElement>
+) = Span(
+    {
+        include(UIKitLabel)
+        attrs.builder(this)
     }
-
-    object Success : Label {
-        override val suffix: String
-            get() = "success"
-    }
-
-    object Warning : Label {
-        override val suffix: String
-            get() = "warning"
-    }
-
-    object Error : Label {
-        override val suffix: String
-            get() = "danger"
-    }
+) {
+    Text(text)
 }

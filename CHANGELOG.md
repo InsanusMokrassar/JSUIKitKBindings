@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.19
+
+* Create `Card`s implementation
+* Upgrade `Label` composable draw and create `UIKitLabel` modifiers
+
 ## 0.0.18
 
 * Add base companion for `UIKitFlex` with result class `uk-flex`
