@@ -1,7 +1,7 @@
 package dev.inmo.jsuikit.modifiers
 
-sealed class UIKitButton(suffix: String) : UIKitModifier {
-    override val classes: Array<String> = arrayOf("uk-button-$suffix")
+sealed class UIKitButton(suffix: String?) : UIKitModifier {
+    override val classes: Array<String> = arrayOf("uk-button${suffix?.let { "-$it" } ?: ""}")
 
     sealed class Type(suffix: String) : UIKitButton(suffix) {
         object Default : Type("default")
@@ -11,4 +11,6 @@ sealed class UIKitButton(suffix: String) : UIKitModifier {
         object Text : Type("text")
         object Link : Type("link")
     }
+
+    companion object : UIKitButton(null)
 }

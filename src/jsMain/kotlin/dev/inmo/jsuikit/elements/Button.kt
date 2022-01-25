@@ -14,7 +14,6 @@ import org.w3c.dom.events.Event
 fun DefaultButton(
     vararg modifiers: UIKitModifier,
     disabled: Boolean = false,
-    buttonType: UIKitButton.Type = UIKitButton.Type.Default,
     onClick: ((SyntheticMouseEvent) -> Unit)? = null,
     attributesCustomizer: AttrBuilderContext<HTMLButtonElement> = {},
     contentAllocator: ContentBuilder<HTMLButtonElement>
@@ -22,8 +21,7 @@ fun DefaultButton(
     Button(
         {
             onClick ?.let { onClick(it) }
-            classes("uk-button")
-            include(*modifiers, buttonType)
+            include(UIKitButton, *modifiers)
             if (disabled) {
                 disabled()
             }
@@ -39,12 +37,11 @@ fun DefaultButton(
     text: String,
     vararg modifiers: UIKitModifier,
     disabled: Boolean = false,
-    buttonType: UIKitButton.Type = UIKitButton.Type.Default,
     preTextContentAllocator: ContentBuilder<HTMLButtonElement>? = null,
     afterTextContentAllocator: ContentBuilder<HTMLButtonElement>? = null,
     attributesCustomizer: AttrBuilderContext<HTMLButtonElement> = {},
     onClick: ((SyntheticMouseEvent) -> Unit)? = null
-) = DefaultButton(*modifiers, disabled = disabled, buttonType = buttonType, onClick = onClick, attributesCustomizer = attributesCustomizer) {
+) = DefaultButton(*modifiers, disabled = disabled, onClick = onClick, attributesCustomizer = attributesCustomizer) {
     preTextContentAllocator ?.apply { preTextContentAllocator() }
     Text(text)
     afterTextContentAllocator ?.apply { afterTextContentAllocator() }
