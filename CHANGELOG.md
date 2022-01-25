@@ -2,6 +2,8 @@
 
 ## 0.0.22
 
+* Add opportunity to customize table header cells
+
 ## 0.0.21
 
 * Upfill `UIKitWidth`
