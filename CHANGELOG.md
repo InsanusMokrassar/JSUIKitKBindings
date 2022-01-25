@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.24
+
+* Add opportunity to fill space between header and body of table
+
 ## 0.0.23
 
 * New parameter of tables `headerCustomizer`
