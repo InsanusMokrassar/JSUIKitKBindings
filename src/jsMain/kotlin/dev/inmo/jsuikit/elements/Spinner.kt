@@ -23,4 +23,4 @@ fun Spinner(
 }
 
 @Composable
-fun DefaultSpinner() = Spinner(UIKitAlign.Center, UIKitMargin.Small, UIKitText.Alignment.Center)
+fun DefaultSpinner() = Spinner(UIKitAlign.Center, UIKitMargin.Small, UIKitText.Alignment.Horizontal.Center, UIKitText.Alignment.Vertical.Middle)
