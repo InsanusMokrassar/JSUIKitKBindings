@@ -2,6 +2,8 @@
 
 ## 0.0.29
 
+* Unfilling of `UIKitText`
+
 ## 0.0.28
 
 * Fixes in `UIKitWidth`
