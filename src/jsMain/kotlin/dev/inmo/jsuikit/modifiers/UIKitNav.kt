@@ -4,7 +4,6 @@ sealed class UIKitNav(classname: String) : UIKitModifier {
     override val classes: Array<String> = arrayOf(classname)
 
     object ParentIcon : UIKitNav("uk-nav-parent-icon")
-    object SubNav : UIKitNav("uk-nav-sub")
 
     object Header : UIKitNav("uk-nav-header")
     object Divider : UIKitNav("uk-nav-divider")
@@ -15,5 +14,7 @@ sealed class UIKitNav(classname: String) : UIKitModifier {
 
     object Center : UIKitNav("uk-nav-center")
 
-    companion object : UIKitNav("uk-nav")
+    companion object : UIKitNav("uk-nav") {
+        val SubNav = UIKitSubNav
+    }
 }

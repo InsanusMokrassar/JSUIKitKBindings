@@ -2,6 +2,10 @@
 
 ## 0.0.30
 
+* Add `UIKitComment`
+* Including of `Comment` element
+* Upfill `UIKitSubNav`
+
 ## 0.0.29
 
 * Unfilling of `UIKitText`
