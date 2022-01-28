@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.31
+
+* Support of `UIKitVisibility`
+
 ## 0.0.30
 
 * Add `UIKitComment`
