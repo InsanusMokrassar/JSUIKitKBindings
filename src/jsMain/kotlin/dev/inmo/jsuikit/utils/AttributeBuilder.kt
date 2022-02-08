@@ -5,8 +5,8 @@ class AttributeBuilder (
     private val parametersPreset: MutableMap<String, String?> = mutableMapOf()
 ) {
 
-    fun add(k: String, v: String? = null) = parametersPreset.set(k, v)
-    infix fun String.to(value: String?) = add(this, value)
+    fun add(k: String, v: Any? = null) = parametersPreset.set(k, v ?.toString())
+    infix fun String.to(value: Any?) = add(this, value)
     operator fun String.unaryPlus() = add(this, null)
 
     fun build(): Pair<String, String> = Pair(

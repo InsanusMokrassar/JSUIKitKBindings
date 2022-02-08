@@ -2,6 +2,8 @@
 
 ## 0.0.33
 
+* Fixes in attributes building and related things
+
 ## 0.0.32
 
 * Support of `UIKitHeight`
