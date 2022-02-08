@@ -57,7 +57,7 @@ sealed class UIKitWidth(classname: String) : UIKitModifier {
         }
     }
 
-    sealed class Fixed(suffix: String) : UIKitWidth("uk-width-fixed-$suffix") {
+    sealed class Fixed(suffix: String) : UIKitWidth("uk-width-$suffix") {
 
         object Small : Fixed("small")
         object Medium : Fixed("medium")

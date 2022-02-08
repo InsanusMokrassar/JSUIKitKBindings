@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.32
+
+* Support of `UIKitHeight`
+* New builder `AttributesBuilder`
+* New `Percents`/`Pixels` abstractions
+* Fixes in `UIKitWidth#Fixed` classnames
+
 ## 0.0.31
 
 * Support of `UIKitVisibility`

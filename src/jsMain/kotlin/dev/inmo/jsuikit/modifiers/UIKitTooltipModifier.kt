@@ -1,5 +1,7 @@
 package dev.inmo.jsuikit.modifiers
 
+import dev.inmo.jsuikit.utils.buildAttribute
+
 class UIKitTooltipModifier(
     text: String,
     align: Align? = null,
@@ -8,16 +10,15 @@ class UIKitTooltipModifier(
     duration: Int? = null,
     animation: UIKitAnimation? = null
 ) : UIKitModifier {
-    private val parametersMap = listOfNotNull(
-        "title" to text,
-        align ?.let { it.k to it.v },
-        delay ?.let { "delay" to it.toString() },
-        offset ?.let { "offset" to it.toString() },
-        duration ?.let { "duration" to it.toString() },
-        animation ?.let { "animation" to it.name },
-    )
     override val otherAttrs: Map<String, String> = mapOf(
-        "uk-tooltip" to parametersMap.joinToString(";") { (k, v) -> "$k: $v" }
+        buildAttribute("uk-tooltip") {
+            "title" to text
+            align ?.let { it.k to it.v }
+            delay ?.let { "delay" to it.toString() }
+            offset ?.let { "offset" to it.toString() }
+            duration ?.let { "duration" to it.toString() }
+            animation ?.let { "animation" to it.name }
+        }
     )
 
     sealed class Align(name: String) {
