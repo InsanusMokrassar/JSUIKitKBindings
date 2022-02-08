@@ -1,8 +1,11 @@
 package dev.inmo.jsuikit
 
 import dev.inmo.jsuikit.modifiers.AttributeValue
+import dev.inmo.jsuikit.utils.AttributeBuilder
+import dev.inmo.jsuikit.utils.buildAttribute
 import org.jetbrains.compose.web.attributes.AttrsBuilder
 
+@Deprecated("Will be removed soon")
 class UIKitAttributeValueBuilder {
     private val attrs = mutableListOf<Pair<String, String>>()
 
@@ -21,7 +24,9 @@ class UIKitAttributeValueBuilder {
 
 fun AttrsBuilder<*>.buildAndAddAttribute(
     attributeName: String,
-    block: UIKitAttributeValueBuilder.() -> Unit
+    block: AttributeBuilder.() -> Unit
 ) {
-    attr(attributeName, UIKitAttributeValueBuilder().apply(block).build())
+    buildAttribute(attributeName, block).let {
+        attr(it.first, it.second)
+    }
 }
