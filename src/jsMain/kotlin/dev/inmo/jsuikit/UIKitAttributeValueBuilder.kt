@@ -24,9 +24,10 @@ class UIKitAttributeValueBuilder {
 
 fun AttrsBuilder<*>.buildAndAddAttribute(
     attributeName: String,
+    skipNullValues: Boolean = true,
     block: AttributeBuilder.() -> Unit
 ) {
-    buildAttribute(attributeName, block).let {
+    buildAttribute(attributeName, skipNullValues, block).let {
         attr(it.first, it.second)
     }
 }
