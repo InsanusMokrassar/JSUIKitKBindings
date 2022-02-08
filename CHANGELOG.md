@@ -5,6 +5,7 @@
 * Support of `UIKitHeight`
 * New builder `AttributesBuilder`
 * New `Percents`/`Pixels` abstractions
+* Fixes in `UIKitWidth#Fixed` classnames
 
 ## 0.0.31
 
