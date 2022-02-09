@@ -37,8 +37,9 @@ fun AlertCloseButton(
     A(
         null,
         {
-            include(UIKitAlert.Close)
+            include(UIKitAlert.Close, UIKitIcon)
             attr("uk-close", "")
+            classes("uk-close")
             attrs.builder(this)
         },
         content
