@@ -60,4 +60,6 @@ sealed class UIKitAnimation (name: String) : UIKitModifier, AttributeValue(name)
 
     object Fast : UIKitAnimation("fast")
 
+    object KenBurns : UIKitAnimation("kenburns")
+
 }

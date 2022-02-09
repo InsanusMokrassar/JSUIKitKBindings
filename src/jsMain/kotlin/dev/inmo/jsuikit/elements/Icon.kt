@@ -211,8 +211,7 @@ sealed class Icon(val name: String) {
         onClick: ((Event) -> Unit)? = null
     ) {
         val configurer: AttrBuilderContext<out HTMLElement> = {
-            classes("uk-icon")
-            include(*modifiers, type)
+            include(*modifiers, type, UIKitIcon)
             attr("uk-icon", "icon: $name${if (ratio != null) { "; ratio: $ratio" } else ""}")
             onClick ?.let { _ ->
                 onClick { onClick(it.nativeEvent) }
