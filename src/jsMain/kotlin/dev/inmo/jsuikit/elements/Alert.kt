@@ -2,11 +2,11 @@ package dev.inmo.jsuikit.elements
 
 import androidx.compose.runtime.Composable
 import dev.inmo.jsuikit.buildAndAddAttribute
-import dev.inmo.jsuikit.modifiers.UIKitAnimation
+import dev.inmo.jsuikit.modifiers.*
 import dev.inmo.jsuikit.utils.Attrs
 import dev.inmo.jsuikit.utils.Milliseconds
-import org.jetbrains.compose.web.dom.ContentBuilder
-import org.jetbrains.compose.web.dom.Div
+import org.jetbrains.compose.web.dom.*
+import org.w3c.dom.HTMLAnchorElement
 import org.w3c.dom.HTMLDivElement
 
 @Composable
@@ -28,3 +28,20 @@ fun Alert(
     },
     content
 )
+
+@Composable
+fun AlertCloseButton(
+    attrs: Attrs<HTMLAnchorElement> = Attrs.empty(),
+    content: ContentBuilder<HTMLAnchorElement> = @Composable {}
+) {
+    A(
+        null,
+        {
+            include(UIKitAlert.Close)
+            attr("uk-close", "")
+            attrs.builder(this)
+        },
+        content
+    )
+
+}
