@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.0.34
+
 ## 0.0.33
 
 * Fixes in attributes building and related things
