@@ -2,6 +2,9 @@
 
 ## 0.0.34
 
+* Add `Alert`
+* Add `Animation#KenBurns`
+
 ## 0.0.33
 
 * Fixes in attributes building and related things
