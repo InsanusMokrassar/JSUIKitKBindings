@@ -19,6 +19,7 @@ fun Alert(
 ) = Div(
     {
         attrs.builder(this)
+        include(UIKitAlert)
 
         buildAndAddAttribute("uk-alert") {
             "animation" to animation ?.classes ?.firstOrNull()
