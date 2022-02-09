@@ -11,7 +11,7 @@ import org.w3c.dom.HTMLDivElement
 
 @Composable
 fun Alert(
-    attrs: Attrs<HTMLDivElement>,
+    attrs: Attrs<HTMLDivElement> = Attrs.empty(),
     animation: UIKitAnimation? = UIKitAnimation.Fade,
     duration: Milliseconds? = null,
     selClose: String? = null,
