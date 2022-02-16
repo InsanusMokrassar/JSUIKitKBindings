@@ -2,6 +2,9 @@
 
 ## 0.0.35
 
+* Add `UIKitModal`
+* Improve work with dialogs
+
 ## 0.0.34
 
 * Add `Alert`
