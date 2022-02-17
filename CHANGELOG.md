@@ -3,6 +3,7 @@
 ## 0.0.36
 
 * Reorder arguments in `DefaultComment` fun
+* Add `Vertical` and `Horizontal` members in margins
 
 ## 0.0.35
 
