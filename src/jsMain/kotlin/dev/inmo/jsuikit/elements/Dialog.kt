@@ -2,8 +2,7 @@ package dev.inmo.jsuikit.elements
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffectResult
-import dev.inmo.jsuikit.modifiers.UIKitModifier
-import dev.inmo.jsuikit.modifiers.include
+import dev.inmo.jsuikit.modifiers.*
 import org.jetbrains.compose.web.dom.*
 import org.jetbrains.compose.web.dom.Text
 import org.w3c.dom.*
@@ -25,42 +24,48 @@ private class DialogDisposableEffectResult(
 
 @Composable
 fun Dialog(
-    title: String? = null,
     vararg modifiers: UIKitModifier,
-    hide: (() -> Unit)? = null,
-    hidden: (() -> Unit)? = null,
-    footerBuilder: (@Composable () -> Unit)? = null,
     attributesCustomizer: AttrBuilderContext<HTMLDivElement> = {},
-    bodyBuilder: @Composable () -> Unit
+    onHide: (() -> Unit)? = null,
+    onHidden: (() -> Unit)? = null,
+    dialogAttrsBuilder: AttrBuilderContext<HTMLDivElement>? = null,
+    headerAttrsBuilder: AttrBuilderContext<HTMLDivElement>? = null,
+    headerBuilder: ContentBuilder<HTMLDivElement>? = null,
+    footerAttrsBuilder: AttrBuilderContext<HTMLDivElement>? = null,
+    footerBuilder: ContentBuilder<HTMLDivElement>? = null,
+    bodyAttrsBuilder: AttrBuilderContext<HTMLDivElement>? = null,
+    bodyBuilder: ContentBuilder<HTMLDivElement>
 ) {
     Div(
         {
-            attr("uk-modal", "")
-            classes("uk-flex-top", "uk-modal")
+            if (modifiers.none { it is UIKitModal.WithCustomAttributes }) {
+                include(UIKitModal)
+            }
             id("dialog${Random.nextUInt()}")
-            include(*modifiers)
+            include(*modifiers, UIKitFlex.Alignment.Vertical.Top)
             attributesCustomizer()
         }
     ) {
         Div(
             {
-                classes("uk-modal-dialog", "uk-margin-auto-vertical")
+                include(UIKitModal.Dialog)
+                dialogAttrsBuilder ?.let { it() } ?: include(UIKitMargin.Auto.Vertical)
             }
         ) {
-            title ?.let {
+            headerBuilder ?.let {
                 Div(
                     {
-                        classes("uk-modal-header")
+                        include(UIKitModal.Header)
+                        headerAttrsBuilder ?.let { it() }
                     }
                 ) {
-                    H2({ classes("uk-modal-title") }) {
-                        Text(title)
-                    }
+                    it()
                 }
             }
             Div(
                 {
-                    classes("uk-modal-body")
+                    include(UIKitModal.Body)
+                    bodyAttrsBuilder ?.let { it() }
                 }
             ) {
                 bodyBuilder()
@@ -68,16 +73,17 @@ fun Dialog(
             footerBuilder ?.let {
                 Div(
                     {
-                        classes("uk-modal-footer", "uk-text-right")
+                        include(UIKitModal.Footer)
+                        footerAttrsBuilder ?.let { it() } ?: include(UIKitText.Alignment.Horizontal.Right)
                     }
                 ) {
-                    footerBuilder()
+                    it()
                 }
             }
         }
 
         DisposableRefEffect {
-            DialogDisposableEffectResult(it, hide, hidden)
+            DialogDisposableEffectResult(it, onHide, onHidden)
         }
 
         DomSideEffect { htmlElement ->
@@ -85,13 +91,44 @@ fun Dialog(
             wrapper = { it: Event ->
                 htmlElement.removeEventListener("hidden", wrapper)
                 htmlElement.remove()
-                hidden ?.invoke()
+                onHidden ?.invoke()
             }
             htmlElement.addEventListener("hidden", wrapper)
 
-            val dialog = js("UIkit").modal("#${htmlElement.id}")
+            val dialog = UIKit.modal("#${htmlElement.id}")
             dialog.show()
             Unit
         }
     }
 }
+
+@Composable
+fun Dialog(
+    title: String,
+    vararg modifiers: UIKitModifier,
+    hide: (() -> Unit)? = null,
+    hidden: (() -> Unit)? = null,
+    footerBuilder: (@Composable () -> Unit)? = null,
+    attributesCustomizer: AttrBuilderContext<HTMLDivElement> = {},
+    bodyBuilder: @Composable () -> Unit
+) = Dialog(
+    modifiers = modifiers,
+    headerBuilder = {
+        H2({ include(UIKitModal.Title) }) {
+            Text(title)
+        }
+    },
+    onHide = hide,
+    onHidden = hidden,
+    footerBuilder = footerBuilder ?.let { _ ->
+        {
+            footerBuilder()
+        }
+    },
+    attributesCustomizer = {
+        attributesCustomizer()
+    },
+    bodyBuilder = {
+        bodyBuilder()
+    }
+)
