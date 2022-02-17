@@ -2,6 +2,8 @@
 
 ## 0.0.36
 
+* Reorder arguments in `DefaultComment` fun
+
 ## 0.0.35
 
 * Add `UIKitModal`
