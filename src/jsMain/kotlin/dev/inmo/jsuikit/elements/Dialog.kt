@@ -31,6 +31,8 @@ fun Dialog(
     dialogAttrsBuilder: AttrBuilderContext<HTMLDivElement>? = null,
     headerAttrsBuilder: AttrBuilderContext<HTMLDivElement>? = null,
     headerBuilder: ContentBuilder<HTMLDivElement>? = null,
+    afterHeaderBuilder: ContentBuilder<HTMLDivElement>? = null,
+    beforeFooterBuilder: ContentBuilder<HTMLDivElement>? = null,
     footerAttrsBuilder: AttrBuilderContext<HTMLDivElement>? = null,
     footerBuilder: ContentBuilder<HTMLDivElement>? = null,
     bodyAttrsBuilder: AttrBuilderContext<HTMLDivElement>? = null,
@@ -62,6 +64,7 @@ fun Dialog(
                     it()
                 }
             }
+            afterHeaderBuilder ?.let { it() }
             Div(
                 {
                     include(UIKitModal.Body)
@@ -70,6 +73,7 @@ fun Dialog(
             ) {
                 bodyBuilder()
             }
+            beforeFooterBuilder ?.let { it() }
             footerBuilder ?.let {
                 Div(
                     {
