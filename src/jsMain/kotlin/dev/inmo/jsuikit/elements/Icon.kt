@@ -250,4 +250,12 @@ sealed class Icon(val name: String) {
         attributesCustomizer: AttrBuilderContext<out HTMLElement> = {},
         onClick: ((Event) -> Unit)? = null
     ) = invoke(*modifiers, type = UIKitIconType.Link, ratio = ratio, onClick = onClick, attributesCustomizer = attributesCustomizer)
+
+    @Composable
+    fun drawAsFormInputPart(
+        vararg modifiers: UIKitModifier,
+        ratio: Float? = null,
+        attributesCustomizer: AttrBuilderContext<out HTMLElement> = {},
+        onClick: ((Event) -> Unit)? = null
+    ) = invoke(*modifiers, UIKitForm.Icon, ratio = ratio, onClick = onClick, attributesCustomizer = attributesCustomizer)
 }

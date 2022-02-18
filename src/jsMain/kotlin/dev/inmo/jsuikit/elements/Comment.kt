@@ -45,16 +45,16 @@ fun Comment(
 
 @Composable
 fun DefaultComment(
+    rootAttrs: Attrs<HTMLElement> = Attrs.empty(),
     headerGridAttrs: Attrs<HTMLDivElement>? = null,
+    headerAttrs: Attrs<HTMLElement>? = null,
+    additionalHeaderContent: ContentBuilder<HTMLElement>? = null,
     avatarUrl: String? = null,
     avatarAttrs: Attrs<HTMLImageElement>? = null,
     titleAttrs: Attrs<HTMLHeadingElement>? = null,
     titleContent: ContentBuilder<HTMLHeadingElement>? = null,
     metaAttrs: Attrs<HTMLUListElement>? = null,
     metaContent: ContentBuilder<HTMLUListElement>? = null,
-    rootAttrs: Attrs<HTMLElement> = Attrs.empty(),
-    headerAttrs: Attrs<HTMLElement>? = null,
-    additionalHeaderContent: ContentBuilder<HTMLElement>? = null,
     bodyAttrs: Attrs<HTMLDivElement>? = null,
     bodyContent: ContentBuilder<HTMLDivElement>? = null,
 ) {

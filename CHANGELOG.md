@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.0.36
+
+* Reorder arguments in `DefaultComment` fun
+* Add `Vertical` and `Horizontal` members in margins
+* Add `afterHeaderBuilder` and `beforeFooterBuilder` properties in `Dialog` fun
+* Add `UIKitCustom` to be able for simple creating of custom modifiers
+* Add support of `UIKitForm`
+
 ## 0.0.35
 
 * Add `UIKitModal`
