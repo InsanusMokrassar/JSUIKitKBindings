@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.0.37
+
 ## 0.0.36
 
 * Reorder arguments in `DefaultComment` fun
