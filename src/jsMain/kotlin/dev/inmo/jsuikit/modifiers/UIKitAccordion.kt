@@ -17,7 +17,7 @@ sealed class UIKitAccordion(
         otherAttrs: Map<String, String> = emptyMap()
     ) : UIKitAccordion (otherAttrs = otherAttrs)
 
-    companion object : UIKitAccordion("uk-accordion") {
+    companion object : UIKitAccordion("uk-accordion", otherAttrs = mapOf("uk-accordion" to "")) {
         val Open = UIKitUtility.Open
 
         operator fun invoke(

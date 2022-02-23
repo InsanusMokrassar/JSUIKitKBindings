@@ -17,7 +17,7 @@ fun <T> Accordion(
 ) {
     Ul(
         {
-            include()
+            include(UIKitAccordion)
             attrs.builder(this)
         }
     ) {
