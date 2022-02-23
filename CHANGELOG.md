@@ -2,6 +2,8 @@
 
 ## 0.0.37
 
+* Support of `Accordion` element
+
 ## 0.0.36
 
 * Reorder arguments in `DefaultComment` fun
