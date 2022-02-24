@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.0.38
+
 ## 0.0.37
 
 * `Dialog` now do not add auto margin by default
