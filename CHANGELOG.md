@@ -3,6 +3,7 @@
 ## 0.0.38
 
 * Add support of `Toggle`
+* Attributes collection now can be concatenated
 
 ## 0.0.37
 
