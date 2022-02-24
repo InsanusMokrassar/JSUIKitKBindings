@@ -2,6 +2,7 @@
 
 ## 0.0.37
 
+* `Dialog` now do not add auto margin by default
 * Support of `Accordion` element
 
 ## 0.0.36
