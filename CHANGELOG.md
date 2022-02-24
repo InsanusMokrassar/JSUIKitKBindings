@@ -2,6 +2,8 @@
 
 ## 0.0.38
 
+* Add support of `Toggle`
+
 ## 0.0.37
 
 * `Dialog` now do not add auto margin by default
