@@ -109,4 +109,6 @@ sealed class UIKitUtility(classname: String) : UIKitModifier {
     object Disabled : UIKitUtility("uk-disabled")
     object Drag : UIKitUtility("uk-drag")
     object Active : UIKitUtility("uk-active")
+
+    object Open : UIKitUtility("uk-open")
 }

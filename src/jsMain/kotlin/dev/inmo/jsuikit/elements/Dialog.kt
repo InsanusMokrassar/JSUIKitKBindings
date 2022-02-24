@@ -44,7 +44,7 @@ fun Dialog(
                 include(UIKitModal)
             }
             id("dialog${Random.nextUInt()}")
-            include(*modifiers, UIKitFlex.Alignment.Vertical.Top)
+            include(*modifiers)
             attributesCustomizer()
         }
     ) {
