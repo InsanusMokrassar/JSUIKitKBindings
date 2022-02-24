@@ -15,6 +15,13 @@ class AttributesCollection<T : Element> (
         attrs()
     }
 
+    operator fun plus(other: AttributesCollection<T>) = AttributesCollection<T>(
+        *(modifiers + other.modifiers).distinct().toTypedArray()
+    ) {
+        this@AttributesCollection.attrs.invoke(this)
+        other.attrs.invoke(this)
+    }
+
     companion object {
         val Empty = Attrs<Element>()
 

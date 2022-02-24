@@ -62,4 +62,7 @@ sealed class UIKitAnimation (name: String) : UIKitModifier, AttributeValue(name)
 
     object KenBurns : UIKitAnimation("kenburns")
 
+    override fun toString(): String {
+        return classes.joinToString(" ")
+    }
 }
