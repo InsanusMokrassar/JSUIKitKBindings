@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.39
+
+* Add support of `Notifications`
+
 ## 0.0.38
 
 * Add support of `Toggle`

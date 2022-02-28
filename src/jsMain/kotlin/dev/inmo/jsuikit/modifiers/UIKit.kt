@@ -1,4 +1,6 @@
 package dev.inmo.jsuikit.modifiers
 
-inline val UIKit
-    get() = js("UIkit")
+import dev.inmo.jsuikit.types.UIKit
+
+inline val UIKit: UIKit
+    get() = js("UIkit").unsafeCast<UIKit>()
