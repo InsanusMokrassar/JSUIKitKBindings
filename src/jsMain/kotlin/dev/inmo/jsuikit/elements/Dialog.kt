@@ -99,9 +99,7 @@ fun Dialog(
             }
             htmlElement.addEventListener("hidden", wrapper)
 
-            val dialog = UIKit.modal("#${htmlElement.id}")
-            dialog.show()
-            Unit
+            UIKit.modal("#${htmlElement.id}").show()
         }
     }
 }
