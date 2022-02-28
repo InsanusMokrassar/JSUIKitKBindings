@@ -17,7 +17,7 @@ private class DialogDisposableEffectResult(
 ) : DisposableEffectResult {
     override fun dispose() {
         onDispose?.invoke()
-        js("UIkit").modal("#${element.id}") ?.hide()
+        UIKit.modal("#${element.id}") ?.hide()
         onDisposed?.invoke()
     }
 }
@@ -99,7 +99,7 @@ fun Dialog(
             }
             htmlElement.addEventListener("hidden", wrapper)
 
-            UIKit.modal("#${htmlElement.id}").show()
+            UIKit.modal("#${htmlElement.id}") ?.show()
         }
     }
 }

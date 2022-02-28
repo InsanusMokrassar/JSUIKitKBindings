@@ -1,5 +1,6 @@
 package dev.inmo.jsuikit.types
 
+import dev.inmo.jsuikit.modifiers.UIKit
 import dev.inmo.jsuikit.utils.Milliseconds
 import org.w3c.dom.Element
 import kotlin.js.Json
@@ -10,10 +11,6 @@ typealias NotificationsGroup = String
 external interface UIKitNotifications {
 
     fun closeAll(group: NotificationsGroup)
-
-    operator fun invoke(message: String, parameters: Json)
-
-    operator fun invoke(element: Element): UIKitNotification?
 }
 
 external interface UIKitNotification {
@@ -39,7 +36,7 @@ data class UIKitNotificationsParameters(
 operator fun UIKitNotifications.invoke(
     message: String,
     parameters: UIKitNotificationsParameters
-) = invoke(message, parameters.parametersJson())
+) = UIKit.notification(message, parameters.parametersJson())
 
 operator fun UIKitNotifications.invoke(
     message: String,

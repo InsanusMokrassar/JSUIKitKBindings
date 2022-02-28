@@ -4,8 +4,6 @@ import org.w3c.dom.Element
 import kotlin.js.Promise
 
 external interface UIKitDialogs {
-    operator fun invoke(element: Element): UIKitDialog
-    operator fun invoke(selector: String): UIKitDialog
     fun alert(text: String): UIKitDialogPromiseAlert
     fun confirm(text: String): UIKitDialogPromiseConfirm
     fun prompt(title: String): UIKitDialogPromisePrompt
