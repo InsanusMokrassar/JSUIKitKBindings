@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.0.39
+
 ## 0.0.38
 
 * Add support of `Toggle`
