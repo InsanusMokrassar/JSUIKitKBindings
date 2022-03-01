@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.0.40
+
 ## 0.0.39
 
 * Add support of `Notifications`
