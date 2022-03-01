@@ -11,7 +11,7 @@ import org.w3c.dom.*
 @Composable
 fun <T> DefaultTable(
     headerBuilders: List<ContentBuilder<HTMLTableCellElement>>,
-    dataList: SnapshotStateList<T>,
+    dataList: Iterable<T>,
     vararg tableModifiers: UIKitModifier,
     attributesCustomizer: AttrBuilderContext<HTMLTableElement> = {},
     headerCustomizer: AttrBuilderContext<HTMLTableSectionElement> = {},
@@ -68,7 +68,7 @@ fun <T> DefaultTable(
 @Composable
 fun <T> DefaultTable(
     heading: List<String>,
-    dataList: SnapshotStateList<T>,
+    dataList: Iterable<T>,
     vararg tableModifiers: UIKitModifier,
     attributesCustomizer: AttrBuilderContext<HTMLTableElement> = {},
     headerCustomizer: AttrBuilderContext<HTMLTableSectionElement> = {},
