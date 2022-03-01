@@ -2,6 +2,8 @@
 
 ## 0.0.40
 
+* All `DefaultTable` functions now use `Iterable` as data type
+
 ## 0.0.39
 
 * Add support of `Notifications`
