@@ -2,6 +2,10 @@
 
 ## 0.0.41
 
+* Add `DropArea`
+* Add `UIKitPlaceholder`
+* `UIKitForm#Custom` now have nullable param target
+
 ## 0.0.40
 
 * All `DefaultTable` functions now use `Iterable` as data type

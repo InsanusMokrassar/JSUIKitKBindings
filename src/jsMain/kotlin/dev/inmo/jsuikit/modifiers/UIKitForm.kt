@@ -47,7 +47,7 @@ sealed class UIKitForm(
     object Icon : UIKitForm("uk-form-icon")
 
     class Custom(
-        target: String = "true"
+        target: String? = null
     ) : UIKitForm(
         otherAttrs = mapOf(
             buildAttribute("uk-form-custom") {
