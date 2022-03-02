@@ -49,6 +49,7 @@ sealed class UIKitForm(
     class Custom(
         target: String? = null
     ) : UIKitForm(
+        "uk-form-custom",
         otherAttrs = mapOf(
             buildAttribute("uk-form-custom") {
                 "target" to target
