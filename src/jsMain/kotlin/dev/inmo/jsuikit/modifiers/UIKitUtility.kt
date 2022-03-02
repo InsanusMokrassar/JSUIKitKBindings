@@ -111,4 +111,5 @@ sealed class UIKitUtility(classname: String) : UIKitModifier {
     object Active : UIKitUtility("uk-active")
 
     object Open : UIKitUtility("uk-open")
+    object Link : UIKitUtility("uk-link")
 }

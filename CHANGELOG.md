@@ -5,6 +5,7 @@
 * Add `DropArea`
 * Add `UIKitPlaceholder`
 * `UIKitForm#Custom` now have nullable param target
+* Add `UIKitUtility#Link`
 
 ## 0.0.40
 
