@@ -6,6 +6,7 @@
 * Add `UIKitPlaceholder`
 * `UIKitForm#Custom` now have nullable param target
 * Add `UIKitUtility#Link`
+* Add `DescriptionList` and several support composable functions
 
 ## 0.0.40
 
