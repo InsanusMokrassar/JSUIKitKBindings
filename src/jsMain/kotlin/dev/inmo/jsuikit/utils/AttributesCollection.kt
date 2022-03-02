@@ -10,7 +10,7 @@ import org.w3c.dom.Element
 import org.w3c.dom.HTMLInputElement
 
 class AttributesCollection<T : Element, Builder : AttrsBuilder<T>> (
-    private vararg val modifiers: UIKitModifier,
+    private vararg val modifiers: UIKitModifier?,
     private val attrs: Builder.() -> Unit = {}
 ) {
     val builder: Builder.() -> Unit = {
