@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.0.41
+
 ## 0.0.40
 
 * All `DefaultTable` functions now use `Iterable` as data type
