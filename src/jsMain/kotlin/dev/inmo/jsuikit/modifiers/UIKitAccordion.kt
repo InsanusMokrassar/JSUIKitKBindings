@@ -1,6 +1,7 @@
 package dev.inmo.jsuikit.modifiers
 
-import dev.inmo.jsuikit.utils.*
+import dev.inmo.jsuikit.utils.Milliseconds
+import dev.inmo.jsuikit.utils.buildAttribute
 import org.w3c.dom.PageTransitionEvent
 
 sealed class UIKitAccordion(

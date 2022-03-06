@@ -1,6 +1,6 @@
 package dev.inmo.jsuikit.modifiers
 
-import org.jetbrains.compose.web.attributes.AttrsBuilder
+import org.jetbrains.compose.web.attributes.AttrsScope
 
 interface UIKitModifier {
     val classes: Array<String>
@@ -9,7 +9,7 @@ interface UIKitModifier {
         get() = emptyMap()
 }
 
-fun AttrsBuilder<*>.include(vararg container: UIKitModifier?) {
+fun AttrsScope<*>.include(vararg container: UIKitModifier?) {
     container.forEach {
         it ?.classes ?.let { newClasses -> classes(*newClasses) }
         it ?.otherAttrs ?.let { attrs -> attrs.forEach { (k, v) -> attr(k, v) } }

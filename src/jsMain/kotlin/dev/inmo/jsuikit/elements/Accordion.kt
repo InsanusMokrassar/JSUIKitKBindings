@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import dev.inmo.jsuikit.modifiers.UIKitAccordion
 import dev.inmo.jsuikit.modifiers.include
 import dev.inmo.jsuikit.utils.Attrs
-import org.jetbrains.compose.web.attributes.AttrsBuilder
+import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.*
 import org.w3c.dom.*
 
@@ -12,7 +12,7 @@ import org.w3c.dom.*
 fun <T> Accordion(
     data: Iterable<T>,
     attrs: Attrs<HTMLUListElement> = Attrs.empty(),
-    itemAttrsBuilder: AttrsBuilder<HTMLLIElement>.(Int, T) -> Unit = { _, _ -> },
+    itemAttrsBuilder: AttrsScope<HTMLLIElement>.(Int, T) -> Unit = { _, _ -> },
     itemContentBuilder: @Composable ElementScope<HTMLLIElement>.(Int, T) -> Unit
 ) {
     Ul(
@@ -33,13 +33,13 @@ fun <T> Accordion(
 fun <T> DefaultAccordion(
     data: Iterable<T>,
     attrs: Attrs<HTMLUListElement> = Attrs.empty(),
-    itemAttrsBuilder: AttrsBuilder<HTMLLIElement>.(Int, T) -> Unit = { _, _ -> },
-    titleAttrsBuilder: AttrsBuilder<HTMLAnchorElement>.(Int, T) -> Unit = { _, _ -> },
+    itemAttrsBuilder: AttrsScope<HTMLLIElement>.(Int, T) -> Unit = { _, _ -> },
+    titleAttrsBuilder: AttrsScope<HTMLAnchorElement>.(Int, T) -> Unit = { _, _ -> },
     titleContentBuilder: @Composable ElementScope<HTMLAnchorElement>.(Int, T) -> Unit = { _, _ -> },
     beforeTitleContentBuilder: @Composable ElementScope<HTMLLIElement>.(Int, T) -> Unit = { _, _ -> },
     afterTitleContentBuilder: @Composable ElementScope<HTMLLIElement>.(Int, T) -> Unit = { _, _ -> },
     afterContentContentBuilder: @Composable  ElementScope<HTMLLIElement>.(Int, T) -> Unit = { _, _ -> },
-    contentAttrsBuilder: AttrsBuilder<HTMLDivElement>.(Int, T) -> Unit = { _, _ -> },
+    contentAttrsBuilder: AttrsScope<HTMLDivElement>.(Int, T) -> Unit = { _, _ -> },
     contentContentBuilder: @Composable ElementScope<HTMLDivElement>.(Int, T) -> Unit
 ) = Accordion(
     data,
@@ -72,9 +72,9 @@ fun <T> DefaultAccordion(
     data: Iterable<T>,
     titleResolver: (Int, T) -> String,
     attrs: Attrs<HTMLUListElement> = Attrs.empty(),
-    itemAttrsBuilder: AttrsBuilder<HTMLLIElement>.(Int, T) -> Unit = { _, _ -> },
-    titleAttrsBuilder: AttrsBuilder<HTMLAnchorElement>.(Int, T) -> Unit = { _, _ -> },
-    contentAttrsBuilder: AttrsBuilder<HTMLDivElement>.(Int, T) -> Unit = { _, _ -> },
+    itemAttrsBuilder: AttrsScope<HTMLLIElement>.(Int, T) -> Unit = { _, _ -> },
+    titleAttrsBuilder: AttrsScope<HTMLAnchorElement>.(Int, T) -> Unit = { _, _ -> },
+    contentAttrsBuilder: AttrsScope<HTMLDivElement>.(Int, T) -> Unit = { _, _ -> },
     contentContentBuilder: @Composable ElementScope<HTMLDivElement>.(Int, T) -> Unit
 ) = DefaultAccordion(
     data,

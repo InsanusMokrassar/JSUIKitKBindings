@@ -4,7 +4,6 @@ import androidx.compose.runtime.Composable
 import dev.inmo.jsuikit.buildAndAddAttribute
 import dev.inmo.jsuikit.modifiers.*
 import dev.inmo.jsuikit.utils.Milliseconds
-import dev.inmo.jsuikit.utils.buildAttribute
 import org.jetbrains.compose.web.dom.*
 import org.w3c.dom.HTMLDivElement
 

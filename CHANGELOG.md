@@ -2,6 +2,9 @@
 
 ## 0.0.42
 
+* Migration to compose 1.1.0
+* Replaces according to it
+
 ## 0.0.41
 
 * Add `DropArea`

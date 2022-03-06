@@ -2,8 +2,6 @@ package dev.inmo.jsuikit.types
 
 import dev.inmo.jsuikit.modifiers.UIKit
 import dev.inmo.jsuikit.utils.Milliseconds
-import org.w3c.dom.Element
-import kotlin.js.Json
 import kotlin.js.json
 
 typealias NotificationsGroup = String

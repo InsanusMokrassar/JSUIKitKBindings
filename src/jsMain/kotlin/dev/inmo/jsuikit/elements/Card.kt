@@ -4,7 +4,8 @@ import androidx.compose.runtime.Composable
 import dev.inmo.jsuikit.modifiers.*
 import dev.inmo.jsuikit.utils.Attrs
 import org.jetbrains.compose.web.dom.*
-import org.w3c.dom.*
+import org.w3c.dom.HTMLDivElement
+import org.w3c.dom.HTMLHeadingElement
 
 @Composable
 fun Card(

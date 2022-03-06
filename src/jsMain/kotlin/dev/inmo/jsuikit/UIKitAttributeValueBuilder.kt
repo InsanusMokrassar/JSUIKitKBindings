@@ -3,7 +3,7 @@ package dev.inmo.jsuikit
 import dev.inmo.jsuikit.modifiers.AttributeValue
 import dev.inmo.jsuikit.utils.AttributeBuilder
 import dev.inmo.jsuikit.utils.buildAttribute
-import org.jetbrains.compose.web.attributes.AttrsBuilder
+import org.jetbrains.compose.web.attributes.AttrsScope
 
 @Deprecated("Will be removed soon")
 class UIKitAttributeValueBuilder {
@@ -22,7 +22,7 @@ class UIKitAttributeValueBuilder {
     fun build(): String = attrs.joinToString(";") { (k, v) -> "$k: $v" }
 }
 
-fun AttrsBuilder<*>.buildAndAddAttribute(
+fun AttrsScope<*>.buildAndAddAttribute(
     attributeName: String,
     skipNullValues: Boolean = true,
     block: AttributeBuilder.() -> Unit
