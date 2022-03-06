@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.0.42
+
 ## 0.0.41
 
 * Add `DropArea`
