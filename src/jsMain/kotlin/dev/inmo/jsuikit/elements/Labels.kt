@@ -1,9 +1,11 @@
 package dev.inmo.jsuikit.elements
 
 import androidx.compose.runtime.Composable
-import dev.inmo.jsuikit.modifiers.*
+import dev.inmo.jsuikit.modifiers.UIKitLabel
+import dev.inmo.jsuikit.modifiers.include
 import dev.inmo.jsuikit.utils.Attrs
-import org.jetbrains.compose.web.dom.*
+import org.jetbrains.compose.web.dom.Span
+import org.jetbrains.compose.web.dom.Text
 import org.w3c.dom.HTMLSpanElement
 
 @Composable

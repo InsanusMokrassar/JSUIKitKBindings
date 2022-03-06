@@ -4,10 +4,8 @@ import androidx.compose.runtime.Composable
 import dev.inmo.jsuikit.modifiers.*
 import dev.inmo.jsuikit.utils.Attrs
 import dev.inmo.jsuikit.utils.InputAttrs
-import org.jetbrains.compose.web.attributes.InputType
 import org.jetbrains.compose.web.dom.*
 import org.w3c.dom.HTMLDivElement
-import org.w3c.dom.HTMLInputElement
 
 @Composable
 fun DropArea(

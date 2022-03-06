@@ -1,7 +1,6 @@
 package dev.inmo.jsuikit.modifiers
 
 import dev.inmo.jsuikit.utils.*
-import org.jetbrains.compose.web.css.CSSKeyframe
 
 sealed class UIKitHeight(
     classname: String?,

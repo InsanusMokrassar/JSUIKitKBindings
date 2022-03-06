@@ -1,9 +1,7 @@
 package dev.inmo.jsuikit.elements
 
 import dev.inmo.jsuikit.modifiers.UIKit
-import dev.inmo.jsuikit.types.UIKitNotificationParameter
-import dev.inmo.jsuikit.types.NotificationsGroup
-import dev.inmo.jsuikit.types.invoke
+import dev.inmo.jsuikit.types.*
 import dev.inmo.jsuikit.utils.Milliseconds
 
 fun Notification(

@@ -2,14 +2,12 @@ package dev.inmo.jsuikit.utils
 
 import dev.inmo.jsuikit.modifiers.UIKitModifier
 import dev.inmo.jsuikit.modifiers.include
-import org.jetbrains.compose.web.attributes.AttrsBuilder
-import org.jetbrains.compose.web.attributes.InputType
-import org.jetbrains.compose.web.attributes.builders.InputAttrsBuilder
-import org.jetbrains.compose.web.dom.AttrBuilderContext
+import org.jetbrains.compose.web.attributes.AttrsScope
+import org.jetbrains.compose.web.attributes.builders.InputAttrsScope
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLInputElement
 
-class AttributesCollection<T : Element, Builder : AttrsBuilder<T>> (
+class AttributesCollection<T : Element, Builder : AttrsScope<T>> (
     private vararg val modifiers: UIKitModifier?,
     private val attrs: Builder.() -> Unit = {}
 ) {
@@ -29,9 +27,9 @@ class AttributesCollection<T : Element, Builder : AttrsBuilder<T>> (
         val Empty = Attrs<Element>()
 
         @Suppress("UNCHECKED_CAST")
-        fun <T : Element, Builder : AttrsBuilder<T>> empty() = Empty as AttributesCollection<T, Builder>
+        fun <T : Element, Builder : AttrsScope<T>> empty() = Empty as AttributesCollection<T, Builder>
     }
 }
 
-typealias Attrs<T> = AttributesCollection<T, AttrsBuilder<T>>
-typealias InputAttrs<T> = AttributesCollection<HTMLInputElement, InputAttrsBuilder<T>>
+typealias Attrs<T> = AttributesCollection<T, AttrsScope<T>>
+typealias InputAttrs<T> = AttributesCollection<HTMLInputElement, InputAttrsScope<T>>
