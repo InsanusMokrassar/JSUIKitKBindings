@@ -20,3 +20,12 @@ sealed class UIKitScreenSizeModifier(val name: String) {
 }
 
 fun UIKitModifier.applyWhenScreenSizeIs(size: UIKitScreenSizeModifier) = size.modify(this)
+
+val UIKitModifier.onSmallScreens
+    get() = applyWhenScreenSizeIs(UIKitScreenSizeModifier.Small)
+val UIKitModifier.onMediumScreens
+    get() = applyWhenScreenSizeIs(UIKitScreenSizeModifier.Medium)
+val UIKitModifier.onLargeScreens
+    get() = applyWhenScreenSizeIs(UIKitScreenSizeModifier.Large)
+val UIKitModifier.onXLargeScreens
+    get() = applyWhenScreenSizeIs(UIKitScreenSizeModifier.XLarge)
