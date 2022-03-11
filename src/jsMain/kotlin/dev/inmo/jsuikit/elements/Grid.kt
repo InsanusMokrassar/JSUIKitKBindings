@@ -10,7 +10,7 @@ import org.w3c.dom.HTMLDivElement
 fun GridColumn(
     vararg modifiers: UIKitModifier,
     attributesCustomizer: AttrBuilderContext<HTMLDivElement> = {},
-    builder: @Composable ElementScope<HTMLDivElement>.() -> Unit
+    builder: @Composable ElementScope<HTMLDivElement>.() -> Unit = {}
 ) {
     Div(
         {
@@ -30,7 +30,7 @@ fun Grid(
     marginClass: String? = null,
     firstColumnClass: String? = null,
     attributesCustomizer: AttrBuilderContext<HTMLDivElement> = {},
-    builder: @Composable ElementScope<HTMLDivElement>.() -> Unit
+    builder: @Composable ElementScope<HTMLDivElement>.() -> Unit = {}
 ) {
     val attrs = listOfNotNull(
         if (masonry) "masonry" to "true" else null,
