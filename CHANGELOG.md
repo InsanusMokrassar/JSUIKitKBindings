@@ -2,6 +2,9 @@
 
 ## 0.0.43
 
+* Several new extensions for `UIKitModifier` like `UIKitModifier#onSmallScreen`
+* Support of `Tile`
+
 ## 0.0.42
 
 * Migration to compose 1.1.0
