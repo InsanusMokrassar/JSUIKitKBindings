@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.44
+
+* `Versions`:
+    * `Compose`: `1.1.0` -> `1.1.1`
+
 ## 0.0.43
 
 * Several new extensions for `UIKitModifier` like `UIKitModifier#onSmallScreen`
