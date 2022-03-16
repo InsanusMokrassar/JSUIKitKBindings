@@ -2,7 +2,7 @@
 
 ## 0.0.45
 
-* `Add support of containers in `UIKitContainer` modifiers and `Container` function
+* Add support of containers in `UIKitContainer` modifiers and `Container` function
 
 ## 0.0.44
 
