@@ -2,6 +2,9 @@
 
 ## 0.0.46
 
+* Add support of `UIKitOverlay`
+* Add support of `UIKitInverse`
+
 ## 0.0.45
 
 * Add support of containers in `UIKitContainer` modifiers and `Container` function
