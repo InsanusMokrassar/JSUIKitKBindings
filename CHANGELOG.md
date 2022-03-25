@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.0.47
+
 ## 0.0.46
 
 * Add support of `UIKitOverlay`
