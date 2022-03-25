@@ -2,6 +2,8 @@
 
 ## 0.0.47
 
+* Add support of `Close` element
+
 ## 0.0.46
 
 * Add support of `UIKitOverlay`
