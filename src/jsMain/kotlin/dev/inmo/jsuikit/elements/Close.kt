@@ -1,6 +1,7 @@
 package dev.inmo.jsuikit.elements
 
 import androidx.compose.runtime.Composable
+import androidx.compose.web.events.SyntheticMouseEvent
 import dev.inmo.jsuikit.modifiers.UIKitClose
 import dev.inmo.jsuikit.modifiers.include
 import dev.inmo.jsuikit.utils.Attrs
@@ -28,12 +29,16 @@ object Close {
     @Composable
     fun drawAsButton(
         attrs: Attrs<HTMLButtonElement> = Attrs.empty(),
-        contentBuilder: ContentBuilder<HTMLButtonElement> = {}
+        contentBuilder: ContentBuilder<HTMLButtonElement> = {},
+        onClick: ((SyntheticMouseEvent) -> Unit)? = null
     ) = Button(
         {
             type(ButtonType.Button)
             include(UIKitClose)
             attrs.builder(this)
+            onClick ?.let {
+                onClick(onClick)
+            }
         },
         contentBuilder
     )
