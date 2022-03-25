@@ -1,5 +1,6 @@
 package dev.inmo.jsuikit.elements
 
+import androidx.compose.runtime.Composable
 import dev.inmo.jsuikit.modifiers.UIKitClose
 import dev.inmo.jsuikit.modifiers.include
 import dev.inmo.jsuikit.utils.Attrs
@@ -10,6 +11,7 @@ import org.w3c.dom.HTMLAnchorElement
 import org.w3c.dom.HTMLButtonElement
 
 object Close {
+    @Composable
     fun drawAsLink(
         href: String = "#",
         attrs: Attrs<HTMLAnchorElement> = Attrs.empty(),
@@ -23,6 +25,7 @@ object Close {
         contentBuilder
     )
 
+    @Composable
     fun drawAsButton(
         attrs: Attrs<HTMLButtonElement> = Attrs.empty(),
         contentBuilder: ContentBuilder<HTMLButtonElement> = {}
