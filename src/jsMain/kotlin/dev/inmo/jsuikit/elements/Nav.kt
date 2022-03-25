@@ -95,7 +95,7 @@ fun SubNav(
 @Composable
 fun <T> Nav(
     title: String,
-    data: SnapshotStateList<T>,
+    data: Iterable<T>,
     vararg ulModifiers: UIKitModifier,
     titleModifiers: Array<UIKitModifier> = emptyArray(),
     multiple: Boolean? = null,
@@ -134,7 +134,7 @@ fun <T> Nav(
 @Composable
 fun <T> DefaultNav(
     title: String,
-    data: SnapshotStateList<T>,
+    data: Iterable<T>,
     vararg ulModifiers: UIKitModifier,
     titleModifiers: Array<UIKitModifier> = emptyArray(),
     multiple: Boolean? = null,
@@ -163,7 +163,7 @@ fun <T> DefaultNav(
 @Composable
 fun <T> PrimaryNav(
     title: String,
-    data: SnapshotStateList<T>,
+    data: Iterable<T>,
     vararg ulModifiers: UIKitModifier,
     titleModifiers: Array<UIKitModifier> = emptyArray(),
     multiple: Boolean? = null,
@@ -192,7 +192,7 @@ fun <T> PrimaryNav(
 @Composable
 fun <T> SubNav(
     title: String,
-    data: SnapshotStateList<T>,
+    data: Iterable<T>,
     vararg ulModifiers: UIKitModifier,
     titleModifiers: Array<UIKitModifier> = emptyArray(),
     multiple: Boolean? = null,

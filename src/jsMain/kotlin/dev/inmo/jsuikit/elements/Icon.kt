@@ -77,15 +77,15 @@ sealed class Icon(val name: String) {
         object Grid : App("grid")
         sealed class More(iconName: String) : App("more${iconName.takeIf { it.isNotEmpty() } ?.let { "-$it" } ?: "" }") {
             object Vertical : More("vertical")
-            companion object : More("more")
+            companion object : More("")
         }
         sealed class Plus(iconName: String) : App("plus${iconName.takeIf { it.isNotEmpty() } ?.let { "-$it" } ?: "" }") {
             object Circle : Plus("circle")
-            companion object : Plus("plus")
+            companion object : Plus("")
         }
         sealed class Minus(iconName: String) : App("minus${iconName.takeIf { it.isNotEmpty() } ?.let { "-$it" } ?: "" }") {
             object Circle : Minus("circle")
-            companion object : Minus("minus")
+            companion object : Minus("")
         }
         object Close : App("close")
         object Check : App("check")
@@ -93,7 +93,7 @@ sealed class Icon(val name: String) {
         object Refresh : App("refresh")
         sealed class Play(iconName: String) : App("play${iconName.takeIf { it.isNotEmpty() } ?.let { "-$it" } ?: "" }") {
             object Circle : Play("circle")
-            companion object : Play("play")
+            companion object : Play("")
         }
     }
     sealed class Devices(iconName: String) : Icon(iconName) {
@@ -102,11 +102,11 @@ sealed class Icon(val name: String) {
         object Laptop : Devices("laptop")
         sealed class Tablet(iconName: String) : Devices("tablet${iconName.takeIf { it.isNotEmpty() } ?.let { "-$it" } ?: "" }") {
             object Landscape : Tablet("landscape")
-            companion object : Tablet("tablet")
+            companion object : Tablet("")
         }
         sealed class Phone(iconName: String) : Devices("phone${iconName.takeIf { it.isNotEmpty() } ?.let { "-$it" } ?: "" }") {
             object Landscape : Phone("landscape")
-            companion object : Phone("phone")
+            companion object : Phone("")
         }
     }
     sealed class Storage(iconName: String) : Icon(iconName) {
@@ -114,7 +114,7 @@ sealed class Icon(val name: String) {
             object Text : File("text")
             object Pdf : File("pdf")
             object Edit : File("edit")
-            companion object : File("file")
+            companion object : File("")
         }
         object Copy : Storage("copy")
         object Folder : Storage("folder")
@@ -177,7 +177,7 @@ sealed class Icon(val name: String) {
         object Foursquare : Brands("foursquare")
         sealed class Github(iconName: String) : Brands("github${iconName.takeIf { it.isNotEmpty() } ?.let { "-$it" } ?: "" }") {
             object Alt : Github("alt")
-            companion object : Github("github")
+            companion object : Github("")
         }
         object Gitter : Brands("gitter")
         object Google : Brands("google")
