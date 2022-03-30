@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.0.48
+
 ## 0.0.47
 
 * Add support of `Close` element
