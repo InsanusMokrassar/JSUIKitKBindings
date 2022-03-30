@@ -43,6 +43,8 @@ sealed class UIKitDropdown(classname: String) : UIKitModifier {
 
         }
 
+        override fun toString(): String = name
+
     }
 
     sealed class Mode(name: String) : AttributeValue(name) {
