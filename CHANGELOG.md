@@ -2,6 +2,8 @@
 
 ## 0.0.48
 
+* Added support of `Breadcrumb`
+
 ## 0.0.47
 
 * Add support of `Close` element
