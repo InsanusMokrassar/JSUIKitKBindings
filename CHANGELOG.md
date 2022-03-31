@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.48
+
+* Added support of `Breadcrumb`
+* Add opportunity to summarize `UIKitModifier`
+* Add opportunity to simply create attributes builder using `UIKitModifier` of array of them
+
 ## 0.0.47
 
 * Add support of `Close` element

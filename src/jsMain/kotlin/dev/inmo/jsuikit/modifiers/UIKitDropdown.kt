@@ -50,6 +50,9 @@ sealed class UIKitDropdown(classname: String) : UIKitModifier {
         object Click : Mode("click")
         object Hover : Mode("hover")
 
+        object None : Mode("")
+        object HoverAndClick : Mode("$Hover, $Click")
+
     }
 
     sealed class Flip(name: String) : AttributeValue(name) {
