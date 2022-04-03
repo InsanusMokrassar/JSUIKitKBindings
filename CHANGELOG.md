@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.50
+
+* Add opportunity to customize content in title of `Nav` after text
+
 ## 0.0.49
 
 * Now it is possible to use optional title in navs builders
