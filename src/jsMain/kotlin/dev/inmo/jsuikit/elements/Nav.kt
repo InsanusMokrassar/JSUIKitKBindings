@@ -94,7 +94,7 @@ fun SubNav(
 
 @Composable
 fun <T> Nav(
-    title: String,
+    title: String?,
     data: Iterable<T>,
     vararg ulModifiers: UIKitModifier,
     titleModifiers: Array<UIKitModifier> = emptyArray(),
@@ -119,11 +119,13 @@ fun <T> Nav(
             ulCustomizer()
         }
     ) {
-        NavHeader(
-            title,
-            *titleModifiers,
-            attributesCustomizer = titleCustomizer
-        )
+        title ?.let {
+            NavHeader(
+                title,
+                *titleModifiers,
+                attributesCustomizer = titleCustomizer
+            )
+        }
         besidesTitleAndList ?.let { it() }
         data.forEach {
             elementAllocator(it)
@@ -133,7 +135,7 @@ fun <T> Nav(
 
 @Composable
 fun <T> DefaultNav(
-    title: String,
+    title: String?,
     data: Iterable<T>,
     vararg ulModifiers: UIKitModifier,
     titleModifiers: Array<UIKitModifier> = emptyArray(),
@@ -162,7 +164,7 @@ fun <T> DefaultNav(
 
 @Composable
 fun <T> PrimaryNav(
-    title: String,
+    title: String?,
     data: Iterable<T>,
     vararg ulModifiers: UIKitModifier,
     titleModifiers: Array<UIKitModifier> = emptyArray(),
@@ -191,7 +193,7 @@ fun <T> PrimaryNav(
 
 @Composable
 fun <T> SubNav(
-    title: String,
+    title: String?,
     data: Iterable<T>,
     vararg ulModifiers: UIKitModifier,
     titleModifiers: Array<UIKitModifier> = emptyArray(),

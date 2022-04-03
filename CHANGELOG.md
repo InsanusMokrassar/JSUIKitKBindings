@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.49
+
+* Now it is possible to use optional title in navs builders
+
 ## 0.0.48
 
 * Added support of `Breadcrumb`
