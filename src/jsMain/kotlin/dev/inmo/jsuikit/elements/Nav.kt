@@ -1,7 +1,6 @@
 package dev.inmo.jsuikit.elements
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.snapshots.SnapshotStateList
 import dev.inmo.jsuikit.buildAndAddAttribute
 import dev.inmo.jsuikit.modifiers.*
 import dev.inmo.jsuikit.utils.Milliseconds
@@ -104,6 +103,7 @@ fun <T> Nav(
     duration: Milliseconds? = null,
     besidesTitleAndList: ContentBuilder<HTMLUListElement>? = null,
     titleCustomizer: AttrBuilderContext<HTMLLIElement> = {},
+    afterTitleBuilder: ContentBuilder<HTMLLIElement> = {},
     ulCustomizer: AttrBuilderContext<HTMLUListElement> = {},
     elementAllocator: @Composable ElementScope<HTMLUListElement>.(T) -> Unit
 ) {
@@ -123,7 +123,8 @@ fun <T> Nav(
             NavHeader(
                 title,
                 *titleModifiers,
-                attributesCustomizer = titleCustomizer
+                attributesCustomizer = titleCustomizer,
+                afterTitleContentBuilder = afterTitleBuilder
             )
         }
         besidesTitleAndList ?.let { it() }
@@ -145,6 +146,7 @@ fun <T> DefaultNav(
     duration: Milliseconds? = null,
     besidesTitleAndList: ContentBuilder<HTMLUListElement>? = null,
     titleCustomizer: AttrBuilderContext<HTMLLIElement> = {},
+    afterTitleBuilder: ContentBuilder<HTMLLIElement> = {},
     ulCustomizer: AttrBuilderContext<HTMLUListElement> = {},
     elementAllocator: @Composable ElementScope<HTMLUListElement>.(T) -> Unit
 ) = Nav(
@@ -158,6 +160,7 @@ fun <T> DefaultNav(
     duration,
     besidesTitleAndList,
     titleCustomizer,
+    afterTitleBuilder,
     ulCustomizer,
     elementAllocator
 )
@@ -174,6 +177,7 @@ fun <T> PrimaryNav(
     duration: Milliseconds? = null,
     besidesTitleAndList: ContentBuilder<HTMLUListElement>? = null,
     titleCustomizer: AttrBuilderContext<HTMLLIElement> = {},
+    afterTitleBuilder: ContentBuilder<HTMLLIElement> = {},
     ulCustomizer: AttrBuilderContext<HTMLUListElement> = {},
     elementAllocator: @Composable ElementScope<HTMLUListElement>.(T) -> Unit
 ) = Nav(
@@ -187,6 +191,7 @@ fun <T> PrimaryNav(
     duration,
     besidesTitleAndList,
     titleCustomizer,
+    afterTitleBuilder,
     ulCustomizer,
     elementAllocator
 )
@@ -203,6 +208,7 @@ fun <T> SubNav(
     duration: Milliseconds? = null,
     besidesTitleAndList: ContentBuilder<HTMLUListElement>? = null,
     titleCustomizer: AttrBuilderContext<HTMLLIElement> = {},
+    afterTitleBuilder: ContentBuilder<HTMLLIElement> = {},
     ulCustomizer: AttrBuilderContext<HTMLUListElement> = {},
     elementAllocator: @Composable ElementScope<HTMLUListElement>.(T) -> Unit
 ) = Nav(
@@ -216,6 +222,7 @@ fun <T> SubNav(
     duration,
     besidesTitleAndList,
     titleCustomizer,
+    afterTitleBuilder,
     ulCustomizer,
     elementAllocator
 )
@@ -225,6 +232,7 @@ fun NavHeader(
     text: String,
     vararg modifiers: UIKitModifier,
     attributesCustomizer: AttrBuilderContext<HTMLLIElement> = {},
+    afterTitleContentBuilder: ContentBuilder<HTMLLIElement> = {}
 ) {
     Li(
         {
@@ -233,6 +241,7 @@ fun NavHeader(
         }
     ) {
         Text(text)
+        afterTitleContentBuilder()
     }
 }
 
