@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.0.49
+
 ## 0.0.48
 
 * Added support of `Breadcrumb`
