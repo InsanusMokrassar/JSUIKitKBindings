@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.0.50
+
 ## 0.0.49
 
 * Now it is possible to use optional title in navs builders
