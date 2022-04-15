@@ -6,7 +6,7 @@ import dev.inmo.jsuikit.utils.*
 
 external interface Dropdown {
     fun show()
-    fun hide(delay: Boolean)
+    fun hide(delay: Boolean? = definedExternally)
     fun hide(delay: Milliseconds)
 }
 
