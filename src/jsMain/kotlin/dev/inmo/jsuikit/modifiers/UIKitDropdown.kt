@@ -1,5 +1,9 @@
 package dev.inmo.jsuikit.modifiers
 
+import dev.inmo.jsuikit.types.DropdownOptions
+import dev.inmo.jsuikit.utils.Milliseconds
+import dev.inmo.jsuikit.utils.buildAttribute
+
 sealed class UIKitDropdown(classname: String) : UIKitModifier {
     override val classes: Array<String> = arrayOf(classname)
 
@@ -64,4 +68,48 @@ sealed class UIKitDropdown(classname: String) : UIKitModifier {
 
     }
 
+    class Custom(
+        dropdownOptions: DropdownOptions
+    ) : UIKitDropdown("uk-dropdown") {
+        override val otherAttrs: Map<String, String> = mapOf(
+            buildAttribute(
+                "uk-dropdown"
+            ) {
+                dropdownOptions.includeParameters(this)
+            }
+        )
+    }
+
+    companion object {
+        operator fun invoke(
+            dropdownOptions: DropdownOptions
+        ) = Custom(dropdownOptions)
+        operator fun invoke(
+            toggle: String? = null,
+            pos: Position? = null,
+            mode: Mode? = null,
+            delayShow: Milliseconds? = null,
+            delayHide: Milliseconds? = null,
+            boundary: String? = null,
+            boundaryAlign: Boolean? = null,
+            flip: Flip? = null,
+            offset: Int? = null,
+            animation: UIKitAnimation? = null,
+            duration: Milliseconds? = null,
+        ) = Custom(
+            DropdownOptions(
+                toggle = toggle,
+                pos = pos,
+                mode = mode,
+                delayShow = delayShow,
+                delayHide = delayHide,
+                boundary = boundary,
+                boundaryAlign = boundaryAlign,
+                flip = flip,
+                offset = offset,
+                animation = animation,
+                duration = duration
+            )
+        )
+    }
 }

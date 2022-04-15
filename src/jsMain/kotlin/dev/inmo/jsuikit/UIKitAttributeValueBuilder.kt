@@ -1,8 +1,7 @@
 package dev.inmo.jsuikit
 
 import dev.inmo.jsuikit.modifiers.AttributeValue
-import dev.inmo.jsuikit.utils.AttributeBuilder
-import dev.inmo.jsuikit.utils.buildAttribute
+import dev.inmo.jsuikit.utils.*
 import org.jetbrains.compose.web.attributes.AttrsScope
 
 @Deprecated("Will be removed soon")
@@ -25,7 +24,7 @@ class UIKitAttributeValueBuilder {
 fun AttrsScope<*>.buildAndAddAttribute(
     attributeName: String,
     skipNullValues: Boolean = true,
-    block: AttributeBuilder.() -> Unit
+    block: ParametersBuilder.() -> Unit
 ) {
     buildAttribute(attributeName, skipNullValues, block).let {
         attr(it.first, it.second)

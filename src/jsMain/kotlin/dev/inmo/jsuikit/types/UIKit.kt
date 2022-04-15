@@ -13,4 +13,7 @@ external interface UIKit {
 
     fun modal(element: Element): UIKitDialog
     fun modal(selector: String): UIKitDialog?
+
+    fun dropdown(element: Element, options: DropdownOptions = definedExternally): Dropdown
+    fun dropdown(selector: String, options: DropdownOptions = definedExternally): Dropdown?
 }

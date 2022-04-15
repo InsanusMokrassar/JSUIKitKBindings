@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.51
+
+* New interface `Dropdown` which will be used to create (or retrieve) dropdown for an element
+* New attribute in `NavItemElement` for configuration of `A` element
+
 ## 0.0.50
 
 * Add opportunity to customize content in title of `Nav` after text
