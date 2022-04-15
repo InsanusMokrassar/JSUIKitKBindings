@@ -249,6 +249,7 @@ fun NavHeader(
 fun NavItemElement(
     vararg modifiers: UIKitModifier,
     attributesCustomizer: AttrBuilderContext<HTMLLIElement> = {},
+    anchorAttributesCustomizer: AttrBuilderContext<HTMLAnchorElement> = {},
     contentAllocator: ContentBuilder<HTMLAnchorElement>
 ) {
     Li(
@@ -257,7 +258,7 @@ fun NavItemElement(
             attributesCustomizer()
         }
     ) {
-        A("#") {
+        A("#", attrs = anchorAttributesCustomizer) {
             contentAllocator()
         }
     }
