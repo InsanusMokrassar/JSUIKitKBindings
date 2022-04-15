@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.0.51
+
 ## 0.0.50
 
 * Add opportunity to customize content in title of `Nav` after text
