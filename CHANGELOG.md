@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.52
+
+* Improve work with UIKitModifiers
+
 ## 0.0.51
 
 * New interface `Dropdown` which will be used to create (or retrieve) dropdown for an element

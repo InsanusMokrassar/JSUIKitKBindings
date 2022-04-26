@@ -26,8 +26,8 @@ operator fun UIKitModifier.plus(other: UIKitModifier): UIKitModifier = UIKitCust
     classes + other.classes,
     otherAttrs + other.otherAttrs
 )
-fun <T: Element> UIKitModifier.builder() = Attrs<T>(this).builder
-fun <T: Element> Array<out UIKitModifier>.builder() = Attrs<T>(*this).builder
-inline fun <T: Element> attrsBuilder(vararg modifiers: UIKitModifier) = modifiers.builder<T>()
+fun <T: Element> UIKitModifier?.builder() = Attrs<T>(this).builder
+fun <T: Element> Array<out UIKitModifier?>.builder() = Attrs<T>(*this).builder
+inline fun <T: Element> attrsBuilder(vararg modifiers: UIKitModifier?) = modifiers.builder<T>()
 @JsName("plusBuilder")
-operator fun <T: Element> UIKitModifier.plus(other: UIKitModifier): AttrBuilderContext<T> = Attrs<T>(this@plus, other).builder
+operator fun <T: Element> UIKitModifier?.plus(other: UIKitModifier?): AttrBuilderContext<T> = Attrs<T>(this@plus, other).builder
