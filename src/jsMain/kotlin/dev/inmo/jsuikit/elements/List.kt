@@ -27,7 +27,7 @@ fun <T> List(
 }
 
 @Composable
-fun <T> List(
+fun <T> ListWithTitle(
     title: String,
     data: SnapshotStateList<T>,
     vararg titleModifiers: UIKitModifier,
@@ -43,3 +43,25 @@ fun <T> List(
     besidesTitleAndList ?.invoke()
     List(data, Attrs(*ulModifiers) { ulCustomizer(this) }, elementAllocator)
 }
+
+@Deprecated("Renamed", ReplaceWith("ListWithTitle", "dev.inmo.jsuikit.elements.ListWithTitle"))
+@Composable
+fun <T> List(
+    title: String,
+    data: SnapshotStateList<T>,
+    vararg titleModifiers: UIKitModifier,
+    ulModifiers: Array<UIKitModifier> = emptyArray(),
+    besidesTitleAndList: (@Composable () -> Unit)? = null,
+    titleCustomizer: AttrBuilderContext<HTMLHeadingElement> = {},
+    ulCustomizer: AttrBuilderContext<HTMLUListElement> = {},
+    elementAllocator: @Composable ElementScope<HTMLUListElement>.(T) -> Unit
+) = ListWithTitle(
+    title,
+    data,
+    *titleModifiers,
+    ulModifiers = ulModifiers,
+    besidesTitleAndList = besidesTitleAndList,
+    titleCustomizer = titleCustomizer,
+    ulCustomizer = ulCustomizer,
+    elementAllocator = elementAllocator
+)
