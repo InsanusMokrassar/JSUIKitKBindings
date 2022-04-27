@@ -2,7 +2,8 @@
 
 ## 0.0.53
 
-Improvements in `UIKitPadding`
+* Improvements in `UIKitPadding`
+* Add support of UIKit lists
 
 ## 0.0.52
 
