@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.53
+
+* Improvements in `UIKitPadding`
+* Add support of UIKit lists
+
 ## 0.0.52
 
 * Improve work with UIKitModifiers
