@@ -8,7 +8,10 @@ sealed class UIKitPadding(suffix: String?) : UIKitModifier {
         object Small : Size("small")
         object Large : Size("large")
 
-        companion object : Size(null)
+        companion object : Size(null) {
+            val Default
+                get() = this
+        }
 
     }
 
@@ -25,5 +28,6 @@ sealed class UIKitPadding(suffix: String?) : UIKitModifier {
 
     }
 
+    companion object : Size(null)
 
 }
