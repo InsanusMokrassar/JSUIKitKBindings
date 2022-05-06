@@ -1,9 +1,9 @@
 # Changelog
 
-## 0.0.54
+## 0.1.0
 
 * `Kotlin` = `1.6.21`
-* `Compose`: `1.2.0-alpha01-dev675`
+* `Compose`: `1.2.0-alpha01-dev679`
 
 ## 0.0.53
 
