@@ -14,6 +14,8 @@ sealed class UIKitNav(classname: String) : UIKitModifier {
 
     object Center : UIKitNav("uk-nav-center")
 
+    object Sub : UIKitNav("uk-nav-sub")
+
     companion object : UIKitNav("uk-nav") {
         val SubNav = UIKitSubNav
     }

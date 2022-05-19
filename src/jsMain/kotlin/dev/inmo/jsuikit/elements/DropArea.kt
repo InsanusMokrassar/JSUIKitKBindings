@@ -10,7 +10,7 @@ import org.w3c.dom.HTMLDivElement
 @Composable
 fun DropArea(
     attrs: Attrs<HTMLDivElement> = Attrs.empty(),
-    inputAttrs: InputAttrs<String> = Attrs.empty(),
+    inputAttrs: InputAttrs<String> = InputAttrs.empty(),
     contentBuilder: ContentBuilder<HTMLDivElement> = {}
 ) = Div(
     {
