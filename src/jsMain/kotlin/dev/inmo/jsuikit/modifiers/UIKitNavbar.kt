@@ -44,7 +44,7 @@ sealed class UIKitNavbar(vararg classes: String) : UIKitModifier {
         val Logo = UIKitUtility.Logo
 
         operator fun invoke(
-            align: String? = null,
+            align: String?,
             mode: String? = null,
             delayShow: Milliseconds? = null,
             delayHide: Milliseconds? = null,
