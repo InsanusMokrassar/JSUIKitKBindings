@@ -11,13 +11,12 @@ import org.w3c.dom.HTMLUListElement
 @Composable
 fun NavbarNav(
     elements: List<AttrsWithContentBuilder<HTMLLIElement>>,
-    modifiers: List<UIKitModifier>,
-    attributesCustomizer: AttrBuilderContext<HTMLUListElement> = {}
+    attrs: Attrs<HTMLUListElement> = Attrs.empty()
 ) {
     Ul(
         {
-            include(UIKitNavbar.Nav, *modifiers.toTypedArray())
-            attributesCustomizer()
+            include(UIKitNavbar.Nav)
+            attrs.builder(this)
         }
     ) {
         elements.forEach { element ->
