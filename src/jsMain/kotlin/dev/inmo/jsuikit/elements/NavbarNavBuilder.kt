@@ -25,6 +25,12 @@ fun NavbarNav(
     }
 }
 
+@Composable
+fun NavbarNav(
+    vararg elements: AttrsWithContentBuilder<HTMLLIElement>,
+    attrs: Attrs<HTMLUListElement> = Attrs.empty()
+) = NavbarNav(elements.toList(), attrs)
+
 @Deprecated("Will be removed soon. Use NavbarNavPart with AttrsWithContentBuilder instead")
 interface NavbarNavElement {
     fun AttrsScope<HTMLLIElement>.setup() {}
