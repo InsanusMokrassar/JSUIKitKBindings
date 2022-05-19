@@ -8,8 +8,12 @@ import org.w3c.dom.Element
 typealias AttrsWithContentBuilder<T> = Pair<Attrs<T>, ContentBuilder<T>>
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun <T : Element> AttrsWithContentBuilder(noinline builder: ContentBuilder<T>) = AttrsWithContentBuilder(
-    Attrs.empty(),
+inline fun <T : Element> AttrsWithContentBuilder(
+    vararg modifiers: UIKitModifier?,
+    noinline attrs: AttrsScope<T>.() -> Unit = {},
+    noinline builder: ContentBuilder<T>
+) = AttrsWithContentBuilder(
+    Attrs(*modifiers, attrs = attrs),
     builder
 )
 
@@ -17,15 +21,6 @@ inline fun <T : Element> AttrsWithContentBuilder(noinline builder: ContentBuilde
 inline fun <T : Element> AttrsWithContentBuilder(attrs: Attrs<T>) = AttrsWithContentBuilder(
     attrs
 ) {}
-
-@Suppress("NOTHING_TO_INLINE")
-inline fun <T : Element> AttrsWithContentBuilder(
-    modifier: UIKitModifier?,
-    vararg modifiers: UIKitModifier?,
-    noinline attrs: AttrsScope<T>.() -> Unit = {}
-) = AttrsWithContentBuilder(
-    Attrs(modifier, *modifiers, attrs = attrs)
-)
 
 inline val <T : Element> AttrsWithContentBuilder<T>.attrs
     get() = first
