@@ -16,7 +16,7 @@ fun Navbar(
             attributesCustomizer()
         }
     ) {
-        contentBuilder
+        contentBuilder()
     }
 }
 
