@@ -12,7 +12,7 @@ fun Navbar(
 ) {
     Nav(
         {
-            include(UIKitNavbar, UIKitNavbar.Container)
+            include(UIKitNavbar, UIKitNavbar(), UIKitNavbar.Container)
             attributesCustomizer()
         }
     ) {
