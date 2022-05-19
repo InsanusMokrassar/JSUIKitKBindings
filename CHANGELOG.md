@@ -2,6 +2,8 @@
 
 ## 0.1.3
 
+* Improve support of navbars
+
 ## 0.1.2
 
 * New typealias `AttrsWithContentBuilder`

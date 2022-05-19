@@ -1,10 +1,24 @@
 package dev.inmo.jsuikit.elements
 
 import androidx.compose.runtime.Composable
-import dev.inmo.jsuikit.modifiers.UIKitModifier
-import dev.inmo.jsuikit.modifiers.include
+import dev.inmo.jsuikit.modifiers.*
 import org.jetbrains.compose.web.dom.*
 import org.w3c.dom.HTMLElement
+
+@Composable
+fun Navbar(
+    attributesCustomizer: AttrBuilderContext<HTMLElement> = {},
+    contentBuilder: ContentBuilder<HTMLElement>
+) {
+    Nav(
+        {
+            include(UIKitNavbar, UIKitNavbar.Container)
+            attributesCustomizer()
+        }
+    ) {
+        contentBuilder
+    }
+}
 
 @Composable
 fun Navbar(
@@ -14,22 +28,20 @@ fun Navbar(
     vararg navModifiers: UIKitModifier,
     attributesCustomizer: AttrBuilderContext<HTMLElement> = {},
 ) {
-    Nav(
+    Navbar(
         {
-            attr("uk-navbar", "")
-            classes("uk-navbar-container", "uk-navbar")
             include(*navModifiers)
             attributesCustomizer()
         }
     ) {
         leftBuilder ?.let {
-            Div({ classes("uk-navbar-left") }) { it.draw() }
+            Div({ include(UIKitNavbar.Alignment.Left) }) { it.draw() }
         }
         centerBuilder ?.let {
-            Div({ classes("uk-navbar-center") }) { it.draw() }
+            Div({ include(UIKitNavbar.Alignment.Center) }) { it.draw() }
         }
         rightBuilder ?.let {
-            Div({ classes("uk-navbar-right") }) { it.draw() }
+            Div({ include(UIKitNavbar.Alignment.Right) }) { it.draw() }
         }
     }
 }

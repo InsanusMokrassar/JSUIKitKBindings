@@ -1,8 +1,7 @@
 package dev.inmo.jsuikit.elements
 
 import androidx.compose.runtime.Composable
-import dev.inmo.jsuikit.modifiers.UIKitModifier
-import dev.inmo.jsuikit.modifiers.include
+import dev.inmo.jsuikit.modifiers.*
 import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.dom.*
 import org.w3c.dom.HTMLLIElement
@@ -46,8 +45,7 @@ class NavbarNavBuilder(
     fun draw() {
         Ul(
             {
-                classes("uk-navbar-nav")
-                include(*modifiers)
+                include(UIKitNavbar.Nav, *modifiers)
                 attributesCustomizer()
             }
         ) {
