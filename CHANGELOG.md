@@ -2,6 +2,7 @@
 
 ## 0.1.3
 
+* Add support of sections
 * Improve support of navbars
 
 ## 0.1.2

@@ -38,7 +38,10 @@ sealed class UIKitUtility(classname: String) : UIKitModifier {
         object Width : Responsive("width")
         object Height : Responsive("height")
     }
-    object PreserveWidth : UIKitUtility("uk-preserve-width")
+    sealed class Preserve(suffix: String) : UIKitUtility("uk-preserve-$suffix") {
+        object Width : Preserve("width")
+        object Color : Preserve("color")
+    }
 
     sealed class Border(suffix: String) : UIKitUtility("uk-border-$suffix") {
         object Rounded : Border("rounded")
@@ -112,4 +115,8 @@ sealed class UIKitUtility(classname: String) : UIKitModifier {
 
     object Open : UIKitUtility("uk-open")
     object Link : UIKitUtility("uk-link")
+
+    companion object {
+        val PreserveWidth = Preserve.Width
+    }
 }
