@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.2
+
+* New typealias `AttrsWithContentBuilder`
+* Old `DList` and related composable functions removed (they are built-in in compose)
+
 ## 0.1.1
 
 * `Compose`: `1.2.0-alpha01-dev686`
