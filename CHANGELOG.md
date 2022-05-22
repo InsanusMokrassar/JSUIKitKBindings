@@ -2,6 +2,8 @@
 
 ## 0.1.4
 
+* Improvements in `UIKitGrid`
+
 ## 0.1.3
 
 * Add support of sections
