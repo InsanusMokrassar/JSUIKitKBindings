@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.4
+
+* Improvements in `UIKitGrid`
+* Add support of `UIKitSticky`
+
 ## 0.1.3
 
 * Add support of sections
