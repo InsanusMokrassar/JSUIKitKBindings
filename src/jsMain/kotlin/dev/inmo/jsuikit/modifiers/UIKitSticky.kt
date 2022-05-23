@@ -4,7 +4,7 @@ import dev.inmo.jsuikit.utils.buildAttribute
 import org.jetbrains.compose.web.css.CSSUnitLengthOrPercentage
 import org.jetbrains.compose.web.css.CSSUnitValueTyped
 
-sealed class UIKitSticky(
+class UIKitSticky(
     position: Position? = null,
     start: String? = null,
     end: String? = null,
