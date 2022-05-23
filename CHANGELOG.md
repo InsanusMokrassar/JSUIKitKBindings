@@ -2,6 +2,8 @@
 
 ## 0.1.6
 
+* Add support of UIKitButton size and group
+
 ## 0.1.5
 
 * Fix access to `UIKitSticky`

@@ -12,5 +12,12 @@ sealed class UIKitButton(suffix: String?) : UIKitModifier {
         object Link : Type("link")
     }
 
+    sealed class Size(suffix: String) : UIKitButton(suffix) {
+        object Small : Size("small")
+        object Large : Size("large")
+    }
+
+    object Group : UIKitButton("group")
+
     companion object : UIKitButton(null)
 }
