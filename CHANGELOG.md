@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.5
+
+* Fix access to `UIKitSticky`
+
 ## 0.1.4
 
 * Improvements in `UIKitGrid`
