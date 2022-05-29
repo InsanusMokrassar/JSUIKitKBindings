@@ -38,7 +38,7 @@ sealed class UIKitToggle(
 
     class Custom internal constructor(otherAttrs: Map<String, String>) : UIKitToggle(otherAttrs = otherAttrs)
 
-    companion object {
+    companion object : UIKitToggle(otherAttrs = mapOf("uk-toggle" to "")) {
         operator fun invoke(
             target: String? = null,
             mode: Mode? = null,
