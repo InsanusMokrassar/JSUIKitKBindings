@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.1.7
+
 ## 0.1.6
 
 * Add support of UIKitButton size and group
