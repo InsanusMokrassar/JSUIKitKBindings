@@ -2,6 +2,8 @@
 
 ## 0.1.8
 
+* `Compose`: `1.2.0-alpha01-dev731`
+
 ## 0.1.7
 
 Add Toggle builder
