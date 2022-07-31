@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.9
+
+* `Artile` elements become supported
+* `Iconnav` elements become supported
+* `Leader` elements become supported
+* `Grid` support improvements
+
 ## 0.1.8
 
 * `Compose`: `1.2.0-alpha01-dev731`

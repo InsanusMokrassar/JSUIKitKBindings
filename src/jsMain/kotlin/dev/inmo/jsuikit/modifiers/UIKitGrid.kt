@@ -19,7 +19,7 @@ sealed class UIKitGrid(vararg classnames: String) : UIKitModifier {
     object MatchHeight : UIKitGrid("uk-grid-match")
     object ItemMatchHeight : UIKitGrid("uk-grid-item-match")
 
-    class Custom internal constructor(override val otherAttrs: Map<String, String>) : UIKitGrid()
+    class Custom internal constructor(override val otherAttrs: Map<String, String>) : UIKitGrid("uk-grid")
 
     companion object : UIKitGrid("uk-grid") {
         operator fun invoke(

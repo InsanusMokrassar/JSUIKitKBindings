@@ -1,8 +1,8 @@
 package dev.inmo.jsuikit.elements
 
 import androidx.compose.runtime.Composable
-import dev.inmo.jsuikit.modifiers.UIKitModifier
-import dev.inmo.jsuikit.modifiers.include
+import dev.inmo.jsuikit.modifiers.*
+import dev.inmo.jsuikit.utils.buildAttribute
 import org.jetbrains.compose.web.dom.*
 import org.w3c.dom.HTMLDivElement
 
@@ -26,23 +26,18 @@ fun GridColumn(
 fun Grid(
     vararg modifiers: UIKitModifier,
     masonry: Boolean = false,
-    parallax: Int? = null,
-    marginClass: String? = null,
+    parallax: UInt? = null,
+    marginClass: UIKitMargin? = null,
     firstColumnClass: String? = null,
     attributesCustomizer: AttrBuilderContext<HTMLDivElement> = {},
-    builder: @Composable ElementScope<HTMLDivElement>.() -> Unit = {}
+    builder: ContentBuilder<HTMLDivElement> = {}
 ) {
-    val attrs = listOfNotNull(
-        if (masonry) "masonry" to "true" else null,
-        parallax ?.let { "parallax" to it.toString() },
-        marginClass ?.let { "margin" to it },
-        firstColumnClass ?.let { "first-column" to it },
-    )
     Div(
         {
-            attr("uk-grid", attrs.joinToString(";") { (k, v) -> "$k: $v" })
-            classes("uk-grid")
-            include(*modifiers)
+            include(
+                UIKitGrid.invoke(marginClass, firstColumnClass, masonry, parallax),
+                *modifiers
+            )
             attributesCustomizer()
         }
     ) {
