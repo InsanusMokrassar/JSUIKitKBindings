@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.10
+
+* `Grid` support improvements
+
 ## 0.1.9
 
 * `Artile` elements become supported
