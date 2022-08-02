@@ -14,6 +14,24 @@ sealed class UIKitGrid(vararg classnames: String) : UIKitModifier {
 
     }
 
+    sealed class Column(classname: String) : UIKitGrid(classname) {
+
+        object Small : Column("uk-grid-column-small")
+        object Medium : Column("uk-grid-column-medium")
+        object Large : Column("uk-grid-column-large")
+        object Collapse : Column("uk-grid-column-collapse")
+
+    }
+
+    sealed class Row(classname: String) : UIKitGrid(classname) {
+
+        object Small : Row("uk-grid-row-small")
+        object Medium : Row("uk-grid-row-medium")
+        object Large : Row("uk-grid-row-large")
+        object Collapse : Row("uk-grid-row-collapse")
+
+    }
+
     object Divider : UIKitGrid("uk-grid-divider")
 
     object MatchHeight : UIKitGrid("uk-grid-match")
