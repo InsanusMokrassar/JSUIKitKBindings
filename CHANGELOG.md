@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.0
+
+* `Kotlin`: `1.7.0`
+* `Compose`: `1.2.0-alpha01-dev753`
+
 ## 0.1.10
 
 * `Grid` support improvements
