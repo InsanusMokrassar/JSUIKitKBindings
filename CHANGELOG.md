@@ -2,6 +2,8 @@
 
 ## 0.2.0
 
+**ALL DEPRECATIONS HAVE BEEN REMOVED**
+
 * `Kotlin`: `1.7.0`
 * `Compose`: `1.2.0-alpha01-dev753`
 
