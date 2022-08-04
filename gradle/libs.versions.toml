@@ -1,8 +1,8 @@
 [versions]
 
-kt = "1.6.21"
-jb-compose = "1.2.0-alpha01-dev731"
-jb-dokka = "1.6.21"
+kt = "1.7.0"
+jb-compose = "1.2.0-alpha01-dev753"
+jb-dokka = "1.7.0"
 gh-release = "2.4.1"
 
 [libraries]
