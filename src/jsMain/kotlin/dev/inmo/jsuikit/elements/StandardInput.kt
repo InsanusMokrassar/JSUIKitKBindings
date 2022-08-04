@@ -41,14 +41,3 @@ fun <T> StandardInput(
         attributesCustomizer()
     }
 }
-
-@Composable
-@Deprecated("Renamed", ReplaceWith("StandardInput", "dev.inmo.jsuikit.elements.StandardInput"))
-fun <T> TextField(
-    type: InputType<T>,
-    state: MutableState<T>,
-    disabledState: State<Boolean>? = null,
-    placeholder: String? = null,
-    vararg modifiers: UIKitModifier,
-    attributesCustomizer: AttrBuilderContext<HTMLInputElement> = {},
-) = StandardInput(type, state, disabledState, placeholder, modifiers = modifiers, attributesCustomizer)

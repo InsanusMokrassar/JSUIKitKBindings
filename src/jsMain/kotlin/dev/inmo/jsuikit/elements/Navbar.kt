@@ -22,33 +22,6 @@ fun Navbar(
     }
 }
 
-@Deprecated("Will be removed soon. Use the variant with AttrsWithContentBuilders")
-@Composable
-fun Navbar(
-    leftBuilder: NavbarNavBuilder?,
-    centerBuilder: NavbarNavBuilder? = null,
-    rightBuilder: NavbarNavBuilder? = null,
-    vararg navModifiers: UIKitModifier,
-    attributesCustomizer: AttrBuilderContext<HTMLElement> = {},
-) {
-    Navbar(
-        {
-            include(*navModifiers)
-            attributesCustomizer()
-        }
-    ) {
-        leftBuilder ?.let {
-            Div({ include(UIKitNavbar.Alignment.Left) }) { it.draw() }
-        }
-        centerBuilder ?.let {
-            Div({ include(UIKitNavbar.Alignment.Center) }) { it.draw() }
-        }
-        rightBuilder ?.let {
-            Div({ include(UIKitNavbar.Alignment.Right) }) { it.draw() }
-        }
-    }
-}
-
 @Composable
 fun Navbar(
     leftBuilder: AttrsWithContentBuilder<HTMLDivElement>? = null,
