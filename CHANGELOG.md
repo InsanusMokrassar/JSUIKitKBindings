@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1
+
+* `Tab` elements become supported
+
 ## 0.2.0
 
 **ALL DEPRECATIONS HAVE BEEN REMOVED**
