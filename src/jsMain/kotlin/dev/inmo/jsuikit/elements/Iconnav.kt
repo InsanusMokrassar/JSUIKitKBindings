@@ -10,7 +10,7 @@ import org.w3c.dom.HTMLLIElement
 import org.w3c.dom.HTMLUListElement
 
 @Composable
-fun <T> Iconnav(
+fun <T> IconNav(
     data: Iterable<T>,
     listAttrs: Attrs<HTMLUListElement> = Attrs.empty(),
     elementAttrsBuilder: AttrsScope<HTMLLIElement>.(T) -> Unit = {},
@@ -31,3 +31,11 @@ fun <T> Iconnav(
         }
     }
 }
+
+@Composable
+fun <T> Iconnav(
+    data: Iterable<T>,
+    listAttrs: Attrs<HTMLUListElement> = Attrs.empty(),
+    elementAttrsBuilder: AttrsScope<HTMLLIElement>.(T) -> Unit = {},
+    elementBuilder: @Composable ElementScope<HTMLLIElement>.(T) -> Unit
+) = IconNav(data, listAttrs, elementAttrsBuilder, elementBuilder)

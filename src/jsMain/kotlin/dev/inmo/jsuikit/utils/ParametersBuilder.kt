@@ -1,13 +1,17 @@
 package dev.inmo.jsuikit.utils
 
+import dev.inmo.jsuikit.modifiers.AttributeValue
+
 
 class ParametersBuilder(
     val skipNullValues: Boolean = true,
     private val parameters: MutableMap<String, String?> = mutableMapOf()
 ) {
     fun add(k: String, v: Any? = null) {
-        if (v != null || !skipNullValues) {
-            parameters[k] = v ?.toString()
+        when {
+            v is AttributeValue -> parameters[k] = v.name
+            v == null && skipNullValues -> return
+            else -> parameters[k] = v ?.toString()
         }
     }
     infix fun String.to(value: Any?) = add(this, value)
