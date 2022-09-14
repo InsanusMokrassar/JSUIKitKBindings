@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.2
+
+* Add support of `Drop` component
+* Improve support of `Navbar`s
+
 ## 0.2.1
 
 * `Tab` elements become supported
