@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.0
+
+* `Kotlin`: `1.7.20`
+* `Compose`: `1.2.1`
+
 ## 0.2.2
 
 * Add support of `Drop` component
