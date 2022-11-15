@@ -2,6 +2,8 @@
 
 ## 0.4.1
 
+* Now it is possible to use `StandardInput` with simple `T` types instead of states
+
 ## 0.4.0
 
 * `Kotlin`: `1.7.20`
