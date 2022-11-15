@@ -9,7 +9,7 @@ import org.jetbrains.compose.web.dom.Input
 import org.w3c.dom.HTMLInputElement
 
 @Composable
-fun <T> StandardInput(
+fun <T> DefaultInput(
     type: InputType<T>,
     value: T,
     disabled: Boolean = false,
@@ -49,7 +49,7 @@ fun <T> StandardInput(
     placeholder: String? = null,
     vararg modifiers: UIKitModifier,
     attributesCustomizer: AttrBuilderContext<HTMLInputElement> = {},
-) = StandardInput(
+) = DefaultInput(
     type,
     state.value,
     disabledState ?.value == true,
