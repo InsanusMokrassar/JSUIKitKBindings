@@ -10,7 +10,7 @@ import org.w3c.dom.HTMLUListElement
 
 @Composable
 fun <T> List(
-    data: SnapshotStateList<T>,
+    data: Iterable<T>,
     ukAttrs: Attrs<HTMLUListElement> = Attrs.empty(),
     elementAllocator: @Composable ElementScope<HTMLUListElement>.(T) -> Unit
 ) {
@@ -29,7 +29,7 @@ fun <T> List(
 @Composable
 fun <T> ListWithTitle(
     title: String,
-    data: SnapshotStateList<T>,
+    data: Iterable<T>,
     vararg titleModifiers: UIKitModifier,
     ulModifiers: Array<UIKitModifier> = emptyArray(),
     besidesTitleAndList: (@Composable () -> Unit)? = null,

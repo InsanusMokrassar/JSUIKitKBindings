@@ -202,60 +202,62 @@ sealed class Icon(val name: String) {
         object Youtube : Brands("youtube")
     }
 
-    @Composable
-    operator fun invoke(
-        vararg modifiers: UIKitModifier,
-        type: UIKitIconType = UIKitIconType.Default,
-        ratio: Float? = null,
-        attributesCustomizer: AttrBuilderContext<out HTMLElement> = {},
-        onClick: ((Event) -> Unit)? = null
-    ) {
-        val configurer: AttrBuilderContext<out HTMLElement> = {
-            include(*modifiers, type, UIKitIcon)
-            attr("uk-icon", "icon: $name${if (ratio != null) { "; ratio: $ratio" } else ""}")
-            onClick ?.let { _ ->
-                onClick { onClick(it.nativeEvent) }
-            }
-            attributesCustomizer()
-        }
-        when (type) {
-            UIKitIconType.Default -> Span(configurer)
-            UIKitIconType.Link -> A(href = "#", configurer)
-            UIKitIconType.Button -> Button(configurer)
-        }
-    }
-
     class Custom(name: String) : Icon(name)
 
-    @Composable
-    fun drawAsButton(
-        vararg modifiers: UIKitModifier,
-        ratio: Float? = null,
-        attributesCustomizer: AttrBuilderContext<out HTMLElement> = {},
-        onClick: ((Event) -> Unit)? = null
-    ) = invoke(*modifiers, type = UIKitIconType.Button, ratio = ratio, onClick = onClick, attributesCustomizer = attributesCustomizer)
-
-    @Composable
-    fun drawAsIcon(
-        vararg modifiers: UIKitModifier,
-        ratio: Float? = null,
-        attributesCustomizer: AttrBuilderContext<out HTMLElement> = {},
-        onClick: ((Event) -> Unit)? = null
-    ) = invoke(*modifiers, type = UIKitIconType.Default, ratio = ratio, onClick = onClick, attributesCustomizer = attributesCustomizer)
-
-    @Composable
-    fun drawAsLink(
-        vararg modifiers: UIKitModifier,
-        ratio: Float? = null,
-        attributesCustomizer: AttrBuilderContext<out HTMLElement> = {},
-        onClick: ((Event) -> Unit)? = null
-    ) = invoke(*modifiers, type = UIKitIconType.Link, ratio = ratio, onClick = onClick, attributesCustomizer = attributesCustomizer)
-
-    @Composable
-    fun drawAsFormInputPart(
-        vararg modifiers: UIKitModifier,
-        ratio: Float? = null,
-        attributesCustomizer: AttrBuilderContext<out HTMLElement> = {},
-        onClick: ((Event) -> Unit)? = null
-    ) = invoke(*modifiers, UIKitForm.Icon, ratio = ratio, onClick = onClick, attributesCustomizer = attributesCustomizer)
+    companion object {
+    }
 }
+@Composable
+operator fun Icon.invoke(
+    vararg modifiers: UIKitModifier,
+    type: UIKitIconType = UIKitIconType.Default,
+    ratio: Float? = null,
+    attributesCustomizer: AttrBuilderContext<out HTMLElement> = {},
+    onClick: ((Event) -> Unit)? = null
+) {
+    val configurer: AttrBuilderContext<out HTMLElement> = {
+        include(*modifiers, type, UIKitIcon)
+        attr("uk-icon", "icon: $name${if (ratio != null) { "; ratio: $ratio" } else ""}")
+        onClick ?.let { _ ->
+            onClick { onClick(it.nativeEvent) }
+        }
+        attributesCustomizer()
+    }
+    when (type) {
+        UIKitIconType.Default -> Span(configurer)
+        UIKitIconType.Link -> A(href = "#", configurer)
+        UIKitIconType.Button -> Button(configurer)
+    }
+}
+
+@Composable
+fun Icon.drawAsButton(
+    vararg modifiers: UIKitModifier,
+    ratio: Float? = null,
+    attributesCustomizer: AttrBuilderContext<out HTMLElement> = {},
+    onClick: ((Event) -> Unit)? = null
+) = invoke(*modifiers, type = UIKitIconType.Button, ratio = ratio, onClick = onClick, attributesCustomizer = attributesCustomizer)
+
+@Composable
+fun Icon.drawAsIcon(
+    vararg modifiers: UIKitModifier,
+    ratio: Float? = null,
+    attributesCustomizer: AttrBuilderContext<out HTMLElement> = {},
+    onClick: ((Event) -> Unit)? = null
+) = invoke(*modifiers, type = UIKitIconType.Default, ratio = ratio, onClick = onClick, attributesCustomizer = attributesCustomizer)
+
+@Composable
+fun Icon.drawAsLink(
+    vararg modifiers: UIKitModifier,
+    ratio: Float? = null,
+    attributesCustomizer: AttrBuilderContext<out HTMLElement> = {},
+    onClick: ((Event) -> Unit)? = null
+) = invoke(*modifiers, type = UIKitIconType.Link, ratio = ratio, onClick = onClick, attributesCustomizer = attributesCustomizer)
+
+@Composable
+fun Icon.drawAsFormInputPart(
+    vararg modifiers: UIKitModifier,
+    ratio: Float? = null,
+    attributesCustomizer: AttrBuilderContext<out HTMLElement> = {},
+    onClick: ((Event) -> Unit)? = null
+) = invoke(*modifiers, UIKitForm.Icon, ratio = ratio, onClick = onClick, attributesCustomizer = attributesCustomizer)

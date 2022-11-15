@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.1
+
+* Now it is possible to use `StandardInput` with simple `T` types instead of states
+* `List` may accept any `Iterable`
+
 ## 0.4.0
 
 * `Kotlin`: `1.7.20`

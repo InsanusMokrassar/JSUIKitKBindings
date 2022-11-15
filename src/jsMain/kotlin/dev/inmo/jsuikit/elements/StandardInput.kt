@@ -9,13 +9,14 @@ import org.jetbrains.compose.web.dom.Input
 import org.w3c.dom.HTMLInputElement
 
 @Composable
-fun <T> StandardInput(
+fun <T> DefaultInput(
     type: InputType<T>,
-    state: MutableState<T>,
-    disabledState: State<Boolean>? = null,
+    value: T,
+    disabled: Boolean = false,
     placeholder: String? = null,
     vararg modifiers: UIKitModifier,
     attributesCustomizer: AttrBuilderContext<HTMLInputElement> = {},
+    onChange: (T) -> Unit
 ) {
     Input(type) {
         classes("uk-input")
@@ -23,7 +24,7 @@ fun <T> StandardInput(
 
         placeholder ?.let(::placeholder)
 
-        state.value.let {
+        value.let {
             when (it) {
                 is String -> value(it)
                 is Number -> value(it)
@@ -31,13 +32,30 @@ fun <T> StandardInput(
             }
         }
 
-        onInput { state.value = it.value }
+        onInput { onChange(it.value) }
 
-        disabledState ?.let {
-            if (it.value) {
-                disabled()
-            }
+        if (disabled) {
+            disabled()
         }
         attributesCustomizer()
     }
+}
+
+@Composable
+fun <T> StandardInput(
+    type: InputType<T>,
+    state: MutableState<T>,
+    disabledState: State<Boolean>? = null,
+    placeholder: String? = null,
+    vararg modifiers: UIKitModifier,
+    attributesCustomizer: AttrBuilderContext<HTMLInputElement> = {},
+) = DefaultInput(
+    type,
+    state.value,
+    disabledState ?.value == true,
+    placeholder,
+    modifiers = modifiers,
+    attributesCustomizer = attributesCustomizer
+) {
+    state.value = it
 }
