@@ -1,7 +1,7 @@
 [versions]
 
 kt = "1.7.20"
-jb-compose = "1.2.1"
+jb-compose = "1.2.2"
 jb-dokka = "1.7.20"
 gh-release = "2.4.1"
 
