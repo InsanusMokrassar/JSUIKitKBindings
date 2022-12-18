@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.2
+
+* `Compose`: `1.2.2`
+
 ## 0.4.1
 
 * Now it is possible to use `StandardInput` with simple `T` types instead of states
