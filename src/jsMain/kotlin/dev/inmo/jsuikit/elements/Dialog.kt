@@ -36,6 +36,7 @@ fun Dialog(
     footerAttrsBuilder: AttrBuilderContext<HTMLDivElement>? = null,
     footerBuilder: ContentBuilder<HTMLDivElement>? = null,
     bodyAttrsBuilder: AttrBuilderContext<HTMLDivElement>? = null,
+    autoShow: Boolean = true,
     bodyBuilder: ContentBuilder<HTMLDivElement>
 ) {
     Div(
@@ -99,7 +100,9 @@ fun Dialog(
             }
             htmlElement.addEventListener("hidden", wrapper)
 
-            UIKit.modal("#${htmlElement.id}") ?.show()
+            if (autoShow) {
+                UIKit.modal("#${htmlElement.id}") ?.show()
+            }
         }
     }
 }
@@ -112,6 +115,7 @@ fun Dialog(
     hidden: (() -> Unit)? = null,
     footerBuilder: (@Composable () -> Unit)? = null,
     attributesCustomizer: AttrBuilderContext<HTMLDivElement> = {},
+    autoShow: Boolean = true,
     bodyBuilder: @Composable () -> Unit
 ) = Dialog(
     modifiers = modifiers,
@@ -130,6 +134,7 @@ fun Dialog(
     attributesCustomizer = {
         attributesCustomizer()
     },
+    autoShow = autoShow,
     bodyBuilder = {
         bodyBuilder()
     }

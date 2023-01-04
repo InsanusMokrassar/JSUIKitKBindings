@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.3
+
+* Add opportunity to now show dialog automatically
+
 ## 0.4.2
 
 * `Compose`: `1.2.2`
