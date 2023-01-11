@@ -1,33 +1,30 @@
 package dev.inmo.jsuikit.elements
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Composition
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.DisposableEffectResult
+import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.compositionLocalOf
+import androidx.compose.runtime.currentRecomposeScope
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import dev.inmo.jsuikit.modifiers.*
 import org.jetbrains.compose.web.dom.*
+import org.jetbrains.compose.web.renderComposableInBody
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLElement
-import org.w3c.dom.events.Event
+import org.w3c.dom.MutationObserver
+import org.w3c.dom.MutationObserverInit
 import kotlin.random.Random
 import kotlin.random.nextUInt
-
-private class DialogDisposableEffectResult(
-    private val element: HTMLElement,
-    private val onDispose: (() -> Unit)?,
-    private val onDisposed: (() -> Unit)?
-) : DisposableEffectResult {
-    override fun dispose() {
-        onDispose?.invoke()
-        UIKit.modal("#${element.id}") ?.hide()
-        onDisposed?.invoke()
-    }
-}
 
 @Composable
 fun Dialog(
     vararg modifiers: UIKitModifier,
     attributesCustomizer: AttrBuilderContext<HTMLDivElement> = {},
-    onHide: (() -> Unit)? = null,
-    onHidden: (() -> Unit)? = null,
+    onHidden: ((HTMLDivElement) -> Unit)? = null,
+    onShown: ((HTMLDivElement) -> Unit)? = null,
     dialogAttrsBuilder: AttrBuilderContext<HTMLDivElement>? = null,
     headerAttrsBuilder: AttrBuilderContext<HTMLDivElement>? = null,
     headerBuilder: ContentBuilder<HTMLDivElement>? = null,
@@ -37,73 +34,106 @@ fun Dialog(
     footerBuilder: ContentBuilder<HTMLDivElement>? = null,
     bodyAttrsBuilder: AttrBuilderContext<HTMLDivElement>? = null,
     autoShow: Boolean = true,
+    removeOnHide: Boolean = true,
     bodyBuilder: ContentBuilder<HTMLDivElement>
 ) {
-    Div(
-        {
-            if (modifiers.none { it is UIKitModal.WithCustomAttributes }) {
-                include(UIKitModal)
-            }
-            id("dialog${Random.nextUInt()}")
-            include(*modifiers)
-            attributesCustomizer()
-        }
-    ) {
+    val drawDiv = remember { mutableStateOf(true) }
+    val composition = renderComposableInBody {
         Div(
             {
-                include(UIKitModal.Dialog)
-                dialogAttrsBuilder ?.let { it() } ?: include(UIKitMargin.Auto.Vertical)
+                if (modifiers.none { it is UIKitModal.WithCustomAttributes }) {
+                    include(UIKitModal)
+                }
+                id("dialog${Random.nextUInt()}")
+                include(*modifiers)
+
+                ref { htmlElement ->
+                    inline fun isShown() = htmlElement.classList.contains(UIKitUtility.Open.classes.first())
+
+                    var latestStateIsShown = isShown()
+
+                    val observer = MutationObserver { _, _ ->
+                        val currentStateIsShown = isShown()
+
+                        when (currentStateIsShown) {
+                            latestStateIsShown -> return@MutationObserver
+                            true -> onShown ?.invoke(htmlElement)
+                            false -> onHidden ?.invoke(htmlElement)
+                        }
+
+                        latestStateIsShown = currentStateIsShown
+
+                        if (removeOnHide && !currentStateIsShown) {
+                            htmlElement.remove()
+                        }
+                    }
+
+                    observer.observe(htmlElement, MutationObserverInit(attributes = true, attributeFilter = arrayOf("class")))
+
+                    if (autoShow) {
+                        UIKit.modal("#${htmlElement.id}") ?.show()
+                    }
+
+                    onDispose {
+                        observer.disconnect()
+                        drawDiv.value = false
+                    }
+                }
+
+                attributesCustomizer()
             }
         ) {
-            headerBuilder ?.let {
-                Div(
-                    {
-                        include(UIKitModal.Header)
-                        headerAttrsBuilder ?.let { it() }
-                    }
-                ) {
-                    it()
-                }
-            }
-            afterHeaderBuilder ?.let { it() }
             Div(
                 {
-                    include(UIKitModal.Body)
-                    bodyAttrsBuilder ?.let { it() }
+                    include(UIKitModal.Dialog)
+                    dialogAttrsBuilder ?.let { it() } ?: include(UIKitMargin.Auto.Vertical)
                 }
             ) {
-                bodyBuilder()
-            }
-            beforeFooterBuilder ?.let { it() }
-            footerBuilder ?.let {
+                headerBuilder ?.let {
+                    Div(
+                        {
+                            include(UIKitModal.Header)
+                            headerAttrsBuilder ?.let { it() }
+                        }
+                    ) {
+                        it()
+                    }
+                }
+                afterHeaderBuilder ?.let { it() }
                 Div(
                     {
-                        include(UIKitModal.Footer)
-                        footerAttrsBuilder ?.let { it() } ?: include(UIKitText.Alignment.Horizontal.Right)
+                        include(UIKitModal.Body)
+                        bodyAttrsBuilder ?.let { it() }
                     }
                 ) {
-                    it()
+                    bodyBuilder()
+                }
+                beforeFooterBuilder ?.let { it() }
+                footerBuilder ?.let {
+                    Div(
+                        {
+                            include(UIKitModal.Footer)
+                            footerAttrsBuilder ?.let { it() } ?: include(UIKitText.Alignment.Horizontal.Right)
+                        }
+                    ) {
+                        it()
+                    }
                 }
             }
         }
+    }
 
-        DisposableRefEffect {
-            DialogDisposableEffectResult(it, onHide, onHidden)
-        }
-
-        DomSideEffect { htmlElement ->
-            var wrapper: (Event) -> Unit = {}
-            wrapper = { it: Event ->
-                htmlElement.removeEventListener("hidden", wrapper)
-                htmlElement.remove()
-                onHidden ?.invoke()
+    if (drawDiv.value) {
+        Div({
+            hidden()
+            ref {
+                onDispose {
+                    composition.dispose()
+                }
             }
-            htmlElement.addEventListener("hidden", wrapper)
-
-            if (autoShow) {
-                UIKit.modal("#${htmlElement.id}") ?.show()
-            }
-        }
+        })
+    } else {
+        runCatching { composition.dispose() }
     }
 }
 
@@ -111,31 +141,39 @@ fun Dialog(
 fun Dialog(
     title: String,
     vararg modifiers: UIKitModifier,
-    hide: (() -> Unit)? = null,
-    hidden: (() -> Unit)? = null,
-    footerBuilder: (@Composable () -> Unit)? = null,
     attributesCustomizer: AttrBuilderContext<HTMLDivElement> = {},
+    onHidden: ((HTMLDivElement) -> Unit)? = null,
+    onShown: ((HTMLDivElement) -> Unit)? = null,
+    dialogAttrsBuilder: AttrBuilderContext<HTMLDivElement>? = null,
+    headerAttrsBuilder: AttrBuilderContext<HTMLDivElement>? = null,
+    headerBuilder: ContentBuilder<HTMLDivElement>? = null,
+    afterHeaderBuilder: ContentBuilder<HTMLDivElement>? = null,
+    beforeFooterBuilder: ContentBuilder<HTMLDivElement>? = null,
+    footerAttrsBuilder: AttrBuilderContext<HTMLDivElement>? = null,
+    footerBuilder: ContentBuilder<HTMLDivElement>? = null,
+    bodyAttrsBuilder: AttrBuilderContext<HTMLDivElement>? = null,
     autoShow: Boolean = true,
-    bodyBuilder: @Composable () -> Unit
+    removeOnHide: Boolean = true,
+    bodyBuilder: ContentBuilder<HTMLDivElement>
 ) = Dialog(
     modifiers = modifiers,
+    attributesCustomizer,
+    onHidden,
+    onShown,
+    dialogAttrsBuilder,
+    headerAttrsBuilder,
     headerBuilder = {
         H2({ include(UIKitModal.Title) }) {
             Text(title)
         }
+        headerBuilder ?.invoke(this)
     },
-    onHide = hide,
-    onHidden = hidden,
-    footerBuilder = footerBuilder ?.let { _ ->
-        {
-            footerBuilder()
-        }
-    },
-    attributesCustomizer = {
-        attributesCustomizer()
-    },
-    autoShow = autoShow,
-    bodyBuilder = {
-        bodyBuilder()
-    }
+    afterHeaderBuilder,
+    beforeFooterBuilder,
+    footerAttrsBuilder,
+    footerBuilder,
+    bodyAttrsBuilder,
+    autoShow,
+    removeOnHide,
+    bodyBuilder
 )
