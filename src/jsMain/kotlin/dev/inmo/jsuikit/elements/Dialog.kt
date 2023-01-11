@@ -1,19 +1,12 @@
 package dev.inmo.jsuikit.elements
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.Composition
-import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.DisposableEffectResult
-import androidx.compose.runtime.SideEffect
-import androidx.compose.runtime.compositionLocalOf
-import androidx.compose.runtime.currentRecomposeScope
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import dev.inmo.jsuikit.modifiers.*
 import org.jetbrains.compose.web.dom.*
 import org.jetbrains.compose.web.renderComposableInBody
 import org.w3c.dom.HTMLDivElement
-import org.w3c.dom.HTMLElement
 import org.w3c.dom.MutationObserver
 import org.w3c.dom.MutationObserverInit
 import kotlin.random.Random
@@ -35,7 +28,7 @@ fun Dialog(
     bodyAttrsBuilder: AttrBuilderContext<HTMLDivElement>? = null,
     autoShow: Boolean = true,
     removeOnHide: Boolean = true,
-    bodyBuilder: ContentBuilder<HTMLDivElement>
+    bodyBuilder: ContentBuilder<HTMLDivElement> = {}
 ) {
     val drawDiv = remember { mutableStateOf(true) }
     val composition = renderComposableInBody {
@@ -154,7 +147,7 @@ fun Dialog(
     bodyAttrsBuilder: AttrBuilderContext<HTMLDivElement>? = null,
     autoShow: Boolean = true,
     removeOnHide: Boolean = true,
-    bodyBuilder: ContentBuilder<HTMLDivElement>
+    bodyBuilder: ContentBuilder<HTMLDivElement> = {}
 ) = Dialog(
     modifiers = modifiers,
     attributesCustomizer,
