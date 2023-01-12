@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.0
+
+* Fully rework `Dialog` elements
+
 ## 0.4.3
 
 * Add opportunity to now show dialog automatically
