@@ -6,6 +6,7 @@ import kotlin.js.Json
 external interface UIKit {
     val notification: UIKitNotifications
     val modal: UIKitDialogs
+    val util: UIKitUtil
 
 
     fun notification(message: String, parameters: Json)

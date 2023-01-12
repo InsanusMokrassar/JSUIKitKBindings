@@ -1,6 +1,7 @@
 package dev.inmo.jsuikit.elements
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import dev.inmo.jsuikit.modifiers.*
@@ -31,85 +32,83 @@ fun Dialog(
     bodyBuilder: ContentBuilder<HTMLDivElement> = {}
 ) {
     val drawDiv = remember { mutableStateOf(true) }
-    val composition = renderComposableInBody {
-        Div(
-            {
-                if (modifiers.none { it is UIKitModal.WithCustomAttributes }) {
-                    include(UIKitModal)
-                }
-                id("dialog${Random.nextUInt()}")
-                include(*modifiers)
-
-                ref { htmlElement ->
-                    inline fun isShown() = htmlElement.classList.contains(UIKitUtility.Open.classes.first())
-
-                    var latestStateIsShown = isShown()
-
-                    val observer = MutationObserver { _, _ ->
-                        val currentStateIsShown = isShown()
-
-                        when (currentStateIsShown) {
-                            latestStateIsShown -> return@MutationObserver
-                            true -> onShown ?.invoke(htmlElement)
-                            false -> onHidden ?.invoke(htmlElement)
-                        }
-
-                        latestStateIsShown = currentStateIsShown
-
-                        if (removeOnHide && !currentStateIsShown) {
-                            htmlElement.remove()
-                        }
+    val composition = remember {
+        renderComposableInBody {
+            Div(
+                {
+                    if (modifiers.none { it is UIKitModal.WithCustomAttributes }) {
+                        include(UIKitModal)
                     }
+                    id("dialog${Random.nextUInt()}")
+                    include(*modifiers)
 
-                    observer.observe(htmlElement, MutationObserverInit(attributes = true, attributeFilter = arrayOf("class")))
+                    attributesCustomizer()
+                }
+            ) {
+                DisposableEffect(true) {
+                    val htmlElement = scopeElement
 
                     if (autoShow) {
-                        UIKit.modal("#${htmlElement.id}") ?.show()
+                        UIKit.modal(htmlElement).show()
                     }
 
+                    if (onHidden != null || removeOnHide) {
+                        htmlElement.addEventListener("hidden", {
+                            onHidden ?.invoke(htmlElement)
+
+                            if (removeOnHide) {
+                                htmlElement.remove()
+                            }
+                        })
+                    }
+
+                    onShown ?.let {
+                        htmlElement.addEventListener("shown", {
+                            onShown(htmlElement)
+                        })
+                    }
+
+
                     onDispose {
-                        observer.disconnect()
                         drawDiv.value = false
                     }
                 }
 
-                attributesCustomizer()
-            }
-        ) {
-            Div(
-                {
-                    include(UIKitModal.Dialog)
-                    dialogAttrsBuilder ?.let { it() } ?: include(UIKitMargin.Auto.Vertical)
-                }
-            ) {
-                headerBuilder ?.let {
-                    Div(
-                        {
-                            include(UIKitModal.Header)
-                            headerAttrsBuilder ?.let { it() }
-                        }
-                    ) {
-                        it()
-                    }
-                }
-                afterHeaderBuilder ?.let { it() }
                 Div(
                     {
-                        include(UIKitModal.Body)
-                        bodyAttrsBuilder ?.let { it() }
+                        include(UIKitModal.Dialog)
+                        dialogAttrsBuilder ?.let { it() } ?: include(UIKitMargin.Auto.Vertical)
                     }
                 ) {
-                    bodyBuilder()
-                }
-                beforeFooterBuilder ?.let { it() }
-                footerBuilder ?.let {
+                    headerBuilder ?.let {
+                        Div(
+                            {
+                                include(UIKitModal.Header)
+                                headerAttrsBuilder ?.let { it() }
+                            }
+                        ) {
+                            it()
+                        }
+                    }
+                    afterHeaderBuilder ?.let { it() }
                     Div(
                         {
-                            include(UIKitModal.Footer)
-                            footerAttrsBuilder ?.let { it() } ?: include(UIKitText.Alignment.Horizontal.Right)
+                            include(UIKitModal.Body)
+                            bodyAttrsBuilder ?.let { it() }
                         }
                     ) {
-                        it()
+                        bodyBuilder()
+                    }
+                    beforeFooterBuilder ?.let { it() }
+                    footerBuilder ?.let {
+                        Div(
+                            {
+                                include(UIKitModal.Footer)
+                                footerAttrsBuilder ?.let { it() } ?: include(UIKitText.Alignment.Horizontal.Right)
+                            }
+                        ) {
+                            it()
+                        }
                     }
                 }
             }
@@ -150,23 +149,23 @@ fun Dialog(
     bodyBuilder: ContentBuilder<HTMLDivElement> = {}
 ) = Dialog(
     modifiers = modifiers,
-    attributesCustomizer,
-    onHidden,
-    onShown,
-    dialogAttrsBuilder,
-    headerAttrsBuilder,
+    attributesCustomizer = attributesCustomizer,
+    onHidden = onHidden,
+    onShown = onShown,
+    dialogAttrsBuilder = dialogAttrsBuilder,
+    headerAttrsBuilder = headerAttrsBuilder,
     headerBuilder = {
         H2({ include(UIKitModal.Title) }) {
             Text(title)
         }
         headerBuilder ?.invoke(this)
     },
-    afterHeaderBuilder,
-    beforeFooterBuilder,
-    footerAttrsBuilder,
-    footerBuilder,
-    bodyAttrsBuilder,
-    autoShow,
-    removeOnHide,
-    bodyBuilder
+    afterHeaderBuilder = afterHeaderBuilder,
+    beforeFooterBuilder = beforeFooterBuilder,
+    footerAttrsBuilder = footerAttrsBuilder,
+    footerBuilder = footerBuilder,
+    bodyAttrsBuilder = bodyAttrsBuilder,
+    autoShow = autoShow,
+    removeOnHide = removeOnHide,
+    bodyBuilder = bodyBuilder
 )
