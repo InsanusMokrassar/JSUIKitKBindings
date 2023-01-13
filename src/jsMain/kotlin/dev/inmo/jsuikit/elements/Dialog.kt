@@ -8,8 +8,6 @@ import dev.inmo.jsuikit.modifiers.*
 import org.jetbrains.compose.web.dom.*
 import org.jetbrains.compose.web.renderComposableInBody
 import org.w3c.dom.HTMLDivElement
-import org.w3c.dom.MutationObserver
-import org.w3c.dom.MutationObserverInit
 import kotlin.random.Random
 import kotlin.random.nextUInt
 
@@ -31,83 +29,86 @@ fun Dialog(
     removeOnHide: Boolean = true,
     bodyBuilder: ContentBuilder<HTMLDivElement> = {}
 ) {
-    val drawDiv = remember { mutableStateOf(true) }
-    val composition = remember {
+    val draw = remember { mutableStateOf(true) }
+
+    remember {
         renderComposableInBody {
-            Div(
-                {
-                    if (modifiers.none { it is UIKitModal.WithCustomAttributes }) {
-                        include(UIKitModal)
-                    }
-                    id("dialog${Random.nextUInt()}")
-                    include(*modifiers)
-
-                    attributesCustomizer()
-                }
-            ) {
-                DisposableEffect(true) {
-                    val htmlElement = scopeElement
-
-                    if (autoShow) {
-                        UIKit.modal(htmlElement).show()
-                    }
-
-                    if (onHidden != null || removeOnHide) {
-                        htmlElement.addEventListener("hidden", {
-                            onHidden ?.invoke(htmlElement)
-
-                            if (removeOnHide) {
-                                htmlElement.remove()
-                            }
-                        })
-                    }
-
-                    onShown ?.let {
-                        htmlElement.addEventListener("shown", {
-                            onShown(htmlElement)
-                        })
-                    }
-
-
-                    onDispose {
-                        drawDiv.value = false
-                    }
-                }
-
+            if (draw.value) {
                 Div(
                     {
-                        include(UIKitModal.Dialog)
-                        dialogAttrsBuilder ?.let { it() } ?: include(UIKitMargin.Auto.Vertical)
+                        if (modifiers.none { it is UIKitModal.WithCustomAttributes }) {
+                            include(UIKitModal)
+                        }
+                        id("dialog${Random.nextUInt()}")
+                        include(*modifiers)
+
+                        attributesCustomizer()
                     }
                 ) {
-                    headerBuilder ?.let {
-                        Div(
-                            {
-                                include(UIKitModal.Header)
-                                headerAttrsBuilder ?.let { it() }
-                            }
-                        ) {
-                            it()
+                    DisposableEffect(true) {
+                        val htmlElement = scopeElement
+
+                        if (autoShow) {
+                            UIKit.modal(htmlElement).show()
+                        }
+
+                        if (onHidden != null || removeOnHide) {
+                            htmlElement.addEventListener("hidden", {
+                                onHidden ?.invoke(htmlElement)
+
+                                if (removeOnHide) {
+                                    htmlElement.remove()
+                                }
+                            })
+                        }
+
+                        onShown ?.let {
+                            htmlElement.addEventListener("shown", {
+                                onShown(htmlElement)
+                            })
+                        }
+
+
+                        onDispose {
+                            draw.value = false
                         }
                     }
-                    afterHeaderBuilder ?.let { it() }
+
                     Div(
                         {
-                            include(UIKitModal.Body)
-                            bodyAttrsBuilder ?.let { it() }
+                            include(UIKitModal.Dialog)
+                            dialogAttrsBuilder ?.let { it() } ?: include(UIKitMargin.Auto.Vertical)
                         }
                     ) {
-                        bodyBuilder()
-                    }
-                    beforeFooterBuilder ?.let { it() }
-                    footerBuilder ?.let {
+                        headerBuilder ?.let {
+                            Div(
+                                {
+                                    include(UIKitModal.Header)
+                                    headerAttrsBuilder ?.let { it() }
+                                }
+                            ) {
+                                it()
+                            }
+                        }
+                        afterHeaderBuilder ?.let { it() }
                         Div(
                             {
-                                include(UIKitModal.Footer)
-                                footerAttrsBuilder ?.let { it() } ?: include(UIKitText.Alignment.Horizontal.Right)
+                                include(UIKitModal.Body)
+                                bodyAttrsBuilder ?.let { it() }
                             }
                         ) {
-                            it()
+                            bodyBuilder()
+                        }
+                        beforeFooterBuilder ?.let { it() }
+                        footerBuilder ?.let {
+                            Div(
+                                {
+                                    include(UIKitModal.Footer)
+                                    footerAttrsBuilder ?.let { it() } ?: include(UIKitText.Alignment.Horizontal.Right)
+                                }
+                            ) {
+                                it()
+                            }
                         }
                     }
                 }
@@ -115,18 +116,14 @@ fun Dialog(
         }
     }
 
-    if (drawDiv.value) {
-        Div({
-            hidden()
-            ref {
-                onDispose {
-                    composition.dispose()
-                }
+    Div({
+        hidden()
+        ref {
+            onDispose {
+                draw.value = false
             }
-        })
-    } else {
-        runCatching { composition.dispose() }
-    }
+        }
+    })
 }
 
 @Composable

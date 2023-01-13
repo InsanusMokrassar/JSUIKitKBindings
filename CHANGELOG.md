@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.1
+
+* Fixes in new `Dialog`s
+
 ## 0.5.0
 
 * Fully rework `Dialog` elements
