@@ -54,6 +54,8 @@ fun Dialog(
 
                         if (onHidden != null || removeOnHide) {
                             htmlElement.addEventListener("hidden", {
+                                if (it.target != htmlElement) return@addEventListener
+
                                 onHidden ?.invoke(htmlElement)
 
                                 if (removeOnHide) {
@@ -64,6 +66,8 @@ fun Dialog(
 
                         onShown ?.let {
                             htmlElement.addEventListener("shown", {
+                                if (it.target != htmlElement) return@addEventListener
+
                                 onShown(htmlElement)
                             })
                         }
