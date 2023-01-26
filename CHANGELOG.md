@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.2
+
+* More fixes in Dialogs
+* Badge supported
+* Inline creation support
+
 ## 0.5.1
 
 * Fixes in new `Dialog`s
