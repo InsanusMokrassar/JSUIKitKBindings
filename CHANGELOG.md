@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.6.0
+
+* `Kotlin`: `1.8.10`
+* `Compose`: `1.3.1-rc01`
+
 ## 0.5.2
 
 * More fixes in Dialogs
