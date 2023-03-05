@@ -9,6 +9,40 @@ import org.jetbrains.compose.web.dom.Input
 import org.w3c.dom.HTMLInputElement
 
 @Composable
+fun <T> StandardInput(
+    type: InputType<T>,
+    value: T? = null,
+    vararg modifiers: UIKitModifier,
+    disabled: Boolean = false,
+    placeholder: String? = null,
+    attributesCustomizer: AttrBuilderContext<HTMLInputElement> = {},
+    onChange: HTMLInputElement.(T) -> Unit
+) {
+    Input(type) {
+        classes("uk-input")
+        include(*modifiers)
+
+        placeholder ?.let(::placeholder)
+
+        value ?.let {
+            when (it) {
+                is String -> value(it)
+                is Number -> value(it)
+                else -> {}
+            }
+        }
+
+        onInput { event -> event.target.onChange(event.value) }
+
+        if (disabled) {
+            disabled()
+        }
+        attributesCustomizer()
+    }
+}
+
+@Deprecated("Renamed", ReplaceWith("StandardInput(type, value, *modifiers, disabled, placeholder, attributesCustomizer, onChange)"))
+@Composable
 fun <T> DefaultInput(
     type: InputType<T>,
     value: T,
@@ -17,28 +51,8 @@ fun <T> DefaultInput(
     vararg modifiers: UIKitModifier,
     attributesCustomizer: AttrBuilderContext<HTMLInputElement> = {},
     onChange: (T) -> Unit
-) {
-    Input(type) {
-        classes("uk-input")
-        include(*modifiers)
-
-        placeholder ?.let(::placeholder)
-
-        value.let {
-            when (it) {
-                is String -> value(it)
-                is Number -> value(it)
-                else -> {}
-            }
-        }
-
-        onInput { onChange(it.value) }
-
-        if (disabled) {
-            disabled()
-        }
-        attributesCustomizer()
-    }
+) = StandardInput(type, value, modifiers = modifiers, disabled, placeholder, attributesCustomizer) {
+    onChange(it)
 }
 
 @Composable
@@ -49,12 +63,12 @@ fun <T> StandardInput(
     placeholder: String? = null,
     vararg modifiers: UIKitModifier,
     attributesCustomizer: AttrBuilderContext<HTMLInputElement> = {},
-) = DefaultInput(
+) = StandardInput(
     type,
     state.value,
+    modifiers = modifiers,
     disabledState ?.value == true,
     placeholder,
-    modifiers = modifiers,
     attributesCustomizer = attributesCustomizer
 ) {
     state.value = it
