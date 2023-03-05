@@ -2,6 +2,7 @@
 
 ## 0.6.1
 
+* `DefaultInput` has been renamed to `StandardInput`
 * `Compose`: `1.3.1-rc02`
 
 ## 0.6.0

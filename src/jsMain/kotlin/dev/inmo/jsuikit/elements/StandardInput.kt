@@ -9,12 +9,12 @@ import org.jetbrains.compose.web.dom.Input
 import org.w3c.dom.HTMLInputElement
 
 @Composable
-fun <T> DefaultInput(
+fun <T> StandardInput(
     type: InputType<T>,
     value: T,
+    vararg modifiers: UIKitModifier,
     disabled: Boolean = false,
     placeholder: String? = null,
-    vararg modifiers: UIKitModifier,
     attributesCustomizer: AttrBuilderContext<HTMLInputElement> = {},
     onChange: (T) -> Unit
 ) {
@@ -41,6 +41,18 @@ fun <T> DefaultInput(
     }
 }
 
+@Deprecated("Renamed", ReplaceWith("StandardInput(type, value, *modifiers, disabled, placeholder, attributesCustomizer, onChange)"))
+@Composable
+fun <T> DefaultInput(
+    type: InputType<T>,
+    value: T,
+    disabled: Boolean = false,
+    placeholder: String? = null,
+    vararg modifiers: UIKitModifier,
+    attributesCustomizer: AttrBuilderContext<HTMLInputElement> = {},
+    onChange: (T) -> Unit
+) = StandardInput(type, value, modifiers = modifiers, disabled, placeholder, attributesCustomizer, onChange)
+
 @Composable
 fun <T> StandardInput(
     type: InputType<T>,
@@ -49,12 +61,12 @@ fun <T> StandardInput(
     placeholder: String? = null,
     vararg modifiers: UIKitModifier,
     attributesCustomizer: AttrBuilderContext<HTMLInputElement> = {},
-) = DefaultInput(
+) = StandardInput(
     type,
     state.value,
+    modifiers = modifiers,
     disabledState ?.value == true,
     placeholder,
-    modifiers = modifiers,
     attributesCustomizer = attributesCustomizer
 ) {
     state.value = it
