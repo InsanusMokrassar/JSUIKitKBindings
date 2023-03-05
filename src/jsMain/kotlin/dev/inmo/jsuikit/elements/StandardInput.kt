@@ -16,7 +16,7 @@ fun <T> StandardInput(
     disabled: Boolean = false,
     placeholder: String? = null,
     attributesCustomizer: AttrBuilderContext<HTMLInputElement> = {},
-    onChange: (T) -> Unit
+    onChange: HTMLInputElement.(T) -> Unit
 ) {
     Input(type) {
         classes("uk-input")
@@ -32,7 +32,7 @@ fun <T> StandardInput(
             }
         }
 
-        onInput { onChange(it.value) }
+        onInput { event -> event.target.onChange(event.value) }
 
         if (disabled) {
             disabled()
@@ -51,7 +51,9 @@ fun <T> DefaultInput(
     vararg modifiers: UIKitModifier,
     attributesCustomizer: AttrBuilderContext<HTMLInputElement> = {},
     onChange: (T) -> Unit
-) = StandardInput(type, value, modifiers = modifiers, disabled, placeholder, attributesCustomizer, onChange)
+) = StandardInput(type, value, modifiers = modifiers, disabled, placeholder, attributesCustomizer) {
+    onChange(it)
+}
 
 @Composable
 fun <T> StandardInput(
