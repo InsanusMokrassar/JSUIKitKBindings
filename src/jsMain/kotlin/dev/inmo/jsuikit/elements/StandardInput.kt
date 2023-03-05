@@ -11,7 +11,7 @@ import org.w3c.dom.HTMLInputElement
 @Composable
 fun <T> StandardInput(
     type: InputType<T>,
-    value: T,
+    value: T? = null,
     vararg modifiers: UIKitModifier,
     disabled: Boolean = false,
     placeholder: String? = null,
@@ -24,7 +24,7 @@ fun <T> StandardInput(
 
         placeholder ?.let(::placeholder)
 
-        value.let {
+        value ?.let {
             when (it) {
                 is String -> value(it)
                 is Number -> value(it)
