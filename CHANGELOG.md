@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.2
+
+* `Compose`: `1.3.1`
+
 ## 0.6.1
 
 * `DefaultInput` has been renamed to `StandardInput`
