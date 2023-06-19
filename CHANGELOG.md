@@ -2,6 +2,9 @@
 
 ## 0.7.1
 
+* Type of `animation` parameter in `Alert` has been changed according to docs: now it is `Boolean`
+* Add tooltip `JS` part support
+
 ## 0.7.0
 
 * `Kotlin`: `1.8.20`
