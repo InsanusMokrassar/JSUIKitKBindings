@@ -17,4 +17,7 @@ external interface UIKit {
 
     fun dropdown(element: Element, options: DropdownOptions = definedExternally): Dropdown
     fun dropdown(selector: String, options: DropdownOptions = definedExternally): Dropdown?
+
+    fun tooltip(element: Element): UIKitTooltip
+    fun tooltip(selector: String): UIKitTooltip?
 }

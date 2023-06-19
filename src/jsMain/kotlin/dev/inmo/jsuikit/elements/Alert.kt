@@ -12,7 +12,7 @@ import org.w3c.dom.HTMLDivElement
 @Composable
 fun Alert(
     attrs: Attrs<HTMLDivElement> = Attrs.empty(),
-    animation: UIKitAnimation? = UIKitAnimation.Fade,
+    animation: Boolean = true,
     duration: Milliseconds? = null,
     selClose: String? = null,
     content: ContentBuilder<HTMLDivElement>
@@ -22,7 +22,7 @@ fun Alert(
         include(UIKitAlert)
 
         buildAndAddAttribute("uk-alert") {
-            "animation" to animation ?.classes ?.firstOrNull()
+            "animation" to animation
             "duration" to duration
             "sel-close" to selClose
         }
