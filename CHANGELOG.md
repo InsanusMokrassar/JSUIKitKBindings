@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.7.2
+
 ## 0.7.1
 
 * Type of `animation` parameter in `Alert` has been changed according to docs: now it is `Boolean`
