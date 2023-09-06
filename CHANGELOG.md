@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.7.2
+
+* `Kotlin`: `1.9.10`
+* `Compose`: `1.5.1`
+
 ## 0.7.1
 
 * Type of `animation` parameter in `Alert` has been changed according to docs: now it is `Boolean`
