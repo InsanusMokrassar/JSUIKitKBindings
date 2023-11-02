@@ -1,3 +1,1 @@
 rootProject.name = 'kjsuikit'
-
-enableFeaturePreview("VERSION_CATALOGS")
