@@ -1,8 +1,8 @@
 [versions]
 
-kt = "1.9.10"
-jb-compose = "1.5.1"
-jb-dokka = "1.9.0"
+kt = "1.9.20"
+jb-compose = "1.5.10"
+jb-dokka = "1.9.10"
 gh-release = "2.4.1"
 
 [libraries]
