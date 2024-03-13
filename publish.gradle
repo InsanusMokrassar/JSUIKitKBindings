@@ -38,20 +38,16 @@ publishing {
             }
         }
         repositories {
-            if (project.hasProperty('GITEA_TOKEN') || System.getenv('GITEA_TOKEN') != null) {
+            if ((project.hasProperty('INMONEXUS_USER') || System.getenv('INMONEXUS_USER') != null) && (project.hasProperty('INMONEXUS_PASSWORD') || System.getenv('INMONEXUS_PASSWORD') != null)) {
                 maven {
-                    name = "GITEA"
-                    url = uri("https://git.inmo.dev/api/packages/InsanusMokrassar/maven")
-            
-                    credentials(HttpHeaderCredentials) {
-                        name = "Authorization"
-                        value = project.hasProperty('GITEA_TOKEN') ? project.property('GITEA_TOKEN') : System.getenv('GITEA_TOKEN')
+                    name = "InmoNexus"
+                    url = uri("https://nexus.inmo.dev/repository/maven-releases/")
+
+                    credentials {
+                        username = project.hasProperty('INMONEXUS_USER') ? project.property('INMONEXUS_USER') : System.getenv('INMONEXUS_USER')
+                        password = project.hasProperty('INMONEXUS_PASSWORD') ? project.property('INMONEXUS_PASSWORD') : System.getenv('INMONEXUS_PASSWORD')
                     }
-            
-                    authentication {
-                        header(HttpHeaderAuthentication)
-                    }
-            
+
                 }
             }
             if ((project.hasProperty('SONATYPE_USER') || System.getenv('SONATYPE_USER') != null) && (project.hasProperty('SONATYPE_PASSWORD') || System.getenv('SONATYPE_PASSWORD') != null)) {
